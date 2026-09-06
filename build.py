@@ -93,6 +93,7 @@ def nav(current):
         </button>
       </div>
     </div>
+    <span class="nav__progress" id="navProgress" aria-hidden="true"></span>
   </header>
 
   <div class="nav__sheet" id="navSheet">
@@ -188,7 +189,14 @@ MODAL = f'''
   </div>
 '''
 
-TAIL = '''
+ACTIONBAR = '''
+  <div class="actionbar" id="actionBar">
+    <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>від 9 999 ₴</strong></span>
+    <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+  </div>
+'''
+
+TAIL = ACTIONBAR + '''
   <script src="script.js" defer></script>
 </body>
 </html>

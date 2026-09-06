@@ -49,6 +49,14 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
               <div class="showcase__img">
                 <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Astra Digital" width="1600" height="740" />
               </div>
+              <div class="showcase__note showcase__note--a" aria-hidden="true">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></i>
+                <div><b>Google Ads</b><span>трафік за запитом клієнта</span></div>
+              </div>
+              <div class="showcase__note showcase__note--b showcase__note--ok" aria-hidden="true">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4 10-11"/></svg></i>
+                <div><b>Запуск за 3–7 днів</b><span>сайт + перша кампанія</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,7 +66,9 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
 
 # ------------------------------------------------------------------ strip
 PROJECTS = ["Ferdinant", "Noirveil", "Yes or Not", "SlimLab", "Kyparis", "Jaydee"]
-cells = "\n".join(f'          <div class="strip__cell">{p}</div>' for p in PROJECTS)
+ARROW_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+cells = "\n".join(
+    f'          <a class="strip__cell" href="portfolio.html">{p} {ARROW_UP}</a>' for p in PROJECTS)
 write("strip.html", f'''    <!-- ================= ПРОЄКТИ ================= -->
     <section>
       <div class="shell">
@@ -99,17 +109,27 @@ write("process.html", f'''    <!-- ================= ПРОЦЕС ==============
 {step_cells}
         </div>
       </div>
+      <div class="shell">
+        <a class="section-link" href="#services" data-reveal>
+          <span>Подивитися, що входить у кожну послугу</span>
+          <span class="arrow-loop">→</span>
+        </a>
+      </div>
     </section>
 ''')
 
 # ------------------------------------------------------------------ advantages
-VIZ_SITE = '''            <div class="viz" aria-hidden="true">
+VIZ_SITE = '''            <div class="viz viz--demo" aria-hidden="true">
               <div class="viz__bar"><i></i><i></i><i></i></div>
               <div class="viz__body">
                 <div class="viz__line viz__line--w70"></div>
                 <div class="viz__line viz__line--w45 viz__line--accent"></div>
                 <div class="viz__row"><span class="viz__box"></span><span class="viz__box"></span><span class="viz__box"></span></div>
+                <div><span class="viz__cta">Залишити заявку</span></div>
               </div>
+              <span class="viz__cursor">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 8-6.2 1.6L10 19 5 3z"/></svg>
+              </span>
             </div>'''
 
 VIZ_SEARCH = '''            <div class="viz" aria-hidden="true">
@@ -167,6 +187,12 @@ write("bento.html", f'''    <!-- ================= ПЕРЕВАГИ ============
         <div class="cells cells--2">
 {adv_cells}
         </div>
+      </div>
+      <div class="shell">
+        <a class="section-link" href="#packages" data-reveal>
+          <span>Переглянути пакети та ціни</span>
+          <span class="arrow-loop">→</span>
+        </a>
       </div>
     </section>
 ''')
@@ -510,9 +536,15 @@ write("faq.html", f'''    <!-- ================= FAQ ================= -->
         </div>
       </div>
       <div class="shell shell--bleed">
-        <div class="faq" data-reveal>
+        <div class="faq">
 {faq_rows}
         </div>
+      </div>
+      <div class="shell">
+        <button class="section-link" data-modal-open data-reveal>
+          <span>Не знайшли відповідь? Запитайте нас напряму</span>
+          <span class="arrow-loop">→</span>
+        </button>
       </div>
     </section>
 ''')

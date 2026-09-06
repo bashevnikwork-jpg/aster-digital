@@ -45,6 +45,7 @@
         </button>
       </div>
     </div>
+    <span class="nav__progress" id="navProgress" aria-hidden="true"></span>
   </header>
 
   <div class="nav__sheet" id="navSheet">
@@ -85,6 +86,14 @@
               <div class="showcase__img">
                 <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Astra Digital" width="1600" height="740" />
               </div>
+              <div class="showcase__note showcase__note--a" aria-hidden="true">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></i>
+                <div><b>Google Ads</b><span>трафік за запитом клієнта</span></div>
+              </div>
+              <div class="showcase__note showcase__note--b showcase__note--ok" aria-hidden="true">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4 10-11"/></svg></i>
+                <div><b>Запуск за 3–7 днів</b><span>сайт + перша кампанія</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -94,12 +103,12 @@
     <section>
       <div class="shell">
         <div class="strip" aria-label="Проєкти, які ми зробили">
-          <div class="strip__cell">Ferdinant</div>
-          <div class="strip__cell">Noirveil</div>
-          <div class="strip__cell">Yes or Not</div>
-          <div class="strip__cell">SlimLab</div>
-          <div class="strip__cell">Kyparis</div>
-          <div class="strip__cell">Jaydee</div>
+          <a class="strip__cell" href="portfolio.html">Ferdinant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="strip__cell" href="portfolio.html">Noirveil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="strip__cell" href="portfolio.html">Yes or Not <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="strip__cell" href="portfolio.html">SlimLab <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="strip__cell" href="portfolio.html">Kyparis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="strip__cell" href="portfolio.html">Jaydee <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
         </div>
       </div>
     </section>
@@ -139,6 +148,12 @@
           </article>
         </div>
       </div>
+      <div class="shell">
+        <a class="section-link" href="#services" data-reveal>
+          <span>Подивитися, що входить у кожну послугу</span>
+          <span class="arrow-loop">→</span>
+        </a>
+      </div>
     </section>
     <!-- ================= ПЕРЕВАГИ ================= -->
     <section class="section section--alt rule" id="why">
@@ -158,13 +173,17 @@
             <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
             <h3>Не просто дизайн</h3>
             <p>Створюємо сайт під конкретні цілі вашого бізнесу.</p>
-            <div class="viz" aria-hidden="true">
+            <div class="viz viz--demo" aria-hidden="true">
               <div class="viz__bar"><i></i><i></i><i></i></div>
               <div class="viz__body">
                 <div class="viz__line viz__line--w70"></div>
                 <div class="viz__line viz__line--w45 viz__line--accent"></div>
                 <div class="viz__row"><span class="viz__box"></span><span class="viz__box"></span><span class="viz__box"></span></div>
+                <div><span class="viz__cta">Залишити заявку</span></div>
               </div>
+              <span class="viz__cursor">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 8-6.2 1.6L10 19 5 3z"/></svg>
+              </span>
             </div>
           </article>
           <article class="cell" data-reveal>
@@ -194,6 +213,12 @@
             </div>
           </article>
         </div>
+      </div>
+      <div class="shell">
+        <a class="section-link" href="#packages" data-reveal>
+          <span>Переглянути пакети та ціни</span>
+          <span class="arrow-loop">→</span>
+        </a>
       </div>
     </section>
     <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
@@ -548,7 +573,7 @@
         </div>
       </div>
       <div class="shell shell--bleed">
-        <div class="faq" data-reveal>
+        <div class="faq">
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">Скільки коштує сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
             <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Створення сайту — від 9 999 ₴. Точна вартість залежить від структури, функціональності та обсягу роботи.</p></div></div>
@@ -582,6 +607,12 @@
             <div class="faq__a" id="faq-a8" role="region" aria-labelledby="faq-q8"><div><p>Ні, і не обіцяємо цифр наперед: результат залежить від ніші, попиту та бюджету. Ми працюємо на залучення цільового трафіку та заявок і ухвалюємо рішення на основі аналітики.</p></div></div>
           </div>
         </div>
+      </div>
+      <div class="shell">
+        <button class="section-link" data-modal-open data-reveal>
+          <span>Не знайшли відповідь? Запитайте нас напряму</span>
+          <span class="arrow-loop">→</span>
+        </button>
       </div>
     </section>
 
@@ -677,6 +708,11 @@
         <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
+  </div>
+
+  <div class="actionbar" id="actionBar">
+    <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>від 9 999 ₴</strong></span>
+    <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
   </div>
 
   <script src="script.js" defer></script>

@@ -10,10 +10,18 @@
 
   /* ---------- 1. Nav: hairline appears once the page moves ---------- */
   var nav = document.getElementById('nav');
+  var progress = document.getElementById('navProgress');
+
   if (nav) {
-    var setStuck = function () { nav.classList.toggle('is-stuck', window.scrollY > 8); };
-    setStuck();
-    window.addEventListener('scroll', setStuck, { passive: true });
+    var onScroll = function () {
+      nav.classList.toggle('is-stuck', window.scrollY > 8);
+      if (progress) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+      }
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   /* ---------- 2. Mobile sheet ---------- */
@@ -40,24 +48,101 @@
     });
   }
 
-  /* ---------- 3. Scroll reveal with sibling stagger ---------- */
-  var revealables = document.querySelectorAll('[data-reveal]');
+  /* ---------- 3. Scroll choreography ---------- */
+  /* Split section headlines into words so they can set line by line. */
+  function splitWords(el) {
+    var frag = document.createDocumentFragment();
+    var index = 0;
+
+    var pushWords = function (text, target) {
+      text.split(/(\s+)/).forEach(function (chunk) {
+        if (!chunk) return;
+        if (/^\s+$/.test(chunk)) { target.appendChild(document.createTextNode(' ')); return; }
+        var word = document.createElement('span');
+        word.className = 'w';
+        var inner = document.createElement('i');
+        inner.textContent = chunk;
+        inner.style.setProperty('--i', index++);
+        word.appendChild(inner);
+        target.appendChild(word);
+      });
+    };
+
+    Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+      if (node.nodeType === 3) {
+        pushWords(node.textContent, frag);
+      } else if (node.nodeType === 1) {
+        // keep wrappers such as the grey second clause, split what's inside
+        var clone = node.cloneNode(false);
+        pushWords(node.textContent, clone);
+        frag.appendChild(clone);
+      }
+    });
+
+    el.textContent = '';
+    el.appendChild(frag);
+    el.setAttribute('data-split', '');
+  }
+
+  if (!reduceMotion) {
+    document.querySelectorAll('.head h2, .page-head h1').forEach(splitWords);
+  }
+
+  /* Number the children of any group so CSS can cascade their delays. */
+  function indexChildren(selector, childSelector) {
+    document.querySelectorAll(selector).forEach(function (group) {
+      Array.prototype.slice.call(group.querySelectorAll(childSelector)).forEach(function (child, i) {
+        child.style.setProperty('--i', i);
+      });
+    });
+  }
+
+  indexChildren('.cells', '.cell');
+  indexChildren('.strip', '.strip__cell');
+  indexChildren('.faq', '.faq__item');
+  indexChildren('.flow', '.flow__item');
+  document.querySelectorAll('.cells .cell').forEach(function (cell) {
+    var i = cell.style.getPropertyValue('--i');
+    Array.prototype.slice.call(cell.children).forEach(function (child) {
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  /* One observer drives every entrance. */
+  var watched = document.querySelectorAll('[data-reveal], [data-split], .cells, .strip, .faq, .flow');
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealables.forEach(function (el) { el.classList.add('is-in'); });
+    watched.forEach(function (el) { el.classList.add('is-in'); });
   } else {
     var observer = new IntersectionObserver(function (entries, obs) {
-      // Group entries that land in the same frame so a row of cards cascades.
-      var incoming = entries.filter(function (e) { return e.isIntersecting; });
-      incoming.forEach(function (entry, i) {
-        var el = entry.target;
-        el.style.transitionDelay = Math.min(i, 5) * 90 + 'ms';
-        el.classList.add('is-in');
-        obs.unobserve(el);
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+      entries.filter(function (e) { return e.isIntersecting; })
+        .forEach(function (entry, i) {
+          var el = entry.target;
+          // siblings that appear together cascade rather than land as one block
+          if (el.hasAttribute('data-reveal') && !el.style.getPropertyValue('--i')) {
+            el.style.setProperty('--i', Math.min(i, 5));
+          }
+          el.classList.add('is-in');
+          obs.unobserve(el);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
-    revealables.forEach(function (el) { observer.observe(el); });
+    watched.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ---------- 3b. Mobile action bar ---------- */
+  var bar = document.getElementById('actionBar');
+  if (bar) {
+    var closing = document.querySelector('.cta__panel');
+    var update = function () {
+      var past = window.scrollY > window.innerHeight * 0.7;
+      // stand down where the page makes the same offer full size
+      var atClosing = closing && closing.getBoundingClientRect().top < window.innerHeight;
+      bar.classList.toggle('is-in', past && !atClosing);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
   }
 
   /* ---------- 4. FAQ disclosures ---------- */
