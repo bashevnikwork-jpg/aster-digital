@@ -60,49 +60,27 @@
     revealables.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ---------- 4. Tabs ---------- */
-  var tabList = document.querySelector('[role="tablist"]');
-
-  if (tabList) {
-    var tabs = Array.prototype.slice.call(tabList.querySelectorAll('[role="tab"]'));
-
-    var selectTab = function (tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        var panel = document.getElementById(t.getAttribute('aria-controls'));
-        if (panel) panel.hidden = !on;
+  /* ---------- 4. Disclosures (FAQ rows and service cards) ---------- */
+  function bindDisclosure(toggleSelector, itemSelector) {
+    document.querySelectorAll(toggleSelector).forEach(function (btn) {
+      var item = btn.closest(itemSelector);
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        item.classList.toggle('is-open', !open);
       });
-      if (focus) tab.focus();
-    };
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () { selectTab(tab, false); });
-    });
-
-    tabList.addEventListener('keydown', function (e) {
-      var i = tabs.indexOf(document.activeElement);
-      if (i === -1) return;
-      var next = null;
-      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') next = 0;
-      else if (e.key === 'End') next = tabs.length - 1;
-      if (next === null) return;
-      e.preventDefault();
-      selectTab(tabs[next], true);
     });
   }
 
-  /* ---------- 5. FAQ ---------- */
-  document.querySelectorAll('.faq__q').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.closest('.faq__item').classList.toggle('is-open', !open);
-    });
-  });
+  bindDisclosure('.faq__q', '.faq__item');
+  bindDisclosure('.svc__toggle', '.svc');
+
+  /* A service card deep-linked as #services-web opens on load. */
+  var hash = window.location.hash;
+  if (hash) {
+    var target = document.querySelector(hash + ' .svc__toggle, ' + hash + '.svc .svc__toggle');
+    if (target && target.getAttribute('aria-expanded') !== 'true') target.click();
+  }
 
   /* ---------- 6. Modal ---------- */
   var modal = document.getElementById('contactModal');

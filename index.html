@@ -197,6 +197,44 @@
       </div>
     </section>
 
+    <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
+    <section class="section section--alt" id="system">
+      <div class="container">
+        <div class="head" data-reveal>
+          <span class="eyebrow">Навіщо сайт</span>
+          <h2>Сайт без реклами ≠ система залучення клієнтів</h2>
+          <p class="lead">
+            Соцмережі можуть бути частиною продажів. Але власний сайт дає вам окрему точку контакту
+            з клієнтом, яку можна використовувати в рекламі та пошуку.
+          </p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="path" data-reveal>
+            <span class="path__tag">Тільки профіль у соцмережах</span>
+            <ol class="path__steps">
+              <li>Людина знаходить профіль</li>
+              <li>Шукає потрібну інформацію серед постів</li>
+              <li>Не бачить чіткої пропозиції та умов</li>
+              <li>Відкладає рішення або йде далі</li>
+            </ol>
+            <p class="path__note">Ви залежите від того, наскільки зручно людині шукати відповіді у стрічці.</p>
+          </article>
+
+          <article class="path path--accent" data-reveal>
+            <span class="path__tag">Сайт + Google Ads</span>
+            <ol class="path__steps">
+              <li>Людина шукає послугу в Google</li>
+              <li>Бачить ваше оголошення за своїм запитом</li>
+              <li>Потрапляє на сторінку з відповіддю на цей запит</li>
+              <li>Бачить пропозицію та залишає заявку</li>
+            </ol>
+            <p class="path__note">Ви контролюєте пропозицію, шлях клієнта та бачите, звідки приходять заявки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= ЛІД-МАГНІТ ================= -->
     <section class="section">
       <div class="container">
@@ -215,7 +253,7 @@
     </section>
 
     <!-- ================= ПАКЕТИ ================= -->
-    <section class="section section--alt" id="services">
+    <section class="section section--alt" id="packages">
       <div class="container">
         <div class="head head--center" data-reveal>
           <span class="eyebrow">Пакети послуг</span>
@@ -264,48 +302,231 @@
       </div>
     </section>
 
-    <!-- ================= ОКРЕМІ ПОСЛУГИ ================= -->
-    <section class="section" id="solutions">
+    <!-- ================= ПОСЛУГИ ================= -->
+    <section class="section" id="services">
       <div class="container">
         <div class="head" data-reveal>
-          <span class="eyebrow">Окремі послуги</span>
+          <span class="eyebrow">Наші послуги</span>
           <h2>Що вам потрібно?</h2>
+          <p class="lead">
+            Оберіть напрям і розгорніть картку — усередині докладно: що це, навіщо це бізнесу,
+            що саме ви отримаєте, якого результату очікувати та скільки це коштує.
+          </p>
         </div>
 
-        <div data-reveal>
-          <div class="tabs__list" role="tablist" aria-label="Окремі послуги">
-            <button class="tabs__btn" id="tab-web" role="tab" aria-selected="true" aria-controls="panel-web" tabindex="0">Сайт</button>
-            <button class="tabs__btn" id="tab-ads" role="tab" aria-selected="false" aria-controls="panel-ads" tabindex="-1">Реклама</button>
-            <button class="tabs__btn" id="tab-motion" role="tab" aria-selected="false" aria-controls="panel-motion" tabindex="-1">Motion</button>
-          </div>
-
-          <div class="tabs__panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" tabindex="0">
-            <p class="tabs__index">01 — WEB</p>
-            <div>
-              <h3>Створення сайтів</h3>
-              <p>Сучасні сайти під ключ: від Landing Page до складних веб-проєктів.</p>
+        <div class="svc-list">
+          <article class="svc is-open" data-reveal>
+            <h3 class="svc__head">
+              <button class="svc__toggle" id="svc-q1" aria-expanded="true" aria-controls="svc-a1">
+                <span class="svc__index">01 — WEB</span>
+                <span class="svc__title">Створення сайтів</span>
+                <span class="svc__tagline">Сайти, які працюють на залучення клієнтів, а не просто красиво виглядають.</span>
+                <span class="svc__price">від 9 999 ₴</span>
+                <span class="svc__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="svc__body" id="svc-a1" role="region" aria-labelledby="svc-q1">
+              <div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що це</h4>
+                    <p>В Astra Digital ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, вибудовуємо структуру, додаємо необхідні елементи довіри та скорочуємо шлях клієнта від першого відвідування до заявки. Після запуску можемо підключити Google Ads і приводити потенційних клієнтів прямо на розроблений для вас сайт.</p>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Навіщо це бізнесу</h4>
+                    <p>Сайт стає вашою власною точкою контакту з клієнтом, де ви контролюєте пропозицію, інформацію про бізнес та шлях до заявки.</p>
+                  </div>
+                </div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що ви отримаєте</h4>
+                    <ul class="checklist">
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Структуру сторінки під вашу пропозицію</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний дизайн під мобільні та десктоп</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Тексти та блоки довіри: послуги, роботи, контакти</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Форми заявки та зручні способи звʼязку</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базову SEO-підготовку під пошук</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Готовність підключити Google Ads одразу після запуску</span></li>
+                    </ul>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Який результат це має дати</h4>
+                    <p>Ви отримуєте власний майданчик, на який можна вести рекламний і пошуковий трафік, і де клієнту зрозуміло, що ви пропонуєте та як залишити заявку.</p>
+                  </div>
+                </div>
+                <div class="svc__foot">
+                  <p class="svc__from"><span>Вартість</span><strong>від 9 999 ₴</strong></p>
+                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки сайт">Замовити сайт <span class="btn__arrow">→</span></button>
+                </div>
+              </div>
             </div>
-            <p class="tabs__price"><strong>від 9 999 ₴</strong><span>3–7 днів</span></p>
-          </div>
-
-          <div class="tabs__panel" id="panel-ads" role="tabpanel" aria-labelledby="tab-ads" tabindex="0" hidden>
-            <p class="tabs__index">02 — ADS</p>
-            <div>
-              <h3>Google Ads</h3>
-              <p>Налаштовуємо та ведемо рекламу в Google.</p>
+          </article>
+          <article class="svc" data-reveal>
+            <h3 class="svc__head">
+              <button class="svc__toggle" id="svc-q2" aria-expanded="false" aria-controls="svc-a2">
+                <span class="svc__index">02 — ADS</span>
+                <span class="svc__title">Google Ads</span>
+                <span class="svc__tagline">Допомагаємо потенційним клієнтам знаходити ваш бізнес саме тоді, коли вони шукають послугу.</span>
+                <span class="svc__price">від 5 999 ₴</span>
+                <span class="svc__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="svc__body" id="svc-a2" role="region" aria-labelledby="svc-q2">
+              <div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що це</h4>
+                    <p>Аналізуємо нішу та попит, налаштовуємо рекламні кампанії, підключаємо аналітику та направляємо рекламний трафік на сторінку, яка відповідає запиту клієнта.</p>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Навіщо це бізнесу</h4>
+                    <p>Якщо людина вже шукає вашу послугу, реклама дозволяє показати їй вашу пропозицію саме в цей момент, а не чекати, поки вона випадково знайде ваш бізнес.</p>
+                  </div>
+                </div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що ви отримаєте</h4>
+                    <ul class="checklist">
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші, попиту та конкурентів</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Пошукові запити й мінус-слова під ваші послуги</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштовані та запущені кампанії в Google Ads</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Підключену аналітику та відстеження заявок</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Звʼязку «запит → оголошення → відповідна сторінка»</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Подальшу оптимізацію за результатами перших тижнів</span></li>
+                    </ul>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Який результат це має дати</h4>
+                    <p>Працюємо на залучення цільового трафіку та заявок: вашу пропозицію бачать люди з активним запитом, а рішення щодо кампаній ухвалюємо на основі аналітики.</p>
+                <p class="svc__note">Рекламний бюджет сплачується окремо напряму в Google. Кількість клієнтів залежить від ніші, попиту та бюджету, тому ми не обіцяємо гарантованих цифр.</p>
+                  </div>
+                </div>
+                <div class="svc__foot">
+                  <p class="svc__from"><span>Вартість</span><strong>від 5 999 ₴</strong></p>
+                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки Google Ads">Замовити рекламу <span class="btn__arrow">→</span></button>
+                </div>
+              </div>
             </div>
-            <p class="tabs__price"><strong>від 5 999 ₴</strong><span>запуск під ключ</span></p>
-          </div>
-
-          <div class="tabs__panel" id="panel-motion" role="tabpanel" aria-labelledby="tab-motion" tabindex="0" hidden>
-            <p class="tabs__index">03 — MOTION</p>
-            <div>
-              <h3>Motion Design</h3>
-              <p>Анімації для сайтів, реклами, Reels, Stories.</p>
+          </article>
+          <article class="svc" data-reveal>
+            <h3 class="svc__head">
+              <button class="svc__toggle" id="svc-q3" aria-expanded="false" aria-controls="svc-a3">
+                <span class="svc__index">03 — MOTION</span>
+                <span class="svc__title">Motion Design</span>
+                <span class="svc__tagline">Оживляємо бренд і продукт: від айдентики сайту до рекламних роликів і контенту для соцмереж.</span>
+                <span class="svc__price">від 4 999 ₴</span>
+                <span class="svc__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="svc__body" id="svc-a3" role="region" aria-labelledby="svc-q3">
+              <div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що це</h4>
+                    <p>Motion у нас — це два напрями: анімація бренду та інтерфейсу сайту, а також короткі анімовані ролики для реклами, Reels і Stories.</p>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Навіщо це бізнесу</h4>
+                    <p>Рух робить бренд впізнаваним і послідовним, а продукт — зрозумілішим: замість статичної картинки людина бачить, як він працює.</p>
+                  </div>
+                </div>
+                <div class="svc__split">
+                  <div class="svc__branch">
+                    <span class="svc__branch-tag">Напрям 1</span>
+                    <h4>Motion для сайту та бренду</h4>
+                    <p>Перетворюємо статичний бренд на єдину візуальну систему в русі. Анімуємо логотип,
+                      елементи айдентики та графіку сайту так, щоб бренд виглядав цілісно — від першого
+                      екрана до мікроанімацій.</p>
+                    <p class="svc__branch-why">Motion допомагає зробити взаємодію з брендом впізнаваною
+                      та послідовною, а сайт — більш виразним і живим.</p>
+                  </div>
+                  <div class="svc__branch">
+                    <span class="svc__branch-tag">Напрям 2</span>
+                    <h4>Motion для реклами та соцмереж</h4>
+                    <p>Показуємо ваш продукт у русі, щоб його було легше помітити та зрозуміти. Створюємо
+                      короткі анімовані рекламні ролики, product-анімації та контент для Reels, Stories
+                      і рекламних кампаній.</p>
+                    <p class="svc__branch-why">Замість статичної картинки показуємо продукт, його функції
+                      або переваги через рух і короткий сценарій: товар → відкривається → показуємо
+                      функцію → демонструємо перевагу → CTA.</p>
+                  </div>
+                </div>
+                <div class="svc__grid">
+                  <div class="svc__col">
+                    <h4>Що ви отримаєте</h4>
+                    <ul class="checklist">
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Анімований логотип та елементи айдентики</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Мікроанімації та переходи для сайту</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Product-анімації, що показують функції та переваги</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Короткі рекламні ролики за сценарієм</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Формати під Reels, Stories та рекламні кампанії</span></li>
+                    </ul>
+                  </div>
+                  <div class="svc__col">
+                    <h4>Який результат це має дати</h4>
+                    <p>Бренд виглядає цілісно в русі, а рекламні матеріали легше помітити та зрозуміти за перші секунди перегляду.</p>
+                  </div>
+                </div>
+                <div class="svc__foot">
+                  <p class="svc__from"><span>Вартість</span><strong>від 4 999 ₴</strong></p>
+                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Motion Design">Замовити Motion <span class="btn__arrow">→</span></button>
+                </div>
+              </div>
             </div>
-            <p class="tabs__price"><strong>від 4 999 ₴</strong><span>за проєкт</span></p>
-          </div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= ПІСЛЯ ЗАЯВКИ ================= -->
+    <section class="section section--hairline" id="after">
+      <div class="container">
+        <div class="head" data-reveal>
+          <span class="eyebrow">Далі</span>
+          <h2>Що відбувається після заявки?</h2>
+          <p class="lead">
+            Ніяких зобовʼязань на першому кроці: спочатку розбираємося в задачі, а вже потім
+            пропонуємо формат і вартість.
+          </p>
+        </div>
+
+        <ol class="flow">
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">01</span>
+            <div>
+              <h3>Розбираємося у вашому бізнесі</h3>
+              <p>Що продаєте, кому, як зараз приходять клієнти та що вже пробували.</p>
+            </div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">02</span>
+            <div>
+              <h3>Аналізуємо нішу та задачу</h3>
+              <p>Дивимося на попит, конкурентів і те, як вас бачить клієнт у пошуку.</p>
+            </div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">03</span>
+            <div>
+              <h3>Пропонуємо оптимальний формат</h3>
+              <p>Показуємо, що доцільно зробити першим кроком, зі строками та вартістю.</p>
+            </div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">04</span>
+            <div>
+              <h3>Створюємо та запускаємо</h3>
+              <p>Робимо сайт, налаштовуємо рекламу й аналітику, узгоджуємо на кожному етапі.</p>
+            </div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">05</span>
+            <div>
+              <h3>Аналізуємо перші результати</h3>
+              <p>Дивимося на дані після запуску та коригуємо сторінку й кампанії.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -320,31 +541,35 @@
         <div class="faq" data-reveal>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">Скільки коштує сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Від 9 999 гривень.</p></div></div>
+            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Створення сайту — від 9 999 ₴. Точна вартість залежить від структури, функціональності та обсягу роботи.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">Скільки часу займає розробка?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>3–10 днів.</p></div></div>
+            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>Типовий сайт запускаємо приблизно за 3–7 днів. Складніші проєкти можуть потребувати більше часу.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Чи входить рекламний бюджет?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>Ні. У вартість входить повне налаштування реклами та обслуговування. Рекламний бюджет сплачується окремо напряму в Google.</p></div></div>
+            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>Ні. У вартість входить повне налаштування та ведення реклами. Рекламний бюджет сплачується окремо напряму в Google, і ви завжди бачите, скільки витрачено.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Чи можна замовити тільки сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>Так, також можна замовити тільки рекламу на існуючий сайт або motion-анімації.</p></div></div>
+            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>Так. Також можна замовити тільки рекламу на вже існуючий сайт або тільки motion-анімації.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">Чи працюєте ви з існуючими сайтами?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>Так.</p></div></div>
+            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>Так. Можемо доопрацювати структуру та сторінки під рекламу або підключити Google Ads до сайту, який у вас уже є.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Чи можна замовити тільки рекламу?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>Так.</p></div></div>
+            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>Так — від 5 999 ₴. Перед запуском подивимося, чи готова сторінка приймати трафік, і скажемо, що варто підправити.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">Чи можна зробити motion для мого бренду?<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div><p>Так.</p></div></div>
+            <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div><p>Так. Анімуємо логотип та айдентику, робимо мікроанімації для сайту, а також ролики для реклами, Reels і Stories.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a8" id="faq-q8">Чи гарантуєте ви кількість клієнтів?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a8" role="region" aria-labelledby="faq-q8"><div><p>Ні, і не обіцяємо цифр наперед: результат залежить від ніші, попиту та бюджету. Ми працюємо на залучення цільового трафіку та заявок і ухвалюємо рішення на основі аналітики.</p></div></div>
           </div>
         </div>
       </div>
