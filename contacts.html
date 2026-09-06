@@ -6,10 +6,10 @@
   <title>Зв'язатися з нами — Astra Digital</title>
   <meta name="description" content="Напишіть Astra Digital: безкоштовна консультація, аналіз ніші та розрахунок вартості сайту й Google Ads." />
   <meta name="theme-color" content="#FBFBF9" />
-  <link rel="icon" href="public/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -17,39 +17,43 @@
   <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Перейти до основного вмісту</a>
 
-  <header class="nav">
+  <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand" aria-label="Astra Digital — на головну">
-        <span class="nav__mark" aria-hidden="true"></span>
-        <span>Astra Digital</span>
+      <a href="index.html" class="brand" aria-label="Astra Digital — на головну">
+        <span class="brand__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
+        <span class="brand__name">Astra Digital</span>
       </a>
+
       <nav class="nav__links" aria-label="Основна навігація">
         <a href="index.html">Головна сторінка</a>
         <a href="index.html#services">Наші послуги</a>
         <a href="portfolio.html">Портфоліо</a>
         <a href="contacts.html" aria-current="page">Зв'язатися з нами</a>
       </nav>
+
       <div class="nav__right">
-        <button class="btn btn--primary" data-modal-open>Обговорити проєкт →</button>
-        <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navMobile">
+        <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+        <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navSheet">
           <span></span><span></span>
         </button>
       </div>
     </div>
-    <div class="nav__mobile" id="navMobile">
-      <nav aria-label="Мобільна навігація">
-        <a href="index.html">Головна сторінка</a>
-        <a href="index.html#services">Наші послуги</a>
-        <a href="portfolio.html">Портфоліо</a>
-        <a href="contacts.html">Зв'язатися з нами</a>
-      </nav>
-      <button class="btn btn--primary btn--wide" data-modal-open>Обговорити проєкт →</button>
-    </div>
+
   </header>
+
+  <div class="nav__sheet" id="navSheet">
+    <nav aria-label="Мобільна навігація">
+      <a href="index.html">Головна сторінка</a>
+      <a href="index.html#services">Наші послуги</a>
+      <a href="portfolio.html">Портфоліо</a>
+      <a href="contacts.html">Зв'язатися з нами</a>
+    </nav>
+    <button class="btn btn--primary btn--lg btn--wide" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+  </div>
 
   <main id="main">
     <section class="page-head">
-      <div class="container" data-reveal>
+      <div class="container" data-hero>
         <span class="eyebrow">Контакти</span>
         <h1>Зв'язатися з нами</h1>
         <p class="lead">
@@ -59,24 +63,24 @@
       </div>
     </section>
 
-    <section class="section" style="padding-top:0">
+    <section class="section section--flush-top">
       <div class="container">
         <div class="contact-grid">
           <div data-reveal>
-            <h2 style="font-size:1.5rem">Напишіть нам</h2>
+            <h2 style="font-size:1.75rem;letter-spacing:-0.035em">Напишіть нам</h2>
             <ul class="contact-list">
-              <li><a class="card card--hover" href="mailto:hello@astradigital.agency"><span>Email</span><span>hello@astradigital.agency</span></a></li>
-              <li><a class="card card--hover" href="https://t.me/astradigital" target="_blank" rel="noopener"><span>Telegram</span><span>@astradigital</span></a></li>
-              <li><a class="card card--hover" href="tel:+380000000000"><span>Телефон</span><span>+38 (000) 000-00-00</span></a></li>
+              <li><a class="card card--hover" href="mailto:hello@astradigital.agency"><span class="k">Email</span><span class="v">hello@astradigital.agency</span></a></li>
+              <li><a class="card card--hover" href="https://t.me/astradigital" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
+              <li><a class="card card--hover" href="tel:+380000000000"><span class="k">Телефон</span><span class="v">+38 (000) 000-00-00</span></a></li>
             </ul>
-            <p style="margin-top:22px;font-size:0.9rem">
+            <p class="small" style="margin-top:24px">
               Відповідаємо протягом робочого дня. Консультація безкоштовна та без зобов'язань.
             </p>
           </div>
 
-          <div class="card" style="padding:32px" data-reveal>
-            <h2 style="font-size:1.5rem;margin-bottom:8px">Залишити заявку</h2>
-            <p style="margin-bottom:22px;font-size:0.94rem">Заповніть коротку форму — ми зв'яжемося та запропонуємо рішення.</p>
+          <div class="card" style="padding:clamp(26px,3.4vw,36px)" data-reveal>
+            <h2 style="font-size:1.5rem;letter-spacing:-0.032em;margin-bottom:8px">Залишити заявку</h2>
+            <p class="small" style="margin-bottom:24px">Заповніть коротку форму — ми зв'яжемося та запропонуємо рішення.</p>
             <form id="pageForm" novalidate>
               <div class="field">
                 <label for="pName">Ваше ім'я</label>
@@ -101,7 +105,7 @@
                 <label for="pMessage">Коротко про бізнес</label>
                 <textarea id="pMessage" name="message" rows="3"></textarea>
               </div>
-              <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку →</button>
+              <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>
               <p class="form__status" id="pageFormStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
@@ -111,18 +115,33 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
-      <a href="index.html" class="nav__brand">
-        <span class="nav__mark" aria-hidden="true"></span>
-        <span>Astra Digital</span>
-      </a>
-      <nav class="footer__links" aria-label="Футер">
-        <a href="index.html">Головна сторінка</a>
-        <a href="index.html#services">Наші послуги</a>
-        <a href="portfolio.html">Портфоліо</a>
-        <a href="contacts.html">Зв'язатися з нами</a>
-      </nav>
-      <p class="footer__copy">© 2026 Astra Digital</p>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <a href="index.html" class="brand">
+            <span class="brand__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
+            <span class="brand__name">Astra Digital</span>
+          </a>
+          <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Сайт</h4>
+          <a href="index.html">Головна сторінка</a>
+          <a href="#services">Наші послуги</a>
+          <a href="portfolio.html">Портфоліо</a>
+          <a href="contacts.html">Зв'язатися з нами</a>
+        </div>
+        <div class="footer__col">
+          <h4>Контакти</h4>
+          <a href="mailto:hello@astradigital.agency">hello@astradigital.agency</a>
+          <a href="https://t.me/astradigital" target="_blank" rel="noopener">Telegram</a>
+          <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Astra Digital</span>
+        <span>Київ · Працюємо з бізнесом по всій Україні</span>
+      </div>
     </div>
   </footer>
 
@@ -132,6 +151,7 @@
       <button class="modal__close" type="button" aria-label="Закрити вікно" data-modal-close>✕</button>
       <h2 id="modalTitle">Обговорити проєкт</h2>
       <p>Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант.</p>
+
       <form id="contactForm" novalidate>
         <div class="field">
           <label for="fName">Ваше ім'я</label>
@@ -156,7 +176,7 @@
           <label for="fMessage">Коротко про бізнес</label>
           <textarea id="fMessage" name="message" rows="3"></textarea>
         </div>
-        <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку →</button>
+        <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>
         <p class="form__note">Безкоштовна консультація · Без зобов'язань</p>
         <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
@@ -164,19 +184,5 @@
   </div>
 
   <script src="script.js" defer></script>
-  <script>
-    // Standalone contact-page form (front-end only).
-    (function () {
-      var form = document.getElementById('pageForm');
-      var status = document.getElementById('pageFormStatus');
-      if (!form) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-        status.textContent = 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.';
-        form.reset();
-      });
-    })();
-  </script>
 </body>
 </html>

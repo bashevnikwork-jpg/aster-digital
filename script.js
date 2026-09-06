@@ -1,56 +1,66 @@
 /* ============================================================
-   ASTRA DIGITAL — lightweight vanilla interactions
-   nav · scroll reveal · tabs · FAQ accordion · modal
+   ASTRA DIGITAL — interactions
+   nav state · mobile sheet · staggered scroll reveal
+   tabs · faq · modal · forms
    ============================================================ */
 (function () {
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 1. Mobile navigation ---------- */
+  /* ---------- 1. Nav: hairline appears once the page moves ---------- */
+  var nav = document.getElementById('nav');
+  if (nav) {
+    var setStuck = function () { nav.classList.toggle('is-stuck', window.scrollY > 8); };
+    setStuck();
+    window.addEventListener('scroll', setStuck, { passive: true });
+  }
+
+  /* ---------- 2. Mobile sheet ---------- */
   var burger = document.getElementById('navBurger');
-  var mobileNav = document.getElementById('navMobile');
+  var sheet = document.getElementById('navSheet');
 
-  if (burger && mobileNav) {
+  if (burger && sheet) {
+    var setSheet = function (open) {
+      if (open && nav) sheet.style.top = Math.round(nav.getBoundingClientRect().height) + 'px';
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+      sheet.classList.toggle('is-open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
     burger.addEventListener('click', function () {
-      var open = burger.getAttribute('aria-expanded') === 'true';
-      burger.setAttribute('aria-expanded', String(!open));
-      mobileNav.classList.toggle('is-open', !open);
+      setSheet(burger.getAttribute('aria-expanded') !== 'true');
     });
-
-    mobileNav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        burger.setAttribute('aria-expanded', 'false');
-        mobileNav.classList.remove('is-open');
-      }
+    sheet.addEventListener('click', function (e) {
+      if (e.target.closest('a, button')) setSheet(false);
+    });
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sheet.classList.contains('is-open')) setSheet(false);
     });
   }
 
-  /* ---------- 2. Scroll reveal (fade-in-up) ---------- */
+  /* ---------- 3. Scroll reveal with sibling stagger ---------- */
   var revealables = document.querySelectorAll('[data-reveal]');
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealables.forEach(function (el) { el.classList.add('is-visible'); });
+    revealables.forEach(function (el) { el.classList.add('is-in'); });
   } else {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
+    var observer = new IntersectionObserver(function (entries, obs) {
+      // Group entries that land in the same frame so a row of cards cascades.
+      var incoming = entries.filter(function (e) { return e.isIntersecting; });
+      incoming.forEach(function (entry, i) {
         var el = entry.target;
-        // Stagger siblings inside the same grid for a softer cascade.
-        var siblings = el.parentElement ? Array.prototype.filter.call(
-          el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); }
-        ) : [];
-        var index = Math.max(0, siblings.indexOf(el));
-        el.style.transitionDelay = Math.min(index, 5) * 70 + 'ms';
-        el.classList.add('is-visible');
-        observer.unobserve(el);
+        el.style.transitionDelay = Math.min(i, 5) * 90 + 'ms';
+        el.classList.add('is-in');
+        obs.unobserve(el);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
     revealables.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ---------- 3. Tabs (roving tabindex, ARIA) ---------- */
+  /* ---------- 4. Tabs ---------- */
   var tabList = document.querySelector('[role="tablist"]');
 
   if (tabList) {
@@ -58,11 +68,11 @@
 
     var selectTab = function (tab, focus) {
       tabs.forEach(function (t) {
-        var selected = t === tab;
-        t.setAttribute('aria-selected', String(selected));
-        t.tabIndex = selected ? 0 : -1;
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
         var panel = document.getElementById(t.getAttribute('aria-controls'));
-        if (panel) panel.hidden = !selected;
+        if (panel) panel.hidden = !on;
       });
       if (focus) tab.focus();
     };
@@ -72,11 +82,11 @@
     });
 
     tabList.addEventListener('keydown', function (e) {
-      var current = tabs.indexOf(document.activeElement);
-      if (current === -1) return;
+      var i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
       var next = null;
-      if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
       else if (e.key === 'Home') next = 0;
       else if (e.key === 'End') next = tabs.length - 1;
       if (next === null) return;
@@ -85,17 +95,16 @@
     });
   }
 
-  /* ---------- 4. FAQ accordion ---------- */
+  /* ---------- 5. FAQ ---------- */
   document.querySelectorAll('.faq__q').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var item = btn.closest('.faq__item');
       var open = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!open));
-      item.classList.toggle('is-open', !open);
+      btn.closest('.faq__item').classList.toggle('is-open', !open);
     });
   });
 
-  /* ---------- 5. Modal (focus trap, Esc, restore focus) ---------- */
+  /* ---------- 6. Modal ---------- */
   var modal = document.getElementById('contactModal');
 
   if (modal) {
@@ -135,7 +144,6 @@
     document.querySelectorAll('[data-modal-open]').forEach(function (btn) {
       btn.addEventListener('click', function () { openModal(btn); });
     });
-
     modal.querySelectorAll('[data-modal-close]').forEach(function (btn) {
       btn.addEventListener('click', closeModal);
     });
@@ -150,33 +158,30 @@
       var first = items[0];
       var last = items[items.length - 1];
 
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
-    /* ---------- 6. Form (front-end only, no backend yet) ---------- */
-    var form = document.getElementById('contactForm');
-    var status = document.getElementById('formStatus');
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-        status.textContent = 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.';
-        form.reset();
-        setTimeout(function () {
-          status.textContent = '';
-          closeModal();
-        }, 2200);
-      });
-    }
+    var modalForm = document.getElementById('contactForm');
+    if (modalForm) bindForm(modalForm, document.getElementById('formStatus'), closeModal);
   }
+
+  /* ---------- 7. Forms (front-end only, no backend yet) ---------- */
+  function bindForm(form, status, done) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (status) status.textContent = 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.';
+      form.reset();
+      if (done) {
+        setTimeout(function () {
+          if (status) status.textContent = '';
+          done();
+        }, 2200);
+      }
+    });
+  }
+
+  var pageForm = document.getElementById('pageForm');
+  if (pageForm) bindForm(pageForm, document.getElementById('pageFormStatus'), null);
 })();

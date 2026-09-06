@@ -6,7 +6,7 @@
   <title>Astra Digital — Створення сайтів та Google Ads для бізнесу</title>
   <meta name="description" content="Створюємо сучасні сайти для бізнесу, налаштовуємо Google Ads та створюємо motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴." />
   <meta name="theme-color" content="#FBFBF9" />
-  <link rel="icon" href="public/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Astra Digital — Створення сайтів та Google Ads для бізнесу" />
@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -22,12 +22,12 @@
   <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Перейти до основного вмісту</a>
 
-  <!-- ============ HEADER ============ -->
-  <header class="nav">
+  <!-- ================= HEADER ================= -->
+  <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand" aria-label="Astra Digital — на головну">
-        <span class="nav__mark" aria-hidden="true"></span>
-        <span>Astra Digital</span>
+      <a href="index.html" class="brand" aria-label="Astra Digital — на головну">
+        <span class="brand__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
+        <span class="brand__name">Astra Digital</span>
       </a>
 
       <nav class="nav__links" aria-label="Основна навігація">
@@ -38,75 +38,101 @@
       </nav>
 
       <div class="nav__right">
-        <button class="btn btn--primary" data-modal-open>Обговорити проєкт →</button>
-        <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navMobile">
+        <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+        <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navSheet">
           <span></span><span></span>
         </button>
       </div>
     </div>
 
-    <div class="nav__mobile" id="navMobile">
-      <nav aria-label="Мобільна навігація">
-        <a href="index.html">Головна сторінка</a>
-        <a href="#services">Наші послуги</a>
-        <a href="portfolio.html">Портфоліо</a>
-        <a href="contacts.html">Зв'язатися з нами</a>
-      </nav>
-      <button class="btn btn--primary btn--wide" data-modal-open>Обговорити проєкт →</button>
-    </div>
   </header>
 
+  <div class="nav__sheet" id="navSheet">
+    <nav aria-label="Мобільна навігація">
+      <a href="index.html">Головна сторінка</a>
+      <a href="#services">Наші послуги</a>
+      <a href="portfolio.html">Портфоліо</a>
+      <a href="contacts.html">Зв'язатися з нами</a>
+    </nav>
+    <button class="btn btn--primary btn--lg btn--wide" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+  </div>
+
   <main id="main">
-    <!-- ============ 1. HERO ============ -->
+    <!-- ================= HERO ================= -->
     <section class="hero">
-      <div class="container">
-        <p class="hero__kicker" data-reveal>Astra Digital 🌬</p>
-        <h1 data-reveal>Сайт + Google Ads для бізнесу</h1>
-        <p class="hero__sub lead" data-reveal>
+      <div class="container" data-hero>
+        <p class="hero__kicker">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg>
+          Astra Digital
+        </p>
+        <h1>Сайт + Google Ads для бізнесу</h1>
+        <p class="hero__sub lead">
           Запускаємо бізнес в інтернеті. Створюємо сучасний сайт, аналізуємо вашу нішу
           та запускаємо Google Ads, щоб ваш бізнес отримав перших клієнтів з інтернету.
         </p>
-        <p class="badge" data-reveal>
-          <span class="badge__dot" aria-hidden="true"></span>
+        <p class="pill">
+          <span class="pill__dot" aria-hidden="true"></span>
           3–7 днів · від 9 999 ₴ · запуск реклами — безкоштовно
         </p>
-        <div class="hero__actions" data-reveal>
-          <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт →</button>
+        <div class="hero__actions">
+          <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
           <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи</a>
+        </div>
+
+        <div class="showcase">
+          <div class="showcase__frame">
+            <div class="showcase__bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span>astra-digital.com</span>
+            </div>
+            <div class="showcase__img">
+              <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Astra Digital" width="1600" height="840" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 2. ЕТАПИ ============ -->
-    <section class="section section--alt" id="process">
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Ferdinant</span><i></i><span>Noirveil</span><i></i><span>Yes or Not</span><i></i>
+        <span>SlimLab</span><i></i><span>Kyparis</span><i></i><span>Jaydee Mediakit</span><i></i>
+        <span>Ferdinant</span><i></i><span>Noirveil</span><i></i><span>Yes or Not</span><i></i>
+        <span>SlimLab</span><i></i><span>Kyparis</span><i></i><span>Jaydee Mediakit</span><i></i>
+      </div>
+    </div>
+
+    <!-- ================= ПРОЦЕС ================= -->
+    <section class="section" id="process">
       <div class="container">
-        <div class="section__head" data-reveal>
+        <div class="head" data-reveal>
           <span class="eyebrow">Процес</span>
           <h2>Запускаємо бізнес в інтернеті під ключ</h2>
-          <p class="lead" style="margin-top:16px">
+          <p class="lead">
             Аналізуємо вашу нішу та конкурентів, продумуємо структуру, створюємо сайт,
             налаштовуємо рекламу та допомагаємо запустити весь процес від ідеї до перших звернень.
           </p>
         </div>
 
-        <div class="grid grid--4">
-          <article class="card card--hover step" data-reveal>
-            <span class="step__num">01</span>
+        <div class="grid grid--4 process">
+          <article class="step" data-reveal>
+            <span class="step__node">01</span>
             <h3>Аналіз</h3>
             <p>Ніша · конкуренти · аудиторія</p>
           </article>
-          <article class="card card--hover step" data-reveal>
-            <span class="step__num">02</span>
+          <article class="step" data-reveal>
+            <span class="step__node">02</span>
             <h3>Сайт</h3>
             <p>Структура · дизайн · розробка</p>
           </article>
-          <article class="card card--hover step" data-reveal>
-            <span class="step__num">03</span>
+          <article class="step" data-reveal>
+            <span class="step__node">03</span>
             <h3>Реклама</h3>
             <p>Google Ads · аналітика · запуск</p>
           </article>
-          <article class="card card--hover step" data-reveal>
-            <span class="step__num">04</span>
+          <article class="step" data-reveal>
+            <span class="step__node">04</span>
             <h3>Оптимізація</h3>
             <p>Аналізуємо результати та покращуємо кампанії</p>
           </article>
@@ -114,53 +140,65 @@
       </div>
     </section>
 
-    <!-- ============ 3. ПЕРЕВАГИ ============ -->
-    <section class="section" id="why">
+    <!-- ================= ПЕРЕВАГИ ================= -->
+    <section class="section section--alt" id="why">
       <div class="container">
-        <div class="section__head" data-reveal>
+        <div class="head" data-reveal>
           <span class="eyebrow">Переваги</span>
           <h2>Чому саме ми?</h2>
-          <p class="lead" style="margin-top:16px">
+          <p class="lead">
             В Astra Digital ми не обмежуємося візуальною подачею — продумуємо сайт як
             інструмент продажів: від структури та текстів до реклами й аналітики.
           </p>
         </div>
 
         <div class="grid grid--2">
-          <article class="card card--hover adv" data-reveal>
-            <span class="adv__icon" aria-hidden="true">01</span>
-            <div>
-              <h3>Не просто дизайн</h3>
-              <p>Створюємо сайт під конкретні цілі вашого бізнесу.</p>
-            </div>
+          <article class="card card--hover" data-reveal>
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>
+              </svg>
+            </span>
+            <h3>Не просто дизайн</h3>
+            <p>Створюємо сайт під конкретні цілі вашого бізнесу.</p>
           </article>
-          <article class="card card--hover adv" data-reveal>
-            <span class="adv__icon" aria-hidden="true">02</span>
-            <div>
-              <h3>Все в одному місці</h3>
-              <p>Сайт, реклама, аналітика та motion без необхідності шукати кількох підрядників.</p>
-            </div>
+
+          <article class="card card--hover" data-reveal>
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/>
+                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>
+              </svg>
+            </span>
+            <h3>Все в одному місці</h3>
+            <p>Сайт, реклама, аналітика та motion без необхідності шукати кількох підрядників.</p>
           </article>
-          <article class="card card--hover adv" data-reveal>
-            <span class="adv__icon" aria-hidden="true">03</span>
-            <div>
-              <h3>Швидкий запуск</h3>
-              <p>Перший запуск сайту — від 3–7 днів для відповідних проєктів.</p>
-            </div>
+
+          <article class="card card--hover" data-reveal>
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/>
+              </svg>
+            </span>
+            <h3>Швидкий запуск</h3>
+            <p>Перший запуск сайту — від 3–7 днів для відповідних проєктів.</p>
           </article>
-          <article class="card card--hover adv" data-reveal>
-            <span class="adv__icon" aria-hidden="true">04</span>
-            <div>
-              <h3>Прозора ціна</h3>
-              <p>Ви заздалегідь знаєте, що входить у вартість.</p>
-            </div>
+
+          <article class="card card--hover" data-reveal>
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+              </svg>
+            </span>
+            <h3>Прозора ціна</h3>
+            <p>Ви заздалегідь знаєте, що входить у вартість.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ 4. ЛІД-МАГНІТ ============ -->
-    <section class="section section--tight">
+    <!-- ================= ЛІД-МАГНІТ ================= -->
+    <section class="section">
       <div class="container">
         <div class="leadmagnet" data-reveal>
           <span class="eyebrow">Безкоштовно</span>
@@ -169,17 +207,17 @@
             Безкоштовно проаналізуємо вашу нішу, конкурентів та присутність бізнесу в інтернеті.
             Покажемо, що можна покращити та з чого варто почати.
           </p>
-          <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
+          <button class="btn btn--accent btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
             Отримайте безкоштовний аналіз
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ============ 5. ПАКЕТИ ============ -->
+    <!-- ================= ПАКЕТИ ================= -->
     <section class="section section--alt" id="services">
       <div class="container">
-        <div class="section__head section__head--center" data-reveal>
+        <div class="head head--center" data-reveal>
           <span class="eyebrow">Пакети послуг</span>
           <h2>Оберіть, що потрібно вашому бізнесу</h2>
         </div>
@@ -193,18 +231,16 @@
               <span class="pkg__term">3–7 днів</span>
             </p>
             <ul class="checklist">
-              <li>Аналіз ніші</li>
-              <li>Аналіз конкурентів</li>
-              <li>Сучасний адаптивний сайт</li>
-              <li>Базова SEO-підготовка</li>
-              <li>Налаштування Google Ads</li>
-              <li>Запуск першої рекламної кампанії</li>
-              <li>7 днів супроводу</li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз конкурентів</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний сайт</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базова SEO-підготовка</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштування Google Ads</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Запуск першої рекламної кампанії</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>7 днів супроводу</span></li>
             </ul>
             <p class="pkg__note">* Рекламний бюджет сплачується окремо.</p>
-            <button class="btn btn--primary btn--wide pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">
-              Замовити
-            </button>
+            <button class="btn btn--primary btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">Замовити</button>
           </article>
 
           <article class="card card--hover pkg" data-reveal>
@@ -214,26 +250,24 @@
               <span class="pkg__term">5–10 днів</span>
             </p>
             <ul class="checklist">
-              <li>Поглиблений аналіз ніші</li>
-              <li>Складніша структура сайту</li>
-              <li>Адаптивний дизайн</li>
-              <li>Розширені функціональні можливості</li>
-              <li>Поглиблене налаштування Google Ads</li>
-              <li>Motion-анімації</li>
-              <li>Аналітика</li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблений аналіз ніші</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Складніша структура сайту</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Адаптивний дизайн</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Розширені функціональні можливості</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблене налаштування Google Ads</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Motion-анімації</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналітика</span></li>
             </ul>
-            <button class="btn btn--ghost btn--wide pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">
-              Обговорити проєкт
-            </button>
+            <button class="btn btn--ghost btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">Обговорити проєкт</button>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ 6. ОКРЕМІ ПОСЛУГИ (ТАБИ) ============ -->
+    <!-- ================= ОКРЕМІ ПОСЛУГИ ================= -->
     <section class="section" id="solutions">
       <div class="container">
-        <div class="section__head" data-reveal>
+        <div class="head" data-reveal>
           <span class="eyebrow">Окремі послуги</span>
           <h2>Що вам потрібно?</h2>
         </div>
@@ -250,8 +284,8 @@
             <div>
               <h3>Створення сайтів</h3>
               <p>Сучасні сайти під ключ: від Landing Page до складних веб-проєктів.</p>
-              <p class="tabs__meta"><strong>Від 9 999 ₴</strong> · 3–7 днів</p>
             </div>
+            <p class="tabs__price"><strong>від 9 999 ₴</strong><span>3–7 днів</span></p>
           </div>
 
           <div class="tabs__panel" id="panel-ads" role="tabpanel" aria-labelledby="tab-ads" tabindex="0" hidden>
@@ -259,8 +293,8 @@
             <div>
               <h3>Google Ads</h3>
               <p>Налаштовуємо та ведемо рекламу в Google.</p>
-              <p class="tabs__meta"><strong>Від 5 999 ₴</strong></p>
             </div>
+            <p class="tabs__price"><strong>від 5 999 ₴</strong><span>запуск під ключ</span></p>
           </div>
 
           <div class="tabs__panel" id="panel-motion" role="tabpanel" aria-labelledby="tab-motion" tabindex="0" hidden>
@@ -268,137 +302,101 @@
             <div>
               <h3>Motion Design</h3>
               <p>Анімації для сайтів, реклами, Reels, Stories.</p>
-              <p class="tabs__meta"><strong>Від 4 999 ₴</strong></p>
             </div>
+            <p class="tabs__price"><strong>від 4 999 ₴</strong><span>за проєкт</span></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 7. FAQ ============ -->
+    <!-- ================= FAQ ================= -->
     <section class="section section--alt" id="faq">
       <div class="container">
-        <div class="section__head section__head--center" data-reveal>
+        <div class="head head--center" data-reveal>
           <span class="eyebrow">FAQ</span>
           <h2>Часті запитання</h2>
         </div>
 
         <div class="faq" data-reveal>
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-                Скільки коштує сайт?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1">
-              <div><p>Від 9 999 гривень.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">Скільки коштує сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Від 9 999 гривень.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
-                Скільки часу займає розробка?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2">
-              <div><p>3–10 днів.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">Скільки часу займає розробка?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>3–10 днів.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
-                Чи входить рекламний бюджет?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3">
-              <div><p>Ні. У вартість входить повне налаштування реклами та обслуговування. Рекламний бюджет сплачується окремо напряму в Google.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Чи входить рекламний бюджет?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>Ні. У вартість входить повне налаштування реклами та обслуговування. Рекламний бюджет сплачується окремо напряму в Google.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
-                Чи можна замовити тільки сайт?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4">
-              <div><p>Так, також можна замовити тільки рекламу на існуючий сайт або motion-анімації.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Чи можна замовити тільки сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>Так, також можна замовити тільки рекламу на існуючий сайт або motion-анімації.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
-                Чи працюєте ви з існуючими сайтами?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5">
-              <div><p>Так.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">Чи працюєте ви з існуючими сайтами?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>Так.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
-                Чи можна замовити тільки рекламу?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6">
-              <div><p>Так.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Чи можна замовити тільки рекламу?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>Так.</p></div></div>
           </div>
-
           <div class="faq__item">
-            <h3>
-              <button class="faq__q" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">
-                Чи можна зробити motion для мого бренду?
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7">
-              <div><p>Так.</p></div>
-            </div>
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">Чи можна зробити motion для мого бренду?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div><p>Так.</p></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 8. ФУТЕР-БЛОК ============ -->
-    <section class="closing">
-      <div class="container" data-reveal>
-        <h2>Готові запустити свій бізнес в інтернеті?</h2>
-        <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
-        <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт →</button>
-        <p class="closing__note">Безкоштовна консультація · Без зобов'язань</p>
+    <!-- ================= ФУТЕР-БЛОК ================= -->
+    <section class="cta section--alt" style="background:var(--bg-alt);padding-top:var(--section)">
+      <div class="container">
+        <div class="cta__panel" data-reveal>
+          <span class="cta__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
+          <h2>Готові запустити свій бізнес в інтернеті?</h2>
+          <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
+          <button class="btn btn--on-ink btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+          <p class="cta__note">Безкоштовна консультація · Без зобов'язань</p>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ================= FOOTER ================= -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <a href="index.html" class="nav__brand">
-        <span class="nav__mark" aria-hidden="true"></span>
-        <span>Astra Digital</span>
-      </a>
-      <nav class="footer__links" aria-label="Футер">
-        <a href="index.html">Головна сторінка</a>
-        <a href="#services">Наші послуги</a>
-        <a href="portfolio.html">Портфоліо</a>
-        <a href="contacts.html">Зв'язатися з нами</a>
-      </nav>
-      <p class="footer__copy">© 2026 Astra Digital</p>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <a href="index.html" class="brand">
+            <span class="brand__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
+            <span class="brand__name">Astra Digital</span>
+          </a>
+          <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Сайт</h4>
+          <a href="index.html">Головна сторінка</a>
+          <a href="#services">Наші послуги</a>
+          <a href="portfolio.html">Портфоліо</a>
+          <a href="contacts.html">Зв'язатися з нами</a>
+        </div>
+        <div class="footer__col">
+          <h4>Контакти</h4>
+          <a href="mailto:hello@astradigital.agency">hello@astradigital.agency</a>
+          <a href="https://t.me/astradigital" target="_blank" rel="noopener">Telegram</a>
+          <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Astra Digital</span>
+        <span>Київ · Працюємо з бізнесом по всій Україні</span>
+      </div>
     </div>
   </footer>
 
-  <!-- ============ MODAL ============ -->
+  <!-- ================= MODAL ================= -->
   <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__dialog">
@@ -430,7 +428,7 @@
           <label for="fMessage">Коротко про бізнес</label>
           <textarea id="fMessage" name="message" rows="3"></textarea>
         </div>
-        <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку →</button>
+        <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>
         <p class="form__note">Безкоштовна консультація · Без зобов'язань</p>
         <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
