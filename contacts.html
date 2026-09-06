@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Зв'язатися з нами — Astra Digital</title>
+  <meta name="description" content="Напишіть Astra Digital: безкоштовна консультація, аналіз ніші та розрахунок вартості сайту й Google Ads." />
+  <meta name="theme-color" content="#FBFBF9" />
+  <link rel="icon" href="public/icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand" aria-label="Astra Digital — на головну">
+        <span class="nav__mark" aria-hidden="true"></span>
+        <span>Astra Digital</span>
+      </a>
+      <nav class="nav__links" aria-label="Основна навігація">
+        <a href="index.html">Головна сторінка</a>
+        <a href="index.html#services">Наші послуги</a>
+        <a href="portfolio.html">Портфоліо</a>
+        <a href="contacts.html" aria-current="page">Зв'язатися з нами</a>
+      </nav>
+      <div class="nav__right">
+        <button class="btn btn--primary" data-modal-open>Обговорити проєкт →</button>
+        <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navMobile">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile" id="navMobile">
+      <nav aria-label="Мобільна навігація">
+        <a href="index.html">Головна сторінка</a>
+        <a href="index.html#services">Наші послуги</a>
+        <a href="portfolio.html">Портфоліо</a>
+        <a href="contacts.html">Зв'язатися з нами</a>
+      </nav>
+      <button class="btn btn--primary btn--wide" data-modal-open>Обговорити проєкт →</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container" data-reveal>
+        <span class="eyebrow">Контакти</span>
+        <h1>Зв'язатися з нами</h1>
+        <p class="lead">
+          Розкажіть про свій бізнес — ми безкоштовно проаналізуємо нішу, конкурентів
+          та запропонуємо оптимальний варіант запуску.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="contact-grid">
+          <div data-reveal>
+            <h2 style="font-size:1.5rem">Напишіть нам</h2>
+            <ul class="contact-list">
+              <li><a class="card card--hover" href="mailto:hello@astradigital.agency"><span>Email</span><span>hello@astradigital.agency</span></a></li>
+              <li><a class="card card--hover" href="https://t.me/astradigital" target="_blank" rel="noopener"><span>Telegram</span><span>@astradigital</span></a></li>
+              <li><a class="card card--hover" href="tel:+380000000000"><span>Телефон</span><span>+38 (000) 000-00-00</span></a></li>
+            </ul>
+            <p style="margin-top:22px;font-size:0.9rem">
+              Відповідаємо протягом робочого дня. Консультація безкоштовна та без зобов'язань.
+            </p>
+          </div>
+
+          <div class="card" style="padding:32px" data-reveal>
+            <h2 style="font-size:1.5rem;margin-bottom:8px">Залишити заявку</h2>
+            <p style="margin-bottom:22px;font-size:0.94rem">Заповніть коротку форму — ми зв'яжемося та запропонуємо рішення.</p>
+            <form id="pageForm" novalidate>
+              <div class="field">
+                <label for="pName">Ваше ім'я</label>
+                <input id="pName" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="pContact">Телефон або Telegram</label>
+                <input id="pContact" name="contact" type="text" autocomplete="tel" required />
+              </div>
+              <div class="field">
+                <label for="pTopic">Що потрібно?</label>
+                <select id="pTopic" name="topic">
+                  <option>Сайт + Google Ads — 9 999 ₴</option>
+                  <option>Складний сайт + Google Ads — 18 999 ₴</option>
+                  <option>Тільки сайт</option>
+                  <option>Тільки Google Ads</option>
+                  <option>Motion Design</option>
+                  <option>Безкоштовний аналіз ніші</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="pMessage">Коротко про бізнес</label>
+                <textarea id="pMessage" name="message" rows="3"></textarea>
+              </div>
+              <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку →</button>
+              <p class="form__status" id="pageFormStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__mark" aria-hidden="true"></span>
+        <span>Astra Digital</span>
+      </a>
+      <nav class="footer__links" aria-label="Футер">
+        <a href="index.html">Головна сторінка</a>
+        <a href="index.html#services">Наші послуги</a>
+        <a href="portfolio.html">Портфоліо</a>
+        <a href="contacts.html">Зв'язатися з нами</a>
+      </nav>
+      <p class="footer__copy">© 2026 Astra Digital</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog">
+      <button class="modal__close" type="button" aria-label="Закрити вікно" data-modal-close>✕</button>
+      <h2 id="modalTitle">Обговорити проєкт</h2>
+      <p>Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант.</p>
+      <form id="contactForm" novalidate>
+        <div class="field">
+          <label for="fName">Ваше ім'я</label>
+          <input id="fName" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="fContact">Телефон або Telegram</label>
+          <input id="fContact" name="contact" type="text" autocomplete="tel" required />
+        </div>
+        <div class="field">
+          <label for="fTopic">Що потрібно?</label>
+          <select id="fTopic" name="topic">
+            <option>Сайт + Google Ads — 9 999 ₴</option>
+            <option>Складний сайт + Google Ads — 18 999 ₴</option>
+            <option>Тільки сайт</option>
+            <option>Тільки Google Ads</option>
+            <option>Motion Design</option>
+            <option>Безкоштовний аналіз ніші</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fMessage">Коротко про бізнес</label>
+          <textarea id="fMessage" name="message" rows="3"></textarea>
+        </div>
+        <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку →</button>
+        <p class="form__note">Безкоштовна консультація · Без зобов'язань</p>
+        <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+  <script>
+    // Standalone contact-page form (front-end only).
+    (function () {
+      var form = document.getElementById('pageForm');
+      var status = document.getElementById('pageFormStatus');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        status.textContent = 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.';
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
