@@ -7,14 +7,12 @@
   <meta name="description" content="Створюємо сучасні сайти для бізнесу, налаштовуємо Google Ads та створюємо motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴." />
   <meta name="theme-color" content="#FBFBF9" />
   <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
-
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Astra Digital — Створення сайтів та Google Ads для бізнесу" />
   <meta property="og:description" content="Сайт, реклама та motion під ключ. Від 9 999 ₴, запуск за 3–7 днів." />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -22,7 +20,10 @@
   <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Перейти до основного вмісту</a>
 
-  <!-- ================= HEADER ================= -->
+  <div class="topbar">
+    <a href="#services">Сайт + Google Ads від 9 999 ₴ — запуск реклами безкоштовно <span class="btn__arrow">→</span></a>
+  </div>
+
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Astra Digital — на головну">
@@ -31,10 +32,10 @@
       </a>
 
       <nav class="nav__links" aria-label="Основна навігація">
-        <a href="index.html" aria-current="page">Головна сторінка</a>
-        <a href="#services">Наші послуги</a>
-        <a href="portfolio.html">Портфоліо</a>
-        <a href="contacts.html">Зв'язатися з нами</a>
+          <a href="index.html" aria-current="page">Головна сторінка</a>
+          <a href="#services">Наші послуги</a>
+          <a href="portfolio.html">Портфоліо</a>
+          <a href="contacts.html">Зв'язатися з нами</a>
       </nav>
 
       <div class="nav__right">
@@ -44,7 +45,6 @@
         </button>
       </div>
     </div>
-
   </header>
 
   <div class="nav__sheet" id="navSheet">
@@ -60,157 +60,157 @@
   <main id="main">
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <div class="container" data-hero>
-        <p class="hero__kicker">
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg>
-          Astra Digital
-        </p>
-        <h1>Сайт + Google Ads для бізнесу</h1>
-        <p class="hero__sub lead">
-          Запускаємо бізнес в інтернеті. Створюємо сучасний сайт, аналізуємо вашу нішу
-          та запускаємо Google Ads, щоб ваш бізнес отримав перших клієнтів з інтернету.
-        </p>
-        <p class="pill">
-          <span class="pill__dot" aria-hidden="true"></span>
-          3–7 днів · від 9 999 ₴ · запуск реклами — безкоштовно
-        </p>
-        <div class="hero__actions">
-          <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
-          <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи</a>
-        </div>
+      <div class="shell">
+        <div class="hero__inner" data-hero>
+          <p class="pill">
+            <span class="pill__dot" aria-hidden="true"></span>
+            3–7 днів · від 9 999 ₴ · запуск реклами — безкоштовно
+          </p>
+          <h1>Сайт + Google Ads для бізнесу</h1>
+          <p class="hero__sub lead">
+            Запускаємо бізнес в інтернеті. Створюємо сучасний сайт, аналізуємо вашу нішу
+            та запускаємо Google Ads, щоб ваш бізнес отримав перших клієнтів з інтернету.
+          </p>
+          <div class="hero__actions">
+            <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+            <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи</a>
+          </div>
 
-        <div class="showcase">
-          <div class="showcase__frame">
-            <div class="showcase__bar" aria-hidden="true">
-              <i></i><i></i><i></i>
-              <span>astra-digital.com</span>
-            </div>
-            <div class="showcase__img">
-              <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Astra Digital" width="1600" height="840" />
+          <div class="showcase">
+            <div class="showcase__frame">
+              <div class="showcase__bar" aria-hidden="true">
+                <i></i><i></i><i></i>
+                <span>astra-digital.com</span>
+              </div>
+              <div class="showcase__img">
+                <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Astra Digital" width="1600" height="740" />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ================= MARQUEE ================= -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Ferdinant</span><i></i><span>Noirveil</span><i></i><span>Yes or Not</span><i></i>
-        <span>SlimLab</span><i></i><span>Kyparis</span><i></i><span>Jaydee Mediakit</span><i></i>
-        <span>Ferdinant</span><i></i><span>Noirveil</span><i></i><span>Yes or Not</span><i></i>
-        <span>SlimLab</span><i></i><span>Kyparis</span><i></i><span>Jaydee Mediakit</span><i></i>
+    <!-- ================= ПРОЄКТИ ================= -->
+    <section>
+      <div class="shell">
+        <div class="strip" aria-label="Проєкти, які ми зробили">
+          <div class="strip__cell">Ferdinant</div>
+          <div class="strip__cell">Noirveil</div>
+          <div class="strip__cell">Yes or Not</div>
+          <div class="strip__cell">SlimLab</div>
+          <div class="strip__cell">Kyparis</div>
+          <div class="strip__cell">Jaydee</div>
+        </div>
       </div>
-    </div>
-
+    </section>
     <!-- ================= ПРОЦЕС ================= -->
-    <section class="section" id="process">
-      <div class="container">
+    <section class="section rule" id="process">
+      <div class="shell">
         <div class="head" data-reveal>
-          <span class="eyebrow">Процес</span>
-          <h2>Запускаємо бізнес в інтернеті під ключ</h2>
+          <span class="tag">Процес</span>
+          <h2>Запускаємо бізнес в інтернеті під ключ. <span class="tt">Від аналізу ніші до перших звернень.</span></h2>
           <p class="lead">
             Аналізуємо вашу нішу та конкурентів, продумуємо структуру, створюємо сайт,
             налаштовуємо рекламу та допомагаємо запустити весь процес від ідеї до перших звернень.
           </p>
         </div>
-
-        <div class="grid grid--4 process">
-          <article class="step" data-reveal>
-            <span class="step__node">01</span>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="cells cells--4">
+          <article class="cell" data-reveal>
+            <span class="cell__num">01</span>
             <h3>Аналіз</h3>
             <p>Ніша · конкуренти · аудиторія</p>
           </article>
-          <article class="step" data-reveal>
-            <span class="step__node">02</span>
+          <article class="cell" data-reveal>
+            <span class="cell__num">02</span>
             <h3>Сайт</h3>
             <p>Структура · дизайн · розробка</p>
           </article>
-          <article class="step" data-reveal>
-            <span class="step__node">03</span>
+          <article class="cell" data-reveal>
+            <span class="cell__num">03</span>
             <h3>Реклама</h3>
             <p>Google Ads · аналітика · запуск</p>
           </article>
-          <article class="step" data-reveal>
-            <span class="step__node">04</span>
+          <article class="cell" data-reveal>
+            <span class="cell__num">04</span>
             <h3>Оптимізація</h3>
             <p>Аналізуємо результати та покращуємо кампанії</p>
           </article>
         </div>
       </div>
     </section>
-
     <!-- ================= ПЕРЕВАГИ ================= -->
-    <section class="section section--alt" id="why">
-      <div class="container">
+    <section class="section section--alt rule" id="why">
+      <div class="shell">
         <div class="head" data-reveal>
-          <span class="eyebrow">Переваги</span>
-          <h2>Чому саме ми?</h2>
+          <span class="tag">Переваги</span>
+          <h2>Чому саме ми? <span class="tt">Тому що сайт для нас — інструмент продажів, а не картинка.</span></h2>
           <p class="lead">
             В Astra Digital ми не обмежуємося візуальною подачею — продумуємо сайт як
             інструмент продажів: від структури та текстів до реклами й аналітики.
           </p>
         </div>
-
-        <div class="grid grid--2">
-          <article class="card card--hover" data-reveal>
-            <span class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>
-              </svg>
-            </span>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="cells cells--2">
+          <article class="cell" data-reveal>
+            <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
             <h3>Не просто дизайн</h3>
             <p>Створюємо сайт під конкретні цілі вашого бізнесу.</p>
+            <div class="viz" aria-hidden="true">
+              <div class="viz__bar"><i></i><i></i><i></i></div>
+              <div class="viz__body">
+                <div class="viz__line viz__line--w70"></div>
+                <div class="viz__line viz__line--w45 viz__line--accent"></div>
+                <div class="viz__row"><span class="viz__box"></span><span class="viz__box"></span><span class="viz__box"></span></div>
+              </div>
+            </div>
           </article>
-
-          <article class="card card--hover" data-reveal>
-            <span class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/>
-                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>
-              </svg>
-            </span>
+          <article class="cell" data-reveal>
+            <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></span>
             <h3>Все в одному місці</h3>
             <p>Сайт, реклама, аналітика та motion без необхідності шукати кількох підрядників.</p>
+            <div class="chips">
+              <span class="chip">Сайт</span><span class="chip">Google Ads</span>
+              <span class="chip">Аналітика</span><span class="chip">Motion</span>
+              <span class="chip">SEO-підготовка</span>
+            </div>
           </article>
-
-          <article class="card card--hover" data-reveal>
-            <span class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/>
-              </svg>
-            </span>
+          <article class="cell" data-reveal>
+            <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg></span>
             <h3>Швидкий запуск</h3>
             <p>Перший запуск сайту — від 3–7 днів для відповідних проєктів.</p>
+            <div class="viz" aria-hidden="true">
+              <div class="viz__chart"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
           </article>
-
-          <article class="card card--hover" data-reveal>
-            <span class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
-              </svg>
-            </span>
+          <article class="cell" data-reveal>
+            <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
             <h3>Прозора ціна</h3>
             <p>Ви заздалегідь знаєте, що входить у вартість.</p>
+            <div class="viz" aria-hidden="true">
+              <div class="viz__price"><span>Сайт + Google Ads</span><strong>9 999 ₴</strong></div>
+            </div>
           </article>
         </div>
       </div>
     </section>
-
     <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
-    <section class="section section--alt" id="system">
-      <div class="container">
+    <section class="section rule" id="system">
+      <div class="shell">
         <div class="head" data-reveal>
-          <span class="eyebrow">Навіщо сайт</span>
-          <h2>Сайт без реклами ≠ система залучення клієнтів</h2>
+          <span class="tag">Навіщо сайт</span>
+          <h2>Сайт без реклами ≠ система залучення клієнтів. <span class="tt">Порівняйте два шляхи клієнта.</span></h2>
           <p class="lead">
             Соцмережі можуть бути частиною продажів. Але власний сайт дає вам окрему точку контакту
             з клієнтом, яку можна використовувати в рекламі та пошуку.
           </p>
         </div>
-
-        <div class="grid grid--2">
-          <article class="path" data-reveal>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="cells cells--2">
+          <article class="cell path" data-reveal>
             <span class="path__tag">Тільки профіль у соцмережах</span>
             <ol class="path__steps">
               <li>Людина знаходить профіль</li>
@@ -221,7 +221,7 @@
             <p class="path__note">Ви залежите від того, наскільки зручно людині шукати відповіді у стрічці.</p>
           </article>
 
-          <article class="path path--accent" data-reveal>
+          <article class="cell path path--accent" data-reveal>
             <span class="path__tag">Сайт + Google Ads</span>
             <ol class="path__steps">
               <li>Людина шукає послугу в Google</li>
@@ -234,34 +234,35 @@
         </div>
       </div>
     </section>
-
     <!-- ================= ЛІД-МАГНІТ ================= -->
-    <section class="section">
-      <div class="container">
-        <div class="leadmagnet" data-reveal>
-          <span class="eyebrow">Безкоштовно</span>
-          <h2>Хочете дізнатися, як ваш бізнес виглядає на фоні конкурентів?</h2>
-          <p>
+    <section class="section rule">
+      <div class="shell">
+        <div class="head head--center" data-reveal>
+          <span class="tag tag--ok">Безкоштовно</span>
+          <h2>Хочете дізнатися, як ваш бізнес виглядає <span class="tt">на фоні конкурентів?</span></h2>
+          <p class="lead" style="margin-inline:auto">
             Безкоштовно проаналізуємо вашу нішу, конкурентів та присутність бізнесу в інтернеті.
             Покажемо, що можна покращити та з чого варто почати.
           </p>
-          <button class="btn btn--accent btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
-            Отримайте безкоштовний аналіз
-          </button>
+          <p style="margin-top:28px">
+            <button class="btn btn--accent btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
+              Отримайте безкоштовний аналіз
+            </button>
+          </p>
         </div>
       </div>
     </section>
-
     <!-- ================= ПАКЕТИ ================= -->
-    <section class="section section--alt" id="packages">
-      <div class="container">
-        <div class="head head--center" data-reveal>
-          <span class="eyebrow">Пакети послуг</span>
-          <h2>Оберіть, що потрібно вашому бізнесу</h2>
+    <section class="section section--alt rule" id="packages">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <span class="tag">Пакети послуг</span>
+          <h2>Оберіть, що потрібно вашому бізнесу. <span class="tt">Ціна відома заздалегідь.</span></h2>
         </div>
-
-        <div class="grid grid--2">
-          <article class="card card--hover pkg pkg--featured" data-reveal>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="pkgs">
+          <article class="pkg pkg--featured" data-reveal>
             <span class="pkg__badge">РЕКОМЕНДОВАНО</span>
             <h3 class="pkg__title">Сайт + Google Ads</h3>
             <p class="pkg__price">
@@ -269,227 +270,236 @@
               <span class="pkg__term">3–7 днів</span>
             </p>
             <ul class="checklist">
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз конкурентів</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний сайт</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базова SEO-підготовка</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштування Google Ads</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Запуск першої рекламної кампанії</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>7 днів супроводу</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз конкурентів</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний сайт</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базова SEO-підготовка</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштування Google Ads</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Запуск першої рекламної кампанії</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>7 днів супроводу</span></li>
             </ul>
             <p class="pkg__note">* Рекламний бюджет сплачується окремо.</p>
             <button class="btn btn--primary btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">Замовити</button>
           </article>
 
-          <article class="card card--hover pkg" data-reveal>
+          <article class="pkg" data-reveal>
             <h3 class="pkg__title">Складний сайт + Google Ads</h3>
             <p class="pkg__price">
               <span class="pkg__amount">18 999 ₴</span>
               <span class="pkg__term">5–10 днів</span>
             </p>
             <ul class="checklist">
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблений аналіз ніші</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Складніша структура сайту</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Адаптивний дизайн</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Розширені функціональні можливості</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблене налаштування Google Ads</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Motion-анімації</span></li>
-              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналітика</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблений аналіз ніші</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Складніша структура сайту</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Адаптивний дизайн</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Розширені функціональні можливості</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Поглиблене налаштування Google Ads</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Motion-анімації</span></li>
+                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналітика</span></li>
             </ul>
             <button class="btn btn--ghost btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">Обговорити проєкт</button>
           </article>
         </div>
       </div>
     </section>
-
     <!-- ================= ПОСЛУГИ ================= -->
-    <section class="section" id="services">
-      <div class="container">
+    <section class="section rule" id="services">
+      <div class="shell">
         <div class="head" data-reveal>
-          <span class="eyebrow">Наші послуги</span>
-          <h2>Що вам потрібно?</h2>
+          <span class="tag">Наші послуги</span>
+          <h2>Що вам потрібно? <span class="tt">Оберіть напрям — і побачите повну картку послуги.</span></h2>
           <p class="lead">
-            Оберіть напрям і розгорніть картку — усередині докладно: що це, навіщо це бізнесу,
-            що саме ви отримаєте, якого результату очікувати та скільки це коштує.
+            Усередині кожної картки: що це, навіщо це бізнесу, що саме ви отримаєте,
+            якого результату очікувати та скільки це коштує.
           </p>
         </div>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="vtabs">
+          <div class="vtabs__rail" role="tablist" aria-label="Наші послуги" aria-orientation="vertical">
+            <button class="vtabs__btn" id="tab-web" role="tab" aria-controls="panel-web"
+              aria-selected="true" tabindex="0">
+              Створення сайтів<small>Landing page та складні проєкти</small>
+            </button>
+            <button class="vtabs__btn" id="tab-ads" role="tab" aria-controls="panel-ads"
+              aria-selected="false" tabindex="-1">
+              Google Ads<small>Реклама в пошуку під запит клієнта</small>
+            </button>
+            <button class="vtabs__btn" id="tab-motion" role="tab" aria-controls="panel-motion"
+              aria-selected="false" tabindex="-1">
+              Motion Design<small>Анімації для бренду та реклами</small>
+            </button>
+          </div>
+          <div class="vtabs__panels">
+            <div class="vtabs__panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" tabindex="0">
+              <div class="svc__top">
+                <div>
+                  <span class="svc__index">01 — WEB</span>
+                  <h3 class="svc__title">Створення сайтів</h3>
+                  <p class="svc__tagline">Сайти, які працюють на залучення клієнтів, а не просто красиво виглядають.</p>
+                </div>
+                <p class="svc__price"><strong>від 9 999 ₴</strong><span>3–7 днів</span></p>
+              </div>
 
-        <div class="svc-list">
-          <article class="svc is-open" data-reveal>
-            <h3 class="svc__head">
-              <button class="svc__toggle" id="svc-q1" aria-expanded="true" aria-controls="svc-a1">
-                <span class="svc__index">01 — WEB</span>
-                <span class="svc__title">Створення сайтів</span>
-                <span class="svc__tagline">Сайти, які працюють на залучення клієнтів, а не просто красиво виглядають.</span>
-                <span class="svc__price">від 9 999 ₴</span>
-                <span class="svc__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="svc__body" id="svc-a1" role="region" aria-labelledby="svc-q1">
-              <div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що це</h4>
-                    <p>В Astra Digital ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, вибудовуємо структуру, додаємо необхідні елементи довіри та скорочуємо шлях клієнта від першого відвідування до заявки. Після запуску можемо підключити Google Ads і приводити потенційних клієнтів прямо на розроблений для вас сайт.</p>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Навіщо це бізнесу</h4>
-                    <p>Сайт стає вашою власною точкою контакту з клієнтом, де ви контролюєте пропозицію, інформацію про бізнес та шлях до заявки.</p>
-                  </div>
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що це</h4>
+                  <p>В Astra Digital ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, вибудовуємо структуру, додаємо необхідні елементи довіри та скорочуємо шлях клієнта від першого відвідування до заявки. Після запуску можемо підключити Google Ads і приводити потенційних клієнтів прямо на розроблений для вас сайт.</p>
                 </div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що ви отримаєте</h4>
-                    <ul class="checklist">
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Структуру сторінки під вашу пропозицію</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний дизайн під мобільні та десктоп</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Тексти та блоки довіри: послуги, роботи, контакти</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Форми заявки та зручні способи звʼязку</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базову SEO-підготовку під пошук</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Готовність підключити Google Ads одразу після запуску</span></li>
-                    </ul>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Який результат це має дати</h4>
-                    <p>Ви отримуєте власний майданчик, на який можна вести рекламний і пошуковий трафік, і де клієнту зрозуміло, що ви пропонуєте та як залишити заявку.</p>
-                  </div>
-                </div>
-                <div class="svc__foot">
-                  <p class="svc__from"><span>Вартість</span><strong>від 9 999 ₴</strong></p>
-                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки сайт">Замовити сайт <span class="btn__arrow">→</span></button>
+                <div class="svc__col">
+                  <h4>Навіщо це бізнесу</h4>
+                  <p>Сайт стає вашою власною точкою контакту з клієнтом, де ви контролюєте пропозицію, інформацію про бізнес та шлях до заявки.</p>
                 </div>
               </div>
-            </div>
-          </article>
-          <article class="svc" data-reveal>
-            <h3 class="svc__head">
-              <button class="svc__toggle" id="svc-q2" aria-expanded="false" aria-controls="svc-a2">
-                <span class="svc__index">02 — ADS</span>
-                <span class="svc__title">Google Ads</span>
-                <span class="svc__tagline">Допомагаємо потенційним клієнтам знаходити ваш бізнес саме тоді, коли вони шукають послугу.</span>
-                <span class="svc__price">від 5 999 ₴</span>
-                <span class="svc__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="svc__body" id="svc-a2" role="region" aria-labelledby="svc-q2">
-              <div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що це</h4>
-                    <p>Аналізуємо нішу та попит, налаштовуємо рекламні кампанії, підключаємо аналітику та направляємо рекламний трафік на сторінку, яка відповідає запиту клієнта.</p>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Навіщо це бізнесу</h4>
-                    <p>Якщо людина вже шукає вашу послугу, реклама дозволяє показати їй вашу пропозицію саме в цей момент, а не чекати, поки вона випадково знайде ваш бізнес.</p>
-                  </div>
+
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що ви отримаєте</h4>
+                  <ul class="checklist">
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Структуру сторінки під вашу пропозицію</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Сучасний адаптивний дизайн під мобільні та десктоп</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Тексти та блоки довіри: послуги, роботи, контакти</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Форми заявки та зручні способи звʼязку</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Базову SEO-підготовку під пошук</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Готовність підключити Google Ads одразу після запуску</span></li>
+                  </ul>
                 </div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що ви отримаєте</h4>
-                    <ul class="checklist">
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші, попиту та конкурентів</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Пошукові запити й мінус-слова під ваші послуги</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштовані та запущені кампанії в Google Ads</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Підключену аналітику та відстеження заявок</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Звʼязку «запит → оголошення → відповідна сторінка»</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Подальшу оптимізацію за результатами перших тижнів</span></li>
-                    </ul>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Який результат це має дати</h4>
-                    <p>Працюємо на залучення цільового трафіку та заявок: вашу пропозицію бачать люди з активним запитом, а рішення щодо кампаній ухвалюємо на основі аналітики.</p>
+                <div class="svc__col">
+                  <h4>Який результат це має дати</h4>
+                  <p>Ви отримуєте власний майданчик, на який можна вести рекламний і пошуковий трафік, і де клієнту зрозуміло, що ви пропонуєте та як залишити заявку.</p>
+                </div>
+              </div>
+
+              <div class="svc__foot">
+                <p class="svc__from"><span>Вартість</span><strong>від 9 999 ₴</strong></p>
+                <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки сайт">Замовити сайт <span class="btn__arrow">→</span></button>
+              </div>
+            </div>
+            <div class="vtabs__panel" id="panel-ads" role="tabpanel" aria-labelledby="tab-ads" tabindex="0" hidden>
+              <div class="svc__top">
+                <div>
+                  <span class="svc__index">02 — ADS</span>
+                  <h3 class="svc__title">Google Ads</h3>
+                  <p class="svc__tagline">Допомагаємо потенційним клієнтам знаходити ваш бізнес саме тоді, коли вони шукають послугу.</p>
+                </div>
+                <p class="svc__price"><strong>від 5 999 ₴</strong><span>запуск під ключ</span></p>
+              </div>
+
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що це</h4>
+                  <p>Аналізуємо нішу та попит, налаштовуємо рекламні кампанії, підключаємо аналітику та направляємо рекламний трафік на сторінку, яка відповідає запиту клієнта.</p>
+                </div>
+                <div class="svc__col">
+                  <h4>Навіщо це бізнесу</h4>
+                  <p>Якщо людина вже шукає вашу послугу, реклама дозволяє показати їй вашу пропозицію саме в цей момент, а не чекати, поки вона випадково знайде ваш бізнес.</p>
+                </div>
+              </div>
+
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що ви отримаєте</h4>
+                  <ul class="checklist">
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Аналіз ніші, попиту та конкурентів</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Пошукові запити й мінус-слова під ваші послуги</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Налаштовані та запущені кампанії в Google Ads</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Підключену аналітику та відстеження заявок</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Звʼязку «запит → оголошення → відповідна сторінка»</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Подальшу оптимізацію за результатами перших тижнів</span></li>
+                  </ul>
+                </div>
+                <div class="svc__col">
+                  <h4>Який результат це має дати</h4>
+                  <p>Працюємо на залучення цільового трафіку та заявок: вашу пропозицію бачать люди з активним запитом, а рішення щодо кампаній ухвалюємо на основі аналітики.</p>
                 <p class="svc__note">Рекламний бюджет сплачується окремо напряму в Google. Кількість клієнтів залежить від ніші, попиту та бюджету, тому ми не обіцяємо гарантованих цифр.</p>
-                  </div>
-                </div>
-                <div class="svc__foot">
-                  <p class="svc__from"><span>Вартість</span><strong>від 5 999 ₴</strong></p>
-                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки Google Ads">Замовити рекламу <span class="btn__arrow">→</span></button>
                 </div>
               </div>
-            </div>
-          </article>
-          <article class="svc" data-reveal>
-            <h3 class="svc__head">
-              <button class="svc__toggle" id="svc-q3" aria-expanded="false" aria-controls="svc-a3">
-                <span class="svc__index">03 — MOTION</span>
-                <span class="svc__title">Motion Design</span>
-                <span class="svc__tagline">Оживляємо бренд і продукт: від айдентики сайту до рекламних роликів і контенту для соцмереж.</span>
-                <span class="svc__price">від 4 999 ₴</span>
-                <span class="svc__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="svc__body" id="svc-a3" role="region" aria-labelledby="svc-q3">
-              <div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що це</h4>
-                    <p>Motion у нас — це два напрями: анімація бренду та інтерфейсу сайту, а також короткі анімовані ролики для реклами, Reels і Stories.</p>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Навіщо це бізнесу</h4>
-                    <p>Рух робить бренд впізнаваним і послідовним, а продукт — зрозумілішим: замість статичної картинки людина бачить, як він працює.</p>
-                  </div>
-                </div>
-                <div class="svc__split">
-                  <div class="svc__branch">
-                    <span class="svc__branch-tag">Напрям 1</span>
-                    <h4>Motion для сайту та бренду</h4>
-                    <p>Перетворюємо статичний бренд на єдину візуальну систему в русі. Анімуємо логотип,
-                      елементи айдентики та графіку сайту так, щоб бренд виглядав цілісно — від першого
-                      екрана до мікроанімацій.</p>
-                    <p class="svc__branch-why">Motion допомагає зробити взаємодію з брендом впізнаваною
-                      та послідовною, а сайт — більш виразним і живим.</p>
-                  </div>
-                  <div class="svc__branch">
-                    <span class="svc__branch-tag">Напрям 2</span>
-                    <h4>Motion для реклами та соцмереж</h4>
-                    <p>Показуємо ваш продукт у русі, щоб його було легше помітити та зрозуміти. Створюємо
-                      короткі анімовані рекламні ролики, product-анімації та контент для Reels, Stories
-                      і рекламних кампаній.</p>
-                    <p class="svc__branch-why">Замість статичної картинки показуємо продукт, його функції
-                      або переваги через рух і короткий сценарій: товар → відкривається → показуємо
-                      функцію → демонструємо перевагу → CTA.</p>
-                  </div>
-                </div>
-                <div class="svc__grid">
-                  <div class="svc__col">
-                    <h4>Що ви отримаєте</h4>
-                    <ul class="checklist">
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Анімований логотип та елементи айдентики</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Мікроанімації та переходи для сайту</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Product-анімації, що показують функції та переваги</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Короткі рекламні ролики за сценарієм</span></li>
-                  <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Формати під Reels, Stories та рекламні кампанії</span></li>
-                    </ul>
-                  </div>
-                  <div class="svc__col">
-                    <h4>Який результат це має дати</h4>
-                    <p>Бренд виглядає цілісно в русі, а рекламні матеріали легше помітити та зрозуміти за перші секунди перегляду.</p>
-                  </div>
-                </div>
-                <div class="svc__foot">
-                  <p class="svc__from"><span>Вартість</span><strong>від 4 999 ₴</strong></p>
-                  <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Motion Design">Замовити Motion <span class="btn__arrow">→</span></button>
-                </div>
+
+              <div class="svc__foot">
+                <p class="svc__from"><span>Вартість</span><strong>від 5 999 ₴</strong></p>
+                <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Тільки Google Ads">Замовити рекламу <span class="btn__arrow">→</span></button>
               </div>
             </div>
-          </article>
+            <div class="vtabs__panel" id="panel-motion" role="tabpanel" aria-labelledby="tab-motion" tabindex="0" hidden>
+              <div class="svc__top">
+                <div>
+                  <span class="svc__index">03 — MOTION</span>
+                  <h3 class="svc__title">Motion Design</h3>
+                  <p class="svc__tagline">Оживляємо бренд і продукт: від айдентики сайту до рекламних роликів і контенту для соцмереж.</p>
+                </div>
+                <p class="svc__price"><strong>від 4 999 ₴</strong><span>за проєкт</span></p>
+              </div>
+
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що це</h4>
+                  <p>Motion у нас — це два напрями: анімація бренду та інтерфейсу сайту, а також короткі анімовані ролики для реклами, Reels і Stories.</p>
+                </div>
+                <div class="svc__col">
+                  <h4>Навіщо це бізнесу</h4>
+                  <p>Рух робить бренд впізнаваним і послідовним, а продукт — зрозумілішим: замість статичної картинки людина бачить, як він працює.</p>
+                </div>
+              </div>
+
+            <div class="svc__split">
+              <div class="svc__branch">
+                <span class="svc__branch-tag">Напрям 1</span>
+                <h4>Motion для сайту та бренду</h4>
+                <p>Перетворюємо статичний бренд на єдину візуальну систему в русі. Анімуємо логотип,
+                  елементи айдентики та графіку сайту так, щоб бренд виглядав цілісно — від першого
+                  екрана до мікроанімацій.</p>
+                <p class="svc__branch-why">Motion допомагає зробити взаємодію з брендом впізнаваною
+                  та послідовною, а сайт — більш виразним і живим.</p>
+              </div>
+              <div class="svc__branch">
+                <span class="svc__branch-tag">Напрям 2</span>
+                <h4>Motion для реклами та соцмереж</h4>
+                <p>Показуємо ваш продукт у русі, щоб його було легше помітити та зрозуміти. Створюємо
+                  короткі анімовані рекламні ролики, product-анімації та контент для Reels, Stories
+                  і рекламних кампаній.</p>
+                <p class="svc__branch-why">Замість статичної картинки показуємо продукт, його функції
+                  або переваги через рух і короткий сценарій: товар → відкривається → показуємо
+                  функцію → демонструємо перевагу → CTA.</p>
+              </div>
+            </div>
+              <div class="svc__grid">
+                <div class="svc__col">
+                  <h4>Що ви отримаєте</h4>
+                  <ul class="checklist">
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Анімований логотип та елементи айдентики</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Мікроанімації та переходи для сайту</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Product-анімації, що показують функції та переваги</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Короткі рекламні ролики за сценарієм</span></li>
+                    <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span>Формати під Reels, Stories та рекламні кампанії</span></li>
+                  </ul>
+                </div>
+                <div class="svc__col">
+                  <h4>Який результат це має дати</h4>
+                  <p>Бренд виглядає цілісно в русі, а рекламні матеріали легше помітити та зрозуміти за перші секунди перегляду.</p>
+                </div>
+              </div>
+
+              <div class="svc__foot">
+                <p class="svc__from"><span>Вартість</span><strong>від 4 999 ₴</strong></p>
+                <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="Motion Design">Замовити Motion <span class="btn__arrow">→</span></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
     <!-- ================= ПІСЛЯ ЗАЯВКИ ================= -->
-    <section class="section section--hairline" id="after">
-      <div class="container">
+    <section class="section section--alt rule" id="after">
+      <div class="shell">
         <div class="head" data-reveal>
-          <span class="eyebrow">Далі</span>
-          <h2>Що відбувається після заявки?</h2>
+          <span class="tag">Далі</span>
+          <h2>Що відбувається після заявки? <span class="tt">Ніяких зобовʼязань на першому кроці.</span></h2>
           <p class="lead">
-            Ніяких зобовʼязань на першому кроці: спочатку розбираємося в задачі, а вже потім
-            пропонуємо формат і вартість.
+            Спочатку розбираємося в задачі, а вже потім пропонуємо формат і вартість.
           </p>
         </div>
-
+      </div>
+      <div class="shell shell--bleed">
         <ol class="flow">
           <li class="flow__item" data-reveal>
             <span class="flow__num">01</span>
@@ -529,15 +539,15 @@
         </ol>
       </div>
     </section>
-
     <!-- ================= FAQ ================= -->
-    <section class="section section--alt" id="faq">
-      <div class="container">
-        <div class="head head--center" data-reveal>
-          <span class="eyebrow">FAQ</span>
-          <h2>Часті запитання</h2>
+    <section class="section rule" id="faq">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <span class="tag">FAQ</span>
+          <h2>Часті запитання. <span class="tt">Відповідаємо прямо.</span></h2>
         </div>
-
+      </div>
+      <div class="shell shell--bleed">
         <div class="faq" data-reveal>
           <div class="faq__item">
             <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">Скільки коштує сайт?<span class="faq__icon" aria-hidden="true"></span></button></h3>
@@ -575,23 +585,24 @@
       </div>
     </section>
 
-    <!-- ================= ФУТЕР-БЛОК ================= -->
-    <section class="cta section--alt" style="background:var(--bg-alt);padding-top:var(--section)">
-      <div class="container">
+    <section class="cta rule">
+      <div class="shell">
         <div class="cta__panel" data-reveal>
           <span class="cta__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 44.84 40.29 Z" fill="currentColor"/></svg></span>
           <h2>Готові запустити свій бізнес в інтернеті?</h2>
           <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
-          <button class="btn btn--on-ink btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+          <div class="cta__actions">
+            <button class="btn btn--on-ink btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+            <a class="btn btn--on-ink-ghost btn--lg" href="contacts.html">Написати нам</a>
+          </div>
           <p class="cta__note">Безкоштовна консультація · Без зобов'язань</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ================= FOOTER ================= -->
   <footer class="footer">
-    <div class="container">
+    <div class="shell">
       <div class="footer__grid">
         <div class="footer__about">
           <a href="index.html" class="brand">
@@ -599,19 +610,28 @@
             <span class="brand__name">Astra Digital</span>
           </a>
           <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
+          <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
         </div>
         <div class="footer__col">
           <h4>Сайт</h4>
           <a href="index.html">Головна сторінка</a>
-          <a href="#services">Наші послуги</a>
+          <a href="index.html#services">Наші послуги</a>
+          <a href="index.html#packages">Пакети</a>
           <a href="portfolio.html">Портфоліо</a>
-          <a href="contacts.html">Зв'язатися з нами</a>
+        </div>
+        <div class="footer__col">
+          <h4>Послуги</h4>
+          <a href="index.html#services">Створення сайтів</a>
+          <a href="index.html#services">Google Ads</a>
+          <a href="index.html#services">Motion Design</a>
+          <a href="index.html#faq">Часті запитання</a>
         </div>
         <div class="footer__col">
           <h4>Контакти</h4>
           <a href="mailto:hello@astradigital.agency">hello@astradigital.agency</a>
           <a href="https://t.me/astradigital" target="_blank" rel="noopener">Telegram</a>
           <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+          <a href="contacts.html">Форма заявки</a>
         </div>
       </div>
       <div class="footer__bottom">
@@ -621,13 +641,12 @@
     </div>
   </footer>
 
-  <!-- ================= MODAL ================= -->
   <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__dialog">
       <button class="modal__close" type="button" aria-label="Закрити вікно" data-modal-close>✕</button>
       <h2 id="modalTitle">Обговорити проєкт</h2>
-      <p>Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант.</p>
+      <p class="modal__lead">Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант.</p>
 
       <form id="contactForm" novalidate>
         <div class="field">

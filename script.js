@@ -60,26 +60,58 @@
     revealables.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ---------- 4. Disclosures (FAQ rows and service cards) ---------- */
-  function bindDisclosure(toggleSelector, itemSelector) {
-    document.querySelectorAll(toggleSelector).forEach(function (btn) {
-      var item = btn.closest(itemSelector);
-      btn.addEventListener('click', function () {
-        var open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        item.classList.toggle('is-open', !open);
-      });
+  /* ---------- 4. FAQ disclosures ---------- */
+  document.querySelectorAll('.faq__q').forEach(function (btn) {
+    var item = btn.closest('.faq__item');
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      item.classList.toggle('is-open', !open);
     });
-  }
+  });
 
-  bindDisclosure('.faq__q', '.faq__item');
-  bindDisclosure('.svc__toggle', '.svc');
+  /* ---------- 5. Service rail (vertical tabs) ---------- */
+  var railList = document.querySelector('.vtabs__rail[role="tablist"]');
 
-  /* A service card deep-linked as #services-web opens on load. */
-  var hash = window.location.hash;
-  if (hash) {
-    var target = document.querySelector(hash + ' .svc__toggle, ' + hash + '.svc .svc__toggle');
-    if (target && target.getAttribute('aria-expanded') !== 'true') target.click();
+  if (railList) {
+    var tabs = Array.prototype.slice.call(railList.querySelectorAll('[role="tab"]'));
+
+    var selectTab = function (tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { selectTab(tab, false); });
+    });
+
+    railList.addEventListener('keydown', function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
+      // The rail is vertical on desktop and horizontal once it collapses,
+      // so both axes move between tabs.
+      var next = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      if (next === null) return;
+      e.preventDefault();
+      selectTab(tabs[next], true);
+    });
+
+    /* #panel-ads in the URL opens that service. */
+    var hash = window.location.hash;
+    if (hash.indexOf('#panel-') === 0) {
+      var wanted = tabs.filter(function (t) { return '#' + t.getAttribute('aria-controls') === hash; })[0];
+      if (wanted) selectTab(wanted, false);
+    }
   }
 
   /* ---------- 6. Modal ---------- */
