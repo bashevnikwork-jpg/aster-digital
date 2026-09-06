@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Static page builder for Astra Digital.
+"""Static page builder for Aster Digital.
 
 Topbar, nav, footer and the contact modal live here once and are stamped into
 every page, so a header change no longer means editing three HTML files.
@@ -13,11 +13,7 @@ import pathlib
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
 
-MARK_PATH = ("M 44.84 40.29 Q 45.20 21.60 52.01 2.04 Q 60.41 23.15 57.64 42.09 L 57.64 42.09 "
-             "Q 75.52 36.66 96.23 37.09 Q 78.76 51.61 59.89 54.82 L 59.89 54.82 Q 70.58 70.15 "
-             "76.56 89.98 Q 57.36 77.84 48.47 60.89 L 48.47 60.89 Q 37.19 75.80 20.18 87.62 "
-             "Q 25.79 65.60 39.17 51.91 L 39.17 51.91 Q 21.51 45.79 5.01 33.27 Q 27.68 31.80 "
-             "44.84 40.29 Z")
+MARK_PATH = ("M 42.36 39.48 C 45.81 30.28 48.29 5.39 50.00 2.00 C 51.71 5.39 54.19 30.28 57.64 39.48 L 57.64 39.48 C 67.46 39.92 91.89 34.59 95.65 35.17 C 92.95 37.85 70.05 47.89 62.36 54.02 L 62.36 54.02 C 64.98 63.49 77.61 85.08 78.21 88.83 C 74.83 87.10 58.20 68.42 50.00 63.00 L 50.00 63.00 C 41.80 68.42 25.17 87.10 21.79 88.83 C 22.39 85.08 35.02 63.49 37.64 54.02 L 37.64 54.02 C 29.95 47.89 7.05 37.85 4.35 35.17 C 8.11 34.59 32.54 39.92 42.36 39.48 Z")
 
 MARK = f'<svg viewBox="0 0 100 100" aria-hidden="true"><path d="{MARK_PATH}" fill="currentColor"/></svg>'
 
@@ -77,9 +73,9 @@ def nav(current):
 
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="brand" aria-label="Astra Digital — на головну">
+      <a href="index.html" class="brand" aria-label="Aster Digital — на головну">
         <span class="brand__mark">{MARK}</span>
-        <span class="brand__name">Astra Digital</span>
+        <span class="brand__name">Aster Digital</span>
       </a>
 
       <nav class="nav__links" aria-label="Основна навігація">
@@ -87,6 +83,9 @@ def nav(current):
       </nav>
 
       <div class="nav__right">
+        <a class="nav__phone" href="tel:+380689239682" aria-label="Зателефонувати +380 68 923 96 82">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg><span>+380 68 923 96 82</span>
+        </a>
         <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
         <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navSheet">
           <span></span><span></span>
@@ -112,7 +111,7 @@ FOOTER = f'''
         <div class="footer__about">
           <a href="index.html" class="brand">
             <span class="brand__mark">{MARK}</span>
-            <span class="brand__name">Astra Digital</span>
+            <span class="brand__name">Aster Digital</span>
           </a>
           <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
           <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
@@ -133,14 +132,14 @@ FOOTER = f'''
         </div>
         <div class="footer__col">
           <h4>Контакти</h4>
-          <a href="mailto:hello@astradigital.agency">hello@astradigital.agency</a>
-          <a href="https://t.me/astradigital" target="_blank" rel="noopener">Telegram</a>
-          <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+          <a href="mailto:hello@asterdigital.agency">hello@asterdigital.agency</a>
+          <a href="https://t.me/asterdigital" target="_blank" rel="noopener">Telegram</a>
+          <a href="tel:+380689239682">+380 68 923 96 82</a>
           <a href="contacts.html">Форма заявки</a>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 Astra Digital</span>
+        <span>© 2026 Aster Digital</span>
         <span>Київ · Працюємо з бізнесом по всій Україні</span>
       </div>
     </div>
@@ -190,10 +189,16 @@ MODAL = f'''
 '''
 
 ACTIONBAR = '''
+  
+
   <div class="actionbar" id="actionBar">
     <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>від 9 999 ₴</strong></span>
     <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
   </div>
+
+  <a class="fab-call" href="tel:+380689239682" aria-label="Зателефонувати +380 68 923 96 82">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+  </a>
 '''
 
 TAIL = ACTIONBAR + '''
@@ -228,11 +233,11 @@ def part(name):
 
 def build_index():
     return (
-        head("Astra Digital — Створення сайтів та Google Ads для бізнесу",
+        head("Aster Digital — Створення сайтів та Google Ads для бізнесу",
              "Створюємо сучасні сайти для бізнесу, налаштовуємо Google Ads та створюємо "
              "motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴.",
              extra='  <meta property="og:type" content="website" />\n'
-                   '  <meta property="og:title" content="Astra Digital — Створення сайтів та Google Ads для бізнесу" />\n'
+                   '  <meta property="og:title" content="Aster Digital — Створення сайтів та Google Ads для бізнесу" />\n'
                    '  <meta property="og:description" content="Сайт, реклама та motion під ключ. Від 9 999 ₴, запуск за 3–7 днів." />\n')
         + nav("index.html")
         + '\n  <main id="main">\n'
@@ -246,8 +251,8 @@ def build_index():
 
 def build_portfolio():
     return (
-        head("Портфоліо — Astra Digital",
-             "Роботи Astra Digital: сайти для бізнесу, e-commerce, медіакіти та лендинги "
+        head("Портфоліо — Aster Digital",
+             "Роботи Aster Digital: сайти для бізнесу, e-commerce, медіакіти та лендинги "
              "з налаштованою рекламою Google Ads.")
         + nav("portfolio.html")
         + '\n  <main id="main">\n' + part("portfolio.html")
@@ -277,9 +282,9 @@ def build_contacts():
           <div data-reveal>
             <h2 class="h-sm">Напишіть нам</h2>
             <ul class="contact-list">
-              <li><a href="mailto:hello@astradigital.agency"><span class="k">Email</span><span class="v">hello@astradigital.agency</span></a></li>
-              <li><a href="https://t.me/astradigital" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
-              <li><a href="tel:+380000000000"><span class="k">Телефон</span><span class="v">+38 (000) 000-00-00</span></a></li>
+              <li><a href="mailto:hello@asterdigital.agency"><span class="k">Email</span><span class="v">hello@asterdigital.agency</span></a></li>
+              <li><a href="https://t.me/asterdigital" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
+              <li><a href="tel:+380689239682"><span class="k">Телефон</span><span class="v">+380 68 923 96 82</span></a></li>
             </ul>
             <p class="small muted-note">
               Відповідаємо протягом робочого дня. Консультація безкоштовна та без зобов'язань.
@@ -299,8 +304,8 @@ def build_contacts():
     </section>
 '''
     return (
-        head("Зв'язатися з нами — Astra Digital",
-             "Напишіть Astra Digital: безкоштовна консультація, аналіз ніші та розрахунок "
+        head("Зв'язатися з нами — Aster Digital",
+             "Напишіть Aster Digital: безкоштовна консультація, аналіз ніші та розрахунок "
              "вартості сайту й Google Ads.")
         + nav("contacts.html")
         + '\n  <main id="main">\n' + body + '  </main>\n'
