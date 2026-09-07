@@ -6,12 +6,27 @@
           <h2>Один і той самий екран. <span class="tt">Перемкніть — і побачите різницю.</span></h2>
           <p class="lead">
             Motion не про «красиво рухається». Він веде око по сторінці, показує продукт у дії
-            та <strong>підказує, куди натиснути</strong>. Нижче — той самий блок без анімації та з нею.
+            та <strong>підказує, куди натиснути</strong>. Нижче — наша анімація логотипа,
+            а під нею той самий блок сайту без анімації та з нею.
           </p>
         </div>
       </div>
 
       <div class="shell shell--bleed">
+        <figure class="reel-video">
+          <div class="reel-video__frame">
+            <video
+              src="public/assets/motion/logo-reveal.mp4"
+              autoplay muted loop playsinline preload="metadata"
+              aria-label="Анімація логотипа — приклад роботи Aster Digital"></video>
+            <noscript><p class="reel-video__fallback">Увімкніть відео, щоб побачити анімацію.</p></noscript>
+          </div>
+          <figcaption>
+            <span class="reel-video__tag">Наша робота</span>
+            <span>Анімація логотипа — той самий знак, який ви бачите в шапці, у русі.</span>
+          </figcaption>
+        </figure>
+
         <div class="motion is-motion" id="motionDemo">
           <div class="motion__bar">
             <div class="seg" role="group" aria-label="Режим показу">

@@ -66,7 +66,7 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
 ''')
 
 # ------------------------------------------------------------------ strip
-PROJECTS = ["Ferdinant", "Noirveil", "Yes or Not", "SlimLab", "Kyparis", "Jaydee"]
+PROJECTS = ["Ashad", "Ferdinant", "Noirveil", "Yes or Not", "SlimLab", "Kyparis"]
 ARROW_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
 cells = "\n".join(
     f'          <a class="strip__cell" href="portfolio.html">{p} {ARROW_UP}</a>' for p in PROJECTS)
@@ -388,6 +388,62 @@ SERVICES = [
          result="Бренд виглядає цілісно в русі, а рекламні матеріали легше помітити та зрозуміти "
                 "за перші секунди перегляду.",
          note=None, cta="Замовити Motion", topic="Motion Design", extra=MOTION_SPLIT),
+
+    dict(id="seo", index="04 — SEO", nav="SEO-оптимізація", navsub="Повне on-page SEO сайту",
+         title="SEO-оптимізація",
+         tagline="Робимо так, щоб сайт знаходили в пошуку — не тільки через рекламу.",
+         price="від $400", term="повне on-page SEO",
+         what="Проводимо повну on-page оптимізацію: технічний аудит, структуру та заголовки, "
+              "метадані, швидкість завантаження, мікророзмітку, внутрішні посилання й тексти "
+              "під реальні пошукові запити вашої ніші.",
+         why="Реклама працює, поки за неї платять. Пошукова видача дає трафік і тоді, коли "
+             "кампанії вимкнені, тому це вкладення на довшу дистанцію.",
+         gets=["Технічний аудит сайту з переліком помилок",
+               "Семантику та розподіл запитів по сторінках",
+               "Оптимізовані title, description і структуру заголовків",
+               "Прискорення завантаження та роботу з Core Web Vitals",
+               "Мікророзмітку й коректну індексацію в Google",
+               "Рекомендації щодо контенту на наступні місяці"],
+         result="Сайт стає зрозумілим для пошукових систем і користувача: сторінки відповідають "
+                "запитам, швидко відкриваються та коректно потрапляють в індекс.",
+         note="SEO має накопичувальний ефект: перші зміни у видачі зазвичай помітні за 1–3 місяці. "
+              "Строки та позиції залежать від ніші й конкуренції, тому конкретних місць ми не обіцяємо.",
+         cta="Замовити SEO", topic="SEO-оптимізація", extra=""),
+
+    dict(id="bots", index="05 — BOTS", nav="Telegram-боти", navsub="Заявки та підтримка в месенджері",
+         title="Telegram-боти",
+         tagline="Автоматизуємо заявки, запис і типові питання прямо в месенджері.",
+         price="від 5 000 ₴", term="за бота",
+         what="Створюємо бота під ваш сценарій: приймання заявок, онлайн-запис, каталог, "
+              "відповіді на часті питання, сповіщення менеджеру та вивантаження звернень.",
+         why="Клієнт уже сидить у Telegram — бот приймає звернення о будь-якій годині й не змушує "
+             "людину чекати відповіді менеджера.",
+         gets=["Сценарій діалогу під вашу задачу",
+               "Приймання заявок і передачу їх менеджеру",
+               "Меню з послугами, каталогом або записом",
+               "Сповіщення в особистий чат або робочу групу",
+               "Адмін-команди та експорт заявок",
+               "Підключення до вашого каналу чи групи"],
+         result="Типові звернення обробляються без участі людини, а заявки приходять у месенджер "
+                "у зручному форматі — з іменем, контактом і запитом.",
+         note=None, cta="Замовити бота", topic="Telegram-бот", extra=""),
+
+    dict(id="miniapp", index="06 — MINI APP", nav="Telegram Mini App", navsub="Застосунок усередині Telegram",
+         title="Telegram Mini App",
+         tagline="Повноцінний інтерфейс усередині Telegram — без встановлення застосунку.",
+         price="від 5 000 ₴", term="за застосунок",
+         what="Mini App відкривається прямо в Telegram: каталог із кошиком, форма запису, "
+              "особистий кабінет, калькулятор вартості чи будь-який інший екран під вашу задачу.",
+         why="Людина не виходить із месенджера й не встановлює нічого додатково — шлях від інтересу "
+             "до заявки коротший, ніж через застосунок у сторі.",
+         gets=["Інтерфейс у стилі Telegram, адаптований під мобільний",
+               "Каталог, форму або калькулятор під вашу послугу",
+               "Авторизацію через обліковий запис Telegram",
+               "Передачу замовлення менеджеру або в оплату",
+               "Адмінку для оновлення контенту за потреби"],
+         result="Клієнт оформлює замовлення чи запис за кілька дотиків, не залишаючи Telegram, "
+                "а ви отримуєте структуровану заявку.",
+         note=None, cta="Замовити Mini App", topic="Telegram Mini App", extra=""),
 ]
 
 rail = "\n".join(
@@ -552,6 +608,12 @@ write("faq.html", f'''    <!-- ================= FAQ ================= -->
 
 # ------------------------------------------------------------------ portfolio
 CASES = [
+    ('ashad', 'Ashad Barbershop', 'Сайт · Онлайн-запис',
+     'Барбершопу потрібен був сайт, який показує майстрів, послуги та ціни й приймає запис онлайн.',
+     'Зібрали односторінковий сайт із чіткою структурою: послуги з цінами, майстри, галерея робіт '
+     'і запис у кілька дотиків. Адаптив під мобільний у пріоритеті.',
+     'Живий сайт, на який можна вести рекламу та посилання із соцмереж.',
+     'eager'),
     ('ferdinant', 'Ferdinant Barbershop', 'Сайт · Google Ads',
      'Барбершопу потрібна була власна точка контакту з клієнтом замість профілю в соцмережах.',
      'Зробили сайт-візитівку з чіткою пропозицією, послугами, роботами майстрів і онлайн-записом, '
@@ -579,8 +641,25 @@ CASES = [
      'Зібрали цифровий медіакіт: динамічна подача цифр, кейси та формати розміщення на одній сторінці.',
      'Замість файлу-презентації — посилання, яке можна відправити рекламодавцю в будь-який момент.', 'lazy'),
 ]
-work_cells = "\n".join(f'''          <article class="work" data-reveal>
-            <div class="work__shot"><img src="public/assets/screenshots/{s}.webp" alt="{n} — проєкт Aster Digital" loading="{l}" /></div>
+LIVE = {"ashad": "https://bashevnik.github.io/ashad-barbershop"}
+EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+       '<path d="M7 17 17 7M9 7h8v8"/></svg>')
+
+
+def work_card(s, n, t, task, sol, res, l):
+    live = LIVE.get(s)
+    if live:
+        # screenshot still to come — the tile links straight to the live site
+        shot = (f'<a class="work__shot work__shot--link" href="{live}" target="_blank" rel="noopener">'
+                f'<b>{n}</b><span>Відкрити сайт у новій вкладці</span></a>')
+        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
+    else:
+        shot = (f'<div class="work__shot"><img src="public/assets/screenshots/{s}.webp" '
+                f'alt="{n} — проєкт Aster Digital" loading="{l}" /></div>')
+        cta = ''
+    return f'''          <article class="work" data-reveal>
+            {shot}
             <div class="work__body">
               <span class="work__tag">{t}</span>
               <h3>{n}</h3>
@@ -588,9 +667,12 @@ work_cells = "\n".join(f'''          <article class="work" data-reveal>
                 <dt>Задача</dt><dd>{task}</dd>
                 <dt>Рішення</dt><dd>{sol}</dd>
                 <dt>Результат</dt><dd>{res}</dd>
-              </dl>
+              </dl>{cta}
             </div>
-          </article>''' for s, n, t, task, sol, res, l in CASES)
+          </article>'''
+
+
+work_cells = "\n".join(work_card(*c) for c in CASES)
 
 write("portfolio.html", f'''    <section class="page-head">
       <div class="shell">
@@ -628,12 +710,27 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
           <h2>Один і той самий екран. <span class="tt">Перемкніть — і побачите різницю.</span></h2>
           <p class="lead">
             Motion не про «красиво рухається». Він веде око по сторінці, показує продукт у дії
-            та <strong>підказує, куди натиснути</strong>. Нижче — той самий блок без анімації та з нею.
+            та <strong>підказує, куди натиснути</strong>. Нижче — наша анімація логотипа,
+            а під нею той самий блок сайту без анімації та з нею.
           </p>
         </div>
       </div>
 
       <div class="shell shell--bleed">
+        <figure class="reel-video">
+          <div class="reel-video__frame">
+            <video
+              src="public/assets/motion/logo-reveal.mp4"
+              autoplay muted loop playsinline preload="metadata"
+              aria-label="Анімація логотипа — приклад роботи Aster Digital"></video>
+            <noscript><p class="reel-video__fallback">Увімкніть відео, щоб побачити анімацію.</p></noscript>
+          </div>
+          <figcaption>
+            <span class="reel-video__tag">Наша робота</span>
+            <span>Анімація логотипа — той самий знак, який ви бачите в шапці, у русі.</span>
+          </figcaption>
+        </figure>
+
         <div class="motion is-motion" id="motionDemo">
           <div class="motion__bar">
             <div class="seg" role="group" aria-label="Режим показу">

@@ -30,6 +30,9 @@ TOPICS = [
     "Тільки сайт",
     "Тільки Google Ads",
     "Motion Design",
+    "SEO-оптимізація",
+    "Telegram-бот",
+    "Telegram Mini App",
     "Безкоштовний аналіз ніші",
 ]
 
@@ -128,7 +131,8 @@ FOOTER = f'''
           <a href="index.html#services">Створення сайтів</a>
           <a href="index.html#services">Google Ads</a>
           <a href="index.html#services">Motion Design</a>
-          <a href="index.html#faq">Часті запитання</a>
+          <a href="index.html#services">SEO-оптимізація</a>
+          <a href="index.html#services">Telegram-боти та Mini App</a>
         </div>
         <div class="footer__col">
           <h4>Контакти</h4>

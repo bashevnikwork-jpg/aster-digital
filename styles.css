@@ -1025,6 +1025,36 @@ strong, .em { color: var(--text); font-weight: 600; }
   .motion.is-motion .reel__screen > * { animation: none !important; opacity: 1; }
 }
 
+/* real motion work, shown before the built comparison */
+.reel-video {
+  margin: 0; display: grid; gap: 18px;
+  padding: clamp(24px, 3vw, 44px) var(--pad) clamp(28px, 3.4vw, 48px);
+  border-bottom: var(--border);
+}
+.reel-video__frame {
+  position: relative; overflow: hidden;
+  border: var(--border); border-radius: var(--r-lg);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 16 / 9;
+  max-width: 900px; width: 100%; margin-inline: auto;
+}
+.reel-video__frame video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  background: #0E0E12;
+}
+.reel-video__fallback { padding: 24px; text-align: center; }
+.reel-video figcaption {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  justify-content: center; text-align: center;
+  font-size: 0.9375rem; color: var(--muted);
+}
+.reel-video__tag {
+  padding: 5px 11px; border-radius: var(--r-xs);
+  background: var(--accent-wash); color: var(--accent);
+  font-size: 0.8125rem; font-weight: 500;
+}
+
 /* ---------- 13e. Tech stack (dark band) ---------- */
 .stack {
   position: relative; overflow: hidden;
@@ -1213,6 +1243,23 @@ strong, .em { color: var(--text); font-weight: 600; }
 .work__body { padding: 24px clamp(20px, 2vw, 28px) 28px; }
 .work__tag { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
 .work__body h3 { margin: 9px 0 4px; font-size: 1.25rem; letter-spacing: -0.03em; }
+
+/* a case we can link to but have no shot for yet */
+.work__shot--link {
+  display: grid; place-items: center; gap: 10px;
+  background: linear-gradient(152deg, #1B1B22, #0B0B0F);
+  color: var(--on-ink); text-align: center; padding: 24px;
+}
+.work__shot--link b {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 600; letter-spacing: -0.03em;
+}
+.work__shot--link span { font-size: 0.8125rem; color: rgba(246, 246, 244, 0.55); }
+.work__live {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 14px;
+  font-size: 0.9375rem; font-weight: 500; color: var(--accent);
+}
+.work__live svg { width: 14px; height: 14px; }
 
 .case { margin-top: 14px; }
 .case dt {
@@ -1466,6 +1513,8 @@ strong, .em { color: var(--text); font-weight: 600; }
   .seg { width: 100%; }
   .seg__btn { flex: 1; }
   .stage, .reel, .motion__note { padding: 22px 20px; }
+  .reel-video { padding: 20px; gap: 14px; }
+  .reel-video figcaption { font-size: 0.875rem; }
   .contact-grid > * { padding: 28px 20px; }
 
   .cta > .shell { padding-inline: 12px; }
