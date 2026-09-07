@@ -258,25 +258,38 @@
     });
 
     var modalForm = document.getElementById('contactForm');
-    if (modalForm) bindForm(modalForm, document.getElementById('formStatus'), closeModal);
+    if (modalForm) bindForm(modalForm, document.getElementById('formStatus'));
   }
 
-  /* ---------- 7. Forms (front-end only, no backend yet) ---------- */
-  function bindForm(form, status, done) {
+  /* ---------- 7. Forms ---------- */
+  /* No backend yet: the form validates, marks the visit as a lead and hands
+     off to the thank-you page, which only opens with that mark. */
+  function bindForm(form, status) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (status) status.textContent = 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.';
-      form.reset();
-      if (done) {
-        setTimeout(function () {
-          if (status) status.textContent = '';
-          done();
-        }, 2200);
-      }
+      if (status) status.textContent = 'Дякуємо! Переносимо вас далі…';
+      try { sessionStorage.setItem('aster:lead', String(Date.now())); } catch (err) { /* private mode */ }
+      window.location.href = 'thanks.html';
     });
   }
 
   var pageForm = document.getElementById('pageForm');
-  if (pageForm) bindForm(pageForm, document.getElementById('pageFormStatus'), null);
+  if (pageForm) bindForm(pageForm, document.getElementById('pageFormStatus'));
+
+  /* ---------- 8. Motion demo toggle ---------- */
+  var demo = document.getElementById('motionDemo');
+  if (demo) {
+    demo.querySelectorAll('[data-motion]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var on = btn.getAttribute('data-motion') === 'on';
+        demo.classList.toggle('is-motion', on);
+        demo.querySelectorAll('[data-motion]').forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle('is-on', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+      });
+    });
+  }
 })();

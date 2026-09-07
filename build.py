@@ -243,7 +243,7 @@ def build_index():
         + '\n  <main id="main">\n'
         + part("hero.html") + part("strip.html") + part("process.html") + part("bento.html")
         + part("system.html") + part("leadmagnet.html") + part("pricing.html")
-        + part("services.html") + part("after.html") + part("faq.html")
+        + part("services.html") + part("motion.html") + part("after.html") + part("faq.html")
         + cta("Готові запустити свій бізнес в інтернеті?")
         + '  </main>\n' + FOOTER + MODAL + TAIL
     )
@@ -258,6 +258,69 @@ def build_portfolio():
         + '\n  <main id="main">\n' + part("portfolio.html")
         + cta("Хочете такий самий результат?")
         + '  </main>\n' + FOOTER + MODAL + TAIL
+    )
+
+
+def build_thanks():
+    body = '''
+    <section class="thanks">
+      <div class="shell">
+        <div class="thanks__inner" data-hero>
+          <span class="thanks__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>
+          </span>
+          <span class="tag tag--ok">Заявку прийнято</span>
+          <h1>Дякуємо! <span class="tt">Ми вже отримали вашу заявку.</span></h1>
+          <p class="lead">
+            Зв’яжемося <strong>протягом робочого дня</strong> — уточнимо задачу та запропонуємо
+            оптимальний варіант. Якщо питання термінове, телефонуйте просто зараз.
+          </p>
+          <div class="thanks__actions">
+            <a class="btn btn--primary btn--lg" href="tel:+380689239682">Зателефонувати <span class="btn__arrow">→</span></a>
+            <a class="btn btn--ghost btn--lg" href="https://t.me/asterdigital" target="_blank" rel="noopener">Написати в Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--flush">
+      <div class="shell shell--bleed">
+        <ol class="flow">
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">01</span>
+            <div><h3>Читаємо заявку</h3><p>Дивимося, що ви написали про бізнес і яку задачу треба вирішити.</p></div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">02</span>
+            <div><h3>Телефонуємо або пишемо</h3><p>Коротко уточнимо деталі — нішу, строки та що вже пробували.</p></div>
+          </li>
+          <li class="flow__item" data-reveal>
+            <span class="flow__num">03</span>
+            <div><h3>Надсилаємо пропозицію</h3><p>Формат роботи, строки та вартість — без зобов’язань з вашого боку.</p></div>
+          </li>
+        </ol>
+      </div>
+      <div class="shell">
+        <a class="section-link" href="portfolio.html" data-reveal>
+          <span>Поки чекаєте — подивіться наші роботи</span>
+          <span class="arrow-loop">→</span>
+        </a>
+      </div>
+    </section>
+'''
+    gate = (
+        '  <meta name="robots" content="noindex, nofollow" />\n'
+        "  <script>(function(){try{var raw=sessionStorage.getItem('aster:lead');"
+        "var ok=raw&&(Date.now()-parseInt(raw,10))<30*60*1000;"
+        "if(!ok){location.replace('index.html');}}catch(e){}})();</script>\n"
+    )
+    return (
+        head("Дякуємо за заявку — Aster Digital",
+             "Заявку прийнято. Зв'яжемося протягом робочого дня.",
+             extra=gate)
+        + nav("thanks.html")
+        + '\n  <main id="main">\n' + body + '  </main>\n'
+        + FOOTER + MODAL + TAIL
     )
 
 
@@ -316,6 +379,7 @@ def build_contacts():
 if __name__ == "__main__":
     for name, builder in (("index.html", build_index),
                           ("portfolio.html", build_portfolio),
-                          ("contacts.html", build_contacts)):
+                          ("contacts.html", build_contacts),
+                          ("thanks.html", build_thanks)):
         (ROOT / name).write_text(builder(), encoding="utf-8")
         print("wrote", name)

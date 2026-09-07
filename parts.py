@@ -614,3 +614,82 @@ write("portfolio.html", f'''    <section class="page-head">
 ''')
 
 print("done")
+
+# ------------------------------------------------------------------ motion demo
+# The stage is built in code so the comparison is honest. To show real work,
+# drop files into public/assets/motion/ and swap .stage__shot / .reel__screen
+# for <video autoplay muted loop playsinline poster="...">.
+write("motion.html", '''    <!-- ================= MOTION У ДІЇ ================= -->
+    <section class="section rule" id="motion">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <span class="tag">Motion у дії</span>
+          <h2>Один і той самий екран. <span class="tt">Перемкніть — і побачите різницю.</span></h2>
+          <p class="lead">
+            Motion не про «красиво рухається». Він веде око по сторінці, показує продукт у дії
+            та <strong>підказує, куди натиснути</strong>. Нижче — той самий блок без анімації та з нею.
+          </p>
+        </div>
+      </div>
+
+      <div class="shell shell--bleed">
+        <div class="motion is-motion" id="motionDemo">
+          <div class="motion__bar">
+            <div class="seg" role="group" aria-label="Режим показу">
+              <button type="button" class="seg__btn" data-motion="off">Без motion</button>
+              <button type="button" class="seg__btn is-on" data-motion="on" aria-pressed="true">З motion</button>
+            </div>
+            <p class="motion__hint">Сцена повторюється по колу</p>
+          </div>
+
+          <div class="motion__grid">
+            <figure class="stage">
+              <figcaption class="stage__cap">Перший екран сайту</figcaption>
+              <div class="stage__frame">
+                <div class="stage__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="stage__shot" aria-hidden="true">
+                  <span class="stage__tag">Барбершоп у Києві</span>
+                  <span class="stage__h l1"></span>
+                  <span class="stage__h l2"></span>
+                  <span class="stage__pic"></span>
+                  <span class="stage__cta">Записатися</span>
+                  <span class="stage__chip">Вільно сьогодні</span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="reel">
+              <figcaption class="stage__cap">Ролик для Reels та реклами</figcaption>
+              <div class="reel__phone">
+                <div class="reel__screen" aria-hidden="true">
+                  <span class="reel__step s1">Товар</span>
+                  <span class="reel__box"></span>
+                  <span class="reel__step s2">Функція</span>
+                  <span class="reel__step s3">Перевага</span>
+                  <span class="reel__cta">Замовити →</span>
+                </div>
+              </div>
+            </figure>
+          </div>
+
+          <div class="motion__notes">
+            <div class="motion__note">
+              <h3>Без motion</h3>
+              <p>Усе з’являється одночасно. Око саме шукає, з чого почати й що тут головне.</p>
+            </div>
+            <div class="motion__note">
+              <h3>З motion</h3>
+              <p>Сцена веде за собою: спершу пропозиція, далі продукт, наприкінці — кнопка.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell">
+        <a class="section-link" href="#panel-motion" data-reveal>
+          <span>Подивитися, що входить у Motion Design</span>
+          <span class="arrow-loop">→</span>
+        </a>
+      </div>
+    </section>
+''')
