@@ -11,17 +11,29 @@
   /* ---------- 1. Nav: hairline appears once the page moves ---------- */
   var nav = document.getElementById('nav');
   var progress = document.getElementById('navProgress');
+  var darkZones = document.querySelectorAll('[data-nav-dark]');
 
   if (nav) {
     var onScroll = function () {
       nav.classList.toggle('is-stuck', window.scrollY > 8);
+
       if (progress) {
         var max = document.documentElement.scrollHeight - window.innerHeight;
         progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
       }
+
+      // the header takes the dark theme while a dark band passes behind it
+      var edge = nav.getBoundingClientRect().bottom - 2;
+      var overDark = false;
+      Array.prototype.forEach.call(darkZones, function (zone) {
+        var r = zone.getBoundingClientRect();
+        if (r.top <= edge && r.bottom >= edge) overDark = true;
+      });
+      nav.classList.toggle('is-dark', overDark);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
   }
 
   /* ---------- 2. Mobile sheet ---------- */
@@ -101,7 +113,6 @@
   indexChildren('.strip', '.strip__cell');
   indexChildren('.faq', '.faq__item');
   indexChildren('.flow', '.flow__item');
-  indexChildren('.stack__grid', '.stack__item');
   document.querySelectorAll('.cells .cell').forEach(function (cell) {
     var i = cell.style.getPropertyValue('--i');
     Array.prototype.slice.call(cell.children).forEach(function (child) {
@@ -110,7 +121,7 @@
   });
 
   /* One observer drives every entrance. */
-  var watched = document.querySelectorAll('[data-reveal], [data-split], .cells, .strip, .faq, .flow, .stack__grid');
+  var watched = document.querySelectorAll('[data-reveal], [data-split], .cells, .strip, .faq, .flow');
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
     watched.forEach(function (el) { el.classList.add('is-in'); });

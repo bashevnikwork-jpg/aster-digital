@@ -696,23 +696,35 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
 ''')
 
 # ------------------------------------------------------------------ tech stack
-STACK = [
+STACK_ROW_1 = [
     ("HTML", "HTML5"), ("CSS", "CSS3"), ("JS", "JavaScript"), ("TS", "TypeScript"),
     ("Re", "React"), ("N", "Next.js"), ("Ng", "Angular"), ("V", "Vue"),
     ("TW", "Tailwind"), ("Sa", "Sass"), ("Nd", "Node.js"), ("Ja", "Java"),
     ("Sp", "Spring"), ("C#", "C#"), ("NET", ".NET"), ("ASP", "ASP.NET Core"),
-    ("C++", "C++"), ("Py", "Python"), ("Dj", "Django"), ("PHP", "PHP"),
-    ("Lv", "Laravel"), ("WP", "WordPress"), ("Wo", "WooCommerce"), ("Sh", "Shopify"),
-    ("My", "MySQL"), ("PG", "PostgreSQL"), ("Mg", "MongoDB"), ("Dk", "Docker"),
-    ("Git", "Git"), ("Fg", "Figma"), ("Ae", "After Effects"), ("Pr", "Premiere Pro"),
-    ("Ads", "Google Ads"), ("GA4", "Analytics 4"), ("GTM", "Tag Manager"),
+    ("C++", "C++"), ("Py", "Python"),
 ]
-stack_items = "\n".join(
-    f'            <li class="stack__item"><span class="stack__tile">{code}</span>'
-    f'<span class="stack__name">{name}</span></li>' for code, name in STACK)
+STACK_ROW_2 = [
+    ("Dj", "Django"), ("PHP", "PHP"), ("Lv", "Laravel"), ("WP", "WordPress"),
+    ("Wo", "WooCommerce"), ("Sh", "Shopify"), ("My", "MySQL"), ("PG", "PostgreSQL"),
+    ("Mg", "MongoDB"), ("Dk", "Docker"), ("Git", "Git"), ("Fg", "Figma"),
+    ("Ae", "After Effects"), ("Pr", "Premiere Pro"), ("Ads", "Google Ads"),
+    ("GA4", "Analytics 4"), ("GTM", "Tag Manager"),
+]
 
-write("stack.html", f'''    <!-- ================= ТЕХНОЛОГІЇ ================= -->
-    <section class="stack rule" id="stack">
+def stack_row(items, indent=12):
+    pad = " " * indent
+    # the list is written twice so the track can loop seamlessly
+    one = "\n".join(
+        f'{pad}<li class="tick__item"><span class="tick__tile">{code}</span>'
+        f'<span class="tick__name">{name}</span></li>' for code, name in items)
+    dup = one.replace('<li class="tick__item">', '<li class="tick__item" aria-hidden="true">')
+    return one + "\n" + dup
+
+row1 = stack_row(STACK_ROW_1)
+row2 = stack_row(STACK_ROW_2)
+
+write("stack.html", """    <!-- ================= ТЕХНОЛОГІЇ ================= -->
+    <section class="stack rule" id="stack" data-nav-dark>
       <div class="shell">
         <div class="stack__head" data-reveal>
           <span class="tag tag--on-ink">Технології</span>
@@ -729,9 +741,18 @@ write("stack.html", f'''    <!-- ================= ТЕХНОЛОГІЇ ========
       </div>
 
       <div class="shell shell--bleed">
-        <ul class="stack__grid" aria-label="Технології, з якими ми працюємо">
-__STACK_ITEMS__
-        </ul>
+        <div class="tick" aria-label="Технології, з якими ми працюємо">
+          <div class="tick__row">
+            <ul class="tick__track">
+__ROW1__
+            </ul>
+          </div>
+          <div class="tick__row tick__row--back">
+            <ul class="tick__track">
+__ROW2__
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
-'''.replace("__STACK_ITEMS__", stack_items))
+""".replace("__ROW1__", row1).replace("__ROW2__", row2))
