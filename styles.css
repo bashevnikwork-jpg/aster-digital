@@ -283,13 +283,7 @@ strong, .em { color: var(--text); font-weight: 600; }
   border-bottom-color: rgba(255, 255, 255, 0.10);
 }
 .nav.is-dark .nav__inner { border-inline-color: rgba(255, 255, 255, 0.09); }
-.nav.is-dark .brand__name { color: var(--on-ink); }
-.nav.is-dark .brand__mark {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
-}
+.nav.is-dark .logo { color: var(--on-ink); }
 .nav.is-dark .nav__links a { color: rgba(246, 246, 244, 0.6); }
 .nav.is-dark .nav__links a:hover { color: var(--on-ink); background: rgba(255, 255, 255, 0.08); }
 .nav.is-dark .nav__links a[aria-current="page"] { color: var(--on-ink); }
@@ -304,7 +298,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 .nav.is-dark .nav__burger span { background: var(--on-ink); }
 
 /* everything that changes colour does it over the same beat */
-.brand__name, .brand__mark, .nav__links a, .nav__phone, .nav__phone svg,
+.logo, .logo__word, .nav__links a, .nav__phone, .nav__phone svg,
 .nav__burger, .nav__burger span, .nav .btn--primary {
   transition: background-color 0.35s var(--ease), color 0.35s var(--ease),
               border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
@@ -317,28 +311,24 @@ strong, .em { color: var(--text); font-weight: 600; }
   display: flex; align-items: center; gap: clamp(16px, 2.2vw, 36px);
 }
 
-.brand { display: inline-flex; align-items: center; gap: 11px; }
-.brand__mark {
-  width: 38px; height: 38px; flex: none;
-  border: 1px solid transparent;
-  display: grid; place-items: center;
-  border-radius: 11px;
-  background: linear-gradient(150deg, #F4FBFF 0%, #DBEEFB 100%);
-  border-color: rgba(2, 132, 199, 0.16);
-  color: var(--accent);
-  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
-              0 10px 20px -12px rgba(2, 132, 199, 0.5);
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+/* one logo: the breeze strokes run into the wordmark, one colour, one hover */
+.logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--text); flex: none;
 }
-.brand__mark svg { width: 21px; height: 21px; }
-.brand:hover .brand__mark { transform: rotate(-8deg) scale(1.04); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--shadow-sm); }
-.brand__name {
+.logo__mark {
+  width: 34px; height: 30px; flex: none;
+  transition: transform 0.45s var(--ease), color 0.35s var(--ease);
+}
+.logo__word {
   font-family: var(--font-display);
-  font-size: 1.25rem; font-weight: 600; letter-spacing: -0.04em;
+  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.045em; line-height: 1;
+  transition: color 0.35s var(--ease);
 }
-.footer .brand__mark { width: 34px; height: 34px; border-radius: 10px; }
-.footer .brand__mark svg { width: 19px; height: 19px; }
-.cta__mark { color: var(--sky-soft); }
+.logo:hover .logo__mark { transform: translateX(3px); }
+
+.footer .logo__mark { width: 31px; height: 27px; }
+.footer .logo__word { font-size: 1.25rem; }
 
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a {
@@ -1075,35 +1065,28 @@ strong, .em { color: var(--text); font-weight: 600; }
   .motion.is-motion .reel__screen > * { animation: none !important; opacity: 1; }
 }
 
-/* real motion work, shown before the built comparison */
-.reel-video {
-  margin: 0; display: grid; gap: 18px;
-  padding: clamp(24px, 3vw, 44px) var(--pad) clamp(28px, 3.4vw, 48px);
+/* the same asset, frozen and moving, side by side */
+.mv {
+  display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: var(--border);
 }
-.reel-video__frame {
+.mv__side { margin: 0; padding: clamp(22px, 2.6vw, 36px); }
+.mv__side + .mv__side { border-left: var(--border); }
+.mv__side figcaption {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px;
+  margin-bottom: 16px; font-size: 0.9375rem; color: var(--muted);
+}
+.mv__side figcaption .tag { margin-bottom: 0; }
+.mv__frame {
   position: relative; overflow: hidden;
   border: var(--border); border-radius: var(--r-lg);
-  background: var(--bg-alt);
+  background: #0E0E12; aspect-ratio: 16 / 9;
   box-shadow: var(--shadow-sm);
-  aspect-ratio: 16 / 9;
-  max-width: 900px; width: 100%; margin-inline: auto;
 }
-.reel-video__frame video {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  background: #0E0E12;
-}
-.reel-video__fallback { padding: 24px; text-align: center; }
-.reel-video figcaption {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
-  justify-content: center; text-align: center;
-  font-size: 0.9375rem; color: var(--muted);
-}
-.reel-video__tag {
-  padding: 5px 11px; border-radius: var(--r-xs);
-  background: var(--accent-wash); color: var(--accent);
-  font-size: 0.8125rem; font-weight: 500;
-}
+.mv__frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* the frozen side reads as a still: no motion cues, slightly calmer */
+.mv__side:not(.mv__side--live) .mv__frame { filter: saturate(0.9); }
+.mv__side--live .mv__frame { box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent-wash); }
 
 /* ---------- 13e. Tech stack (dark band) ---------- */
 .stack {
@@ -1608,8 +1591,9 @@ strong, .em { color: var(--text); font-weight: 600; }
   .seg { width: 100%; }
   .seg__btn { flex: 1; }
   .stage, .reel, .motion__note { padding: 22px 20px; }
-  .reel-video { padding: 20px; gap: 14px; }
-  .reel-video figcaption { font-size: 0.875rem; }
+  .mv { grid-template-columns: 1fr; }
+  .mv__side + .mv__side { border-left: 0; border-top: var(--border); }
+  .mv__side { padding: 20px; }
   .contact-grid > * { padding: 28px 20px; }
 
   .cta > .shell { padding-inline: 12px; }
@@ -1641,8 +1625,8 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 
 @media (max-width: 380px) {
-  .brand__name { font-size: 1.0625rem; }
-  .brand__mark { width: 34px; height: 34px; }
+  .logo__word { font-size: 1.125rem; }
+  .logo__mark { width: 29px; height: 26px; }
   .strip { grid-template-columns: 1fr; }
   .actionbar__price { display: none; }
 }

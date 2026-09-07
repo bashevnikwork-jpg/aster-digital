@@ -744,25 +744,37 @@ write("motion.html", """    <!-- ================= MOTION У ДІЇ ============
           <p class="lead">
             Motion — це рух самого бренду: анімований знак, заставка, єдині тайминги.
             Плавні появи блоків і ховери — це вже <strong>частина розробки сайту</strong>,
-            і вони входять у вартість. Нижче — наша анімація логотипа, а під нею той самий
-            блок сайту без анімації та з нею.
+            і вони входять у вартість. Нижче — один і той самий знак статично та в русі,
+            а під ним блок сайту без анімацій і з ними.
           </p>
         </div>
       </div>
 
       <div class="shell shell--bleed">
-        <figure class="reel-video">
-          <div class="reel-video__frame">
-            <video
-              src="public/assets/motion/logo-reveal.mp4"
-              autoplay muted loop playsinline preload="metadata"
-              aria-label="Анімація логотипа — приклад роботи SkyBreeze"></video>
-          </div>
-          <figcaption>
-            <span class="reel-video__tag">Наша робота</span>
-            <span>Анімація логотипа — знак, заставка й тайминги, які далі використовуються скрізь.</span>
-          </figcaption>
-        </figure>
+        <div class="mv">
+          <figure class="mv__side">
+            <figcaption>
+              <span class="tag tag--plain">Без motion</span>
+              <span>Статичний кадр. Знак просто лежить на екрані.</span>
+            </figcaption>
+            <div class="mv__frame">
+              <video src="public/assets/motion/logo-reveal.mp4" muted playsinline
+                     preload="auto" data-freeze="0.9"
+                     aria-label="Статичний кадр логотипа"></video>
+            </div>
+          </figure>
+
+          <figure class="mv__side mv__side--live">
+            <figcaption>
+              <span class="tag">З motion</span>
+              <span>Той самий знак у русі — наша анімація логотипа.</span>
+            </figcaption>
+            <div class="mv__frame">
+              <video src="public/assets/motion/logo-reveal.mp4" autoplay muted loop playsinline
+                     preload="metadata" aria-label="Анімація логотипа SkyBreeze"></video>
+            </div>
+          </figure>
+        </div>
 
         <div class="motion is-motion" id="motionDemo">
           <div class="motion__bar">

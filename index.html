@@ -26,10 +26,7 @@
 
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="brand" aria-label="SkyBreeze — на головну">
-        <span class="brand__mark"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 33h42a10 10 0 1 0-9.4-13.4"/><path d="M14 51h54a11 11 0 1 1-10.4 14.6"/><path d="M16 69h28"/></svg></span>
-        <span class="brand__name">SkyBreeze</span>
-      </a>
+      <a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>
 
       <nav class="nav__links" aria-label="Основна навігація">
           <a href="index.html" aria-current="page">Головна сторінка</a>
@@ -690,25 +687,37 @@
           <p class="lead">
             Motion — це рух самого бренду: анімований знак, заставка, єдині тайминги.
             Плавні появи блоків і ховери — це вже <strong>частина розробки сайту</strong>,
-            і вони входять у вартість. Нижче — наша анімація логотипа, а під нею той самий
-            блок сайту без анімації та з нею.
+            і вони входять у вартість. Нижче — один і той самий знак статично та в русі,
+            а під ним блок сайту без анімацій і з ними.
           </p>
         </div>
       </div>
 
       <div class="shell shell--bleed">
-        <figure class="reel-video">
-          <div class="reel-video__frame">
-            <video
-              src="public/assets/motion/logo-reveal.mp4"
-              autoplay muted loop playsinline preload="metadata"
-              aria-label="Анімація логотипа — приклад роботи SkyBreeze"></video>
-          </div>
-          <figcaption>
-            <span class="reel-video__tag">Наша робота</span>
-            <span>Анімація логотипа — знак, заставка й тайминги, які далі використовуються скрізь.</span>
-          </figcaption>
-        </figure>
+        <div class="mv">
+          <figure class="mv__side">
+            <figcaption>
+              <span class="tag tag--plain">Без motion</span>
+              <span>Статичний кадр. Знак просто лежить на екрані.</span>
+            </figcaption>
+            <div class="mv__frame">
+              <video src="public/assets/motion/logo-reveal.mp4" muted playsinline
+                     preload="auto" data-freeze="0.9"
+                     aria-label="Статичний кадр логотипа"></video>
+            </div>
+          </figure>
+
+          <figure class="mv__side mv__side--live">
+            <figcaption>
+              <span class="tag">З motion</span>
+              <span>Той самий знак у русі — наша анімація логотипа.</span>
+            </figcaption>
+            <div class="mv__frame">
+              <video src="public/assets/motion/logo-reveal.mp4" autoplay muted loop playsinline
+                     preload="metadata" aria-label="Анімація логотипа SkyBreeze"></video>
+            </div>
+          </figure>
+        </div>
 
         <div class="motion is-motion" id="motionDemo">
           <div class="motion__bar">
@@ -1012,7 +1021,7 @@
     <section class="cta rule">
       <div class="shell">
         <div class="cta__panel" data-reveal>
-          <span class="cta__mark"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 33h42a10 10 0 1 0-9.4-13.4"/><path d="M14 51h54a11 11 0 1 1-10.4 14.6"/><path d="M16 69h28"/></svg></span>
+          <span class="cta__mark"><svg viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg></span>
           <h2>Готові запустити свій бізнес в інтернеті?</h2>
           <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
           <div class="cta__actions">
@@ -1029,10 +1038,7 @@
     <div class="shell">
       <div class="footer__grid">
         <div class="footer__about">
-          <a href="index.html" class="brand">
-            <span class="brand__mark"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 33h42a10 10 0 1 0-9.4-13.4"/><path d="M14 51h54a11 11 0 1 1-10.4 14.6"/><path d="M16 69h28"/></svg></span>
-            <span class="brand__name">SkyBreeze</span>
-          </a>
+          <a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>
           <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
           <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
         </div>

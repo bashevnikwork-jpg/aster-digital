@@ -13,7 +13,7 @@ import pathlib
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
 
-MARK = ('<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 33h42a10 10 0 1 0-9.4-13.4"/><path d="M14 51h54a11 11 0 1 1-10.4 14.6"/><path d="M16 69h28"/></svg>')
+LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>''')
 
 NAV_ITEMS = [
     ("Головна сторінка", "index.html", "index.html"),
@@ -76,10 +76,7 @@ def nav(current):
 
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="brand" aria-label="SkyBreeze — на головну">
-        <span class="brand__mark">{MARK}</span>
-        <span class="brand__name">SkyBreeze</span>
-      </a>
+      {LOGO}
 
       <nav class="nav__links" aria-label="Основна навігація">
 {NL.join(links)}
@@ -112,10 +109,7 @@ FOOTER = f'''
     <div class="shell">
       <div class="footer__grid">
         <div class="footer__about">
-          <a href="index.html" class="brand">
-            <span class="brand__mark">{MARK}</span>
-            <span class="brand__name">SkyBreeze</span>
-          </a>
+          {LOGO}
           <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
           <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
         </div>
@@ -217,7 +211,7 @@ def cta(heading):
     <section class="cta rule">
       <div class="shell">
         <div class="cta__panel" data-reveal>
-          <span class="cta__mark">{MARK}</span>
+          <span class="cta__mark"><svg viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg></span>
           <h2>{heading}</h2>
           <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
           <div class="cta__actions">

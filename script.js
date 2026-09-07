@@ -289,6 +289,20 @@
   var pageForm = document.getElementById('pageForm');
   if (pageForm) bindForm(pageForm, document.getElementById('pageFormStatus'));
 
+  /* ---------- 7b. Frozen video frame ---------- */
+  /* The "before" side is the same clip held on one frame, so the comparison
+     is the same asset rather than two different pieces of footage. */
+  document.querySelectorAll('video[data-freeze]').forEach(function (v) {
+    var at = parseFloat(v.getAttribute('data-freeze')) || 0.5;
+    var hold = function () {
+      try { v.currentTime = Math.min(at, (v.duration || at) - 0.05); } catch (e) { /* not seekable yet */ }
+      v.pause();
+    };
+    v.addEventListener('loadeddata', hold, { once: true });
+    v.addEventListener('seeked', function () { v.pause(); });
+    if (v.readyState >= 2) hold();
+  });
+
   /* ---------- 8. Motion demo toggle ---------- */
   var demo = document.getElementById('motionDemo');
   if (demo) {
