@@ -28,7 +28,7 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
         <div class="hero__inner" data-hero>
           <p class="pill">
             <span class="pill__dot" aria-hidden="true"></span>
-            3–7 днів · від 9 999 ₴ · запуск реклами — безкоштовно
+            3–7 днів · 9 999 ₴ · запуск реклами — безкоштовно
           </p>
           <h1>Сайт + Google Ads для бізнесу</h1>
           <p class="hero__sub lead">
@@ -45,10 +45,10 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
             <div class="showcase__frame">
               <div class="showcase__bar" aria-hidden="true">
                 <i></i><i></i><i></i>
-                <span>aster-digital.com</span>
+                <span>skybreeze.agency</span>
               </div>
               <div class="showcase__img">
-                <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного Aster Digital" width="1600" height="740" />
+                <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного SkyBreeze" width="1600" height="740" />
               </div>
               <div class="showcase__note showcase__note--a" aria-hidden="true">
                 <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></i>
@@ -94,7 +94,7 @@ step_cells = "\n".join(f'''          <article class="cell" data-reveal>
           </article>''' for n, t, d in STEPS)
 
 write("process.html", f'''    <!-- ================= ПРОЦЕС ================= -->
-    <section class="section rule" id="process">
+    <section class="section rule deco" id="process">
       <div class="shell">
         <div class="head" data-reveal>
           <span class="tag">Процес</span>
@@ -179,7 +179,7 @@ write("bento.html", f'''    <!-- ================= ПЕРЕВАГИ ============
           <span class="tag">Переваги</span>
           <h2>Чому саме ми? <span class="tt">Тому що сайт для нас — інструмент продажів, а не картинка.</span></h2>
           <p class="lead">
-            В Aster Digital ми не обмежуємося візуальною подачею — продумуємо сайт як
+            У SkyBreeze ми не обмежуємося візуальною подачею — продумуємо сайт як
             <strong>інструмент продажів</strong>: від структури та текстів до реклами й аналітики.
           </p>
         </div>
@@ -200,7 +200,7 @@ write("bento.html", f'''    <!-- ================= ПЕРЕВАГИ ============
 
 # ------------------------------------------------------------------ system
 write("system.html", '''    <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
-    <section class="section rule" id="system">
+    <section class="section rule deco" id="system">
       <div class="shell">
         <div class="head" data-reveal>
           <span class="tag">Навіщо сайт</span>
@@ -241,7 +241,7 @@ write("system.html", '''    <!-- ================= СИСТЕМА ЗАЛУЧЕН
 
 # ------------------------------------------------------------------ lead magnet
 write("leadmagnet.html", '''    <!-- ================= ЛІД-МАГНІТ ================= -->
-    <section class="section rule">
+    <section class="section rule deco">
       <div class="shell">
         <div class="head head--center" data-reveal>
           <span class="tag tag--ok">Безкоштовно</span>
@@ -335,8 +335,8 @@ SERVICES = [
     dict(id="web", index="01 — WEB", nav="Створення сайтів", navsub="Landing page та складні проєкти",
          title="Створення сайтів",
          tagline="Сайти, які працюють на залучення клієнтів, а не просто красиво виглядають.",
-         price="від 9 999 ₴", term="3–7 днів",
-         what="В Aster Digital ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, "
+         price="9 999 ₴", term="3–7 днів",
+         what="У SkyBreeze ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, "
               "вибудовуємо структуру, додаємо необхідні елементи довіри та скорочуємо шлях клієнта від "
               "першого відвідування до заявки. Після запуску можемо підключити Google Ads і приводити "
               "потенційних клієнтів прямо на розроблений для вас сайт.",
@@ -355,7 +355,7 @@ SERVICES = [
     dict(id="ads", index="02 — ADS", nav="Google Ads", navsub="Реклама в пошуку під запит клієнта",
          title="Google Ads",
          tagline="Допомагаємо потенційним клієнтам знаходити ваш бізнес саме тоді, коли вони шукають послугу.",
-         price="від 5 999 ₴", term="запуск під ключ",
+         price="5 999 ₴", term="запуск під ключ",
          what="Аналізуємо нішу та попит, налаштовуємо рекламні кампанії, підключаємо аналітику та "
               "направляємо рекламний трафік на сторінку, яка відповідає запиту клієнта.",
          why="Якщо людина вже шукає вашу послугу, реклама дозволяє показати їй вашу пропозицію "
@@ -374,25 +374,28 @@ SERVICES = [
 
     dict(id="motion", index="03 — MOTION", nav="Motion Design", navsub="Анімації для бренду та реклами",
          title="Motion Design",
-         tagline="Оживляємо бренд і продукт: від айдентики сайту до рекламних роликів і контенту для соцмереж.",
-         price="від 4 999 ₴", term="за проєкт",
-         what="Motion у нас — це два напрями: анімація бренду та інтерфейсу сайту, а також короткі "
-              "анімовані ролики для реклами, Reels і Stories.",
-         why="Рух робить бренд впізнаваним і послідовним, а продукт — зрозумілішим: замість "
-             "статичної картинки людина бачить, як він працює.",
-         gets=["Анімований логотип та елементи айдентики",
-               "Мікроанімації та переходи для сайту",
-               "Product-анімації, що показують функції та переваги",
-               "Короткі рекламні ролики за сценарієм",
-               "Формати під Reels, Stories та рекламні кампанії"],
-         result="Бренд виглядає цілісно в русі, а рекламні матеріали легше помітити та зрозуміти "
-                "за перші секунди перегляду.",
+         tagline="Анімуємо логотип і вибудовуємо єдину систему руху для всього бренду.",
+         price="1 000 ₴", term="анімація логотипа",
+         what="Motion — це не «анімації на сайті». Плавні появи блоків і ховери входять у "
+              "розробку сайту за замовчуванням. Motion починається там, де рухається сам бренд: "
+              "анімований логотип, заставка та єдина система руху для всіх матеріалів.",
+         why="Анімований знак упізнається швидше за статичний і працює скрізь: на сайті, у відео, "
+             "у сторіс і в рекламі. Бренд виглядає як одне ціле, а не як набір різних матеріалів.",
+         gets=["Анімований логотип у форматах для сайту, соцмереж і відео",
+               "Вихідники під світлий і темний фон",
+               "Коротку заставку для роликів і Reels",
+               "У пакеті «система бренду» — анімації блоків сайту та переходів",
+               "Єдиний ритм і тайминги для всіх анімацій бренду"],
+         result="Ви отримуєте знак у русі й правила, за якими рухається все інше — тому нові банери, "
+                "ролики та сторінки виглядають в одному стилі.",
+         extra_price=("Анімаційна система бренду", "3 000 ₴",
+                      "Логотип у русі плюс анімації блоків сайту, переходів і заставок — за єдиними таймингами."),
          note=None, cta="Замовити Motion", topic="Motion Design", extra=MOTION_SPLIT),
 
     dict(id="seo", index="04 — SEO", nav="SEO-оптимізація", navsub="Повне on-page SEO сайту",
          title="SEO-оптимізація",
          tagline="Робимо так, щоб сайт знаходили в пошуку — не тільки через рекламу.",
-         price="від $400", term="повне on-page SEO",
+         price="$400", term="разово, повне on-page SEO",
          what="Проводимо повну on-page оптимізацію: технічний аудит, структуру та заголовки, "
               "метадані, швидкість завантаження, мікророзмітку, внутрішні посилання й тексти "
               "під реальні пошукові запити вашої ніші.",
@@ -406,6 +409,8 @@ SERVICES = [
                "Рекомендації щодо контенту на наступні місяці"],
          result="Сайт стає зрозумілим для пошукових систем і користувача: сторінки відповідають "
                 "запитам, швидко відкриваються та коректно потрапляють в індекс.",
+         extra_price=("Просування далі", "$200 / місяць",
+                      "Щомісячна робота: нові запити, тексти, посилання та звіт по видачі."),
          note="SEO має накопичувальний ефект: перші зміни у видачі зазвичай помітні за 1–3 місяці. "
               "Строки та позиції залежать від ніші й конкуренції, тому конкретних місць ми не обіцяємо.",
          cta="Замовити SEO", topic="SEO-оптимізація", extra=""),
@@ -413,7 +418,7 @@ SERVICES = [
     dict(id="bots", index="05 — BOTS", nav="Telegram-боти", navsub="Заявки та підтримка в месенджері",
          title="Telegram-боти",
          tagline="Автоматизуємо заявки, запис і типові питання прямо в месенджері.",
-         price="від 5 000 ₴", term="за бота",
+         price="5 000 ₴", term="за бота",
          what="Створюємо бота під ваш сценарій: приймання заявок, онлайн-запис, каталог, "
               "відповіді на часті питання, сповіщення менеджеру та вивантаження звернень.",
          why="Клієнт уже сидить у Telegram — бот приймає звернення о будь-якій годині й не змушує "
@@ -431,7 +436,7 @@ SERVICES = [
     dict(id="miniapp", index="06 — MINI APP", nav="Telegram Mini App", navsub="Застосунок усередині Telegram",
          title="Telegram Mini App",
          tagline="Повноцінний інтерфейс усередині Telegram — без встановлення застосунку.",
-         price="від 5 000 ₴", term="за застосунок",
+         price="5 000 ₴", term="за застосунок",
          what="Mini App відкривається прямо в Telegram: каталог із кошиком, форма запису, "
               "особистий кабінет, калькулятор вартості чи будь-який інший екран під вашу задачу.",
          why="Людина не виходить із месенджера й не встановлює нічого додатково — шлях від інтересу "
@@ -454,7 +459,18 @@ rail = "\n".join(
 
 panels = []
 for i, s in enumerate(SERVICES):
-    note = f'\n                <p class="svc__note">{s["note"]}</p>' if s["note"] else ""
+    note = f'\n                <p class="svc__note">{s["note"]}</p>' if s.get("note") else ""
+    extra_price = ""
+    if s.get("extra_price"):
+        label, sum_, desc = s["extra_price"]
+        extra_price = f'''
+                <div class="svc__second">
+                  <div>
+                    <span class="svc__second-label">{label}</span>
+                    <p>{desc}</p>
+                  </div>
+                  <strong>{sum_}</strong>
+                </div>'''
     panels.append(f'''            <div class="vtabs__panel" id="panel-{s["id"]}" role="tabpanel" aria-labelledby="tab-{s["id"]}" tabindex="0"{"" if i == 0 else " hidden"}>
               <div class="svc__top">
                 <div>
@@ -489,6 +505,7 @@ for i, s in enumerate(SERVICES):
                 </div>
               </div>
 
+{extra_price}
               <div class="svc__foot">
                 <p class="svc__from"><span>Вартість</span><strong>{s["price"]}</strong></p>
                 <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="{s["topic"]}">{s["cta"]} <span class="btn__arrow">→</span></button>
@@ -558,7 +575,7 @@ write("after.html", f'''    <!-- ================= ПІСЛЯ ЗАЯВКИ =====
 # ------------------------------------------------------------------ faq
 FAQ = [
     ("Скільки коштує сайт?",
-     "Створення сайту — від 9 999 ₴. Точна вартість залежить від структури, функціональності та обсягу роботи."),
+     "Сайт + Google Ads — 9 999 ₴, складніший проєкт — 18 999 ₴. Ціна фіксована: ви знаєте суму до старту."),
     ("Скільки часу займає розробка?",
      "Типовий сайт запускаємо приблизно за 3–7 днів. Складніші проєкти можуть потребувати більше часу."),
     ("Чи входить рекламний бюджет?",
@@ -570,11 +587,21 @@ FAQ = [
      "Так. Можемо доопрацювати структуру та сторінки під рекламу або підключити Google Ads "
      "до сайту, який у вас уже є."),
     ("Чи можна замовити тільки рекламу?",
-     "Так — від 5 999 ₴. Перед запуском подивимося, чи готова сторінка приймати трафік, "
+     "Так — 5 999 ₴. Перед запуском подивимося, чи готова сторінка приймати трафік, "
      "і скажемо, що варто підправити."),
     ("Чи можна зробити motion для мого бренду?",
      "Так. Анімуємо логотип та айдентику, робимо мікроанімації для сайту, а також ролики "
      "для реклами, Reels і Stories."),
+    ("Скільки коштує SEO?",
+     "Повне on-page SEO сайту — $400 разово. Подальше просування — $200 на місяць: нові запити, "
+     "тексти, посилання та звіт по видачі."),
+    ("Скільки коштує Telegram-бот або Mini App?",
+     "По 5 000 ₴ за кожен. Бот приймає заявки й відповідає на типові питання, Mini App — це "
+     "повноцінний інтерфейс усередині Telegram."),
+    ("Чим motion відрізняється від анімацій на сайті?",
+     "Плавні появи блоків і ховери входять у розробку сайту й окремо не тарифікуються. "
+     "Motion — це рух самого бренду: анімований логотип і заставка — 1 000 ₴, повна система "
+     "руху для бренду — 3 000 ₴."),
     ("Чи гарантуєте ви кількість клієнтів?",
      "Ні, і не обіцяємо цифр наперед: результат залежить від ніші, попиту та бюджету. "
      "Ми працюємо на залучення цільового трафіку та заявок і ухвалюємо рішення на основі аналітики."),
@@ -642,6 +669,7 @@ CASES = [
      'Замість файлу-презентації — посилання, яке можна відправити рекламодавцю в будь-який момент.', 'lazy'),
 ]
 LIVE = {"ashad": "https://bashevnik.github.io/ashad-barbershop"}
+VIDEO = {"ashad": "public/assets/motion/ashad.mp4"}
 EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
        '<path d="M7 17 17 7M9 7h8v8"/></svg>')
@@ -649,14 +677,20 @@ EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=
 
 def work_card(s, n, t, task, sol, res, l):
     live = LIVE.get(s)
-    if live:
-        # screenshot still to come — the tile links straight to the live site
+    clip = VIDEO.get(s)
+    if clip:
+        # a screen recording of the live site reads better than a flat shot
+        shot = (f'<div class="work__shot work__shot--video">'
+                f'<video src="{clip}" autoplay muted loop playsinline preload="metadata" '
+                f'aria-label="{n} — запис сайту"></video></div>')
+        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
+    elif live:
         shot = (f'<a class="work__shot work__shot--link" href="{live}" target="_blank" rel="noopener">'
                 f'<b>{n}</b><span>Відкрити сайт у новій вкладці</span></a>')
         cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
     else:
         shot = (f'<div class="work__shot"><img src="public/assets/screenshots/{s}.webp" '
-                f'alt="{n} — проєкт Aster Digital" loading="{l}" /></div>')
+                f'alt="{n} — проєкт SkyBreeze" loading="{l}" /></div>')
         cta = ''
     return f'''          <article class="work" data-reveal>
             {shot}
@@ -699,19 +733,19 @@ write("portfolio.html", f'''    <section class="page-head">
 print("done")
 
 # ------------------------------------------------------------------ motion demo
-# The stage is built in code so the comparison is honest. To show real work,
-# drop files into public/assets/motion/ and swap .stage__shot / .reel__screen
-# for <video autoplay muted loop playsinline poster="...">.
-write("motion.html", '''    <!-- ================= MOTION У ДІЇ ================= -->
-    <section class="section rule" id="motion">
+# The logo animation is real work. The comparison below it is built in code —
+# to swap in footage see MOTION-ASSETS.md.
+write("motion.html", """    <!-- ================= MOTION У ДІЇ ================= -->
+    <section class="section rule deco" id="motion">
       <div class="shell">
-        <div class="head" data-reveal>
+        <div class="head head--center" data-reveal>
           <span class="tag">Motion у дії</span>
-          <h2>Один і той самий екран. <span class="tt">Перемкніть — і побачите різницю.</span></h2>
+          <h2>Логотип у русі — і сайт, який веде за собою.</h2>
           <p class="lead">
-            Motion не про «красиво рухається». Він веде око по сторінці, показує продукт у дії
-            та <strong>підказує, куди натиснути</strong>. Нижче — наша анімація логотипа,
-            а під нею той самий блок сайту без анімації та з нею.
+            Motion — це рух самого бренду: анімований знак, заставка, єдині тайминги.
+            Плавні появи блоків і ховери — це вже <strong>частина розробки сайту</strong>,
+            і вони входять у вартість. Нижче — наша анімація логотипа, а під нею той самий
+            блок сайту без анімації та з нею.
           </p>
         </div>
       </div>
@@ -722,20 +756,19 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
             <video
               src="public/assets/motion/logo-reveal.mp4"
               autoplay muted loop playsinline preload="metadata"
-              aria-label="Анімація логотипа — приклад роботи Aster Digital"></video>
-            <noscript><p class="reel-video__fallback">Увімкніть відео, щоб побачити анімацію.</p></noscript>
+              aria-label="Анімація логотипа — приклад роботи SkyBreeze"></video>
           </div>
           <figcaption>
             <span class="reel-video__tag">Наша робота</span>
-            <span>Анімація логотипа — той самий знак, який ви бачите в шапці, у русі.</span>
+            <span>Анімація логотипа — знак, заставка й тайминги, які далі використовуються скрізь.</span>
           </figcaption>
         </figure>
 
         <div class="motion is-motion" id="motionDemo">
           <div class="motion__bar">
             <div class="seg" role="group" aria-label="Режим показу">
-              <button type="button" class="seg__btn" data-motion="off">Без motion</button>
-              <button type="button" class="seg__btn is-on" data-motion="on" aria-pressed="true">З motion</button>
+              <button type="button" class="seg__btn" data-motion="off">Без анімацій</button>
+              <button type="button" class="seg__btn is-on" data-motion="on" aria-pressed="true">З анімаціями</button>
             </div>
             <p class="motion__hint">Сцена повторюється по колу</p>
           </div>
@@ -764,7 +797,7 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
                   <span class="reel__box"></span>
                   <span class="reel__step s2">Функція</span>
                   <span class="reel__step s3">Перевага</span>
-                  <span class="reel__cta">Замовити →</span>
+                  <span class="reel__cta">Замовити <span class="reel__arrow">→</span></span>
                 </div>
               </div>
             </figure>
@@ -772,14 +805,39 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
 
           <div class="motion__notes">
             <div class="motion__note">
-              <h3>Без motion</h3>
+              <h3>Без анімацій</h3>
               <p>Усе з’являється одночасно. Око саме шукає, з чого почати й що тут головне.</p>
             </div>
             <div class="motion__note">
-              <h3>З motion</h3>
+              <h3>З анімаціями</h3>
               <p>Сцена веде за собою: спершу пропозиція, далі продукт, наприкінці — кнопка.</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="shell shell--bleed">
+        <div class="cells cells--2">
+          <article class="cell" data-reveal>
+            <span class="tag tag--plain">Входить у розробку сайту</span>
+            <h3>Анімації інтерфейсу</h3>
+            <p>
+              Плавні появи блоків, ховери кнопок, переходи між станами, мікровідгук на дію.
+              Це частина роботи над сайтом — окремо не тарифікується.
+            </p>
+            <p class="cell__price"><span>У вартості сайту</span><strong>9 999 ₴</strong></p>
+          </article>
+
+          <article class="cell" data-reveal>
+            <span class="tag">Окрема послуга</span>
+            <h3>Motion бренду</h3>
+            <p>
+              Анімований логотип і заставка — <strong>1 000 ₴</strong>. Повна система руху для
+              бренду: знак, анімації блоків сайту, переходи та заставки за єдиними таймингами —
+              <strong>3 000 ₴</strong>.
+            </p>
+            <p class="cell__price"><span>Логотип / система</span><strong>1 000 ₴ · 3 000 ₴</strong></p>
+          </article>
         </div>
       </div>
 
@@ -790,7 +848,7 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
         </a>
       </div>
     </section>
-''')
+""")
 
 # ------------------------------------------------------------------ tech stack
 STACK_ROW_1 = [

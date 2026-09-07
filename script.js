@@ -281,7 +281,7 @@
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       if (status) status.textContent = 'Дякуємо! Переносимо вас далі…';
-      try { sessionStorage.setItem('aster:lead', String(Date.now())); } catch (err) { /* private mode */ }
+      try { sessionStorage.setItem('skybreeze:lead', String(Date.now())); } catch (err) { /* private mode */ }
       window.location.href = 'thanks.html';
     });
   }

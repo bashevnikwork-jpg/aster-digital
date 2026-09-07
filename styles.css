@@ -26,9 +26,12 @@
   --line-2: rgba(16, 16, 20, 0.13);
   --border: 1px solid var(--line);
 
-  --accent: #0F62FE;
-  --accent-ink: #0B4FCC;
-  --accent-wash: rgba(15, 98, 254, 0.08);
+  --accent: #0284C7;          /* sky-600 — passes contrast on white */
+  --accent-ink: #0369A1;
+  --accent-wash: rgba(2, 132, 199, 0.08);
+  --sky: #38BDF8;             /* decorative only */
+  --sky-soft: #7DD3FC;
+  --sky-mist: #E0F2FE;
   --ok: #12805C;
   --ok-wash: rgba(18, 128, 92, 0.08);
 
@@ -135,6 +138,20 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .tag--ok { background: var(--ok-wash); color: var(--ok); }
 .tag--plain { background: rgba(16, 16, 20, 0.05); color: var(--muted); }
+
+/* soft sky wash with a faint dot pattern — decoration only */
+.deco { position: relative; isolation: isolate; }
+.deco::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42% 60% at 12% 0%, rgba(56, 189, 248, 0.16), transparent 70%),
+    radial-gradient(38% 55% at 92% 20%, rgba(125, 211, 252, 0.14), transparent 72%),
+    radial-gradient(1px 1px at 1px 1px, rgba(2, 132, 199, 0.16) 1px, transparent 0);
+  background-size: auto, auto, 22px 22px;
+  -webkit-mask-image: radial-gradient(85% 75% at 50% 30%, #000, transparent 80%);
+  mask-image: radial-gradient(85% 75% at 50% 30%, #000, transparent 80%);
+}
+.deco > * { position: relative; }
 
 /* ---------- 4. Type ---------- */
 h1, h2, h3, h4 {
@@ -269,6 +286,8 @@ strong, .em { color: var(--text); font-weight: 600; }
 .nav.is-dark .brand__name { color: var(--on-ink); }
 .nav.is-dark .brand__mark {
   background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 .nav.is-dark .nav__links a { color: rgba(246, 246, 244, 0.6); }
@@ -304,11 +323,11 @@ strong, .em { color: var(--text); font-weight: 600; }
   border: 1px solid transparent;
   display: grid; place-items: center;
   border-radius: 11px;
-  background: linear-gradient(152deg, #26262F 0%, #0B0B0F 100%);
-  color: #fff;
-  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.16),
-              inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-              0 8px 18px -10px rgba(16, 16, 20, 0.55);
+  background: linear-gradient(150deg, #F4FBFF 0%, #DBEEFB 100%);
+  border-color: rgba(2, 132, 199, 0.16);
+  color: var(--accent);
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
+              0 10px 20px -12px rgba(2, 132, 199, 0.5);
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .brand__mark svg { width: 21px; height: 21px; }
@@ -319,6 +338,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 .footer .brand__mark { width: 34px; height: 34px; border-radius: 10px; }
 .footer .brand__mark svg { width: 19px; height: 19px; }
+.cta__mark { color: var(--sky-soft); }
 
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a {
@@ -358,8 +378,8 @@ strong, .em { color: var(--text); font-weight: 600; }
 .fab-call svg { width: 22px; height: 22px; }
 .fab-call:active { transform: scale(0.94); }
 @keyframes fabPulse {
-  0%, 72%, 100% { box-shadow: 0 10px 26px -8px rgba(16,16,20,0.55), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 0 rgba(15,98,254,0.35); }
-  84%           { box-shadow: 0 10px 26px -8px rgba(16,16,20,0.55), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 12px rgba(15,98,254,0); }
+  0%, 72%, 100% { box-shadow: 0 10px 26px -8px rgba(16,16,20,0.55), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 0 rgba(2,132,199,0.35); }
+  84%           { box-shadow: 0 10px 26px -8px rgba(16,16,20,0.55), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 12px rgba(2,132,199,0); }
 }
 
 .nav__burger {
@@ -398,7 +418,7 @@ strong, .em { color: var(--text); font-weight: 600; }
   content: ""; position: absolute; left: 50%; bottom: -10%;
   width: 120%; height: 70%; transform: translateX(-50%);
   background:
-    radial-gradient(50% 60% at 50% 100%, rgba(15, 98, 254, 0.10), transparent 70%),
+    radial-gradient(50% 60% at 50% 100%, rgba(2, 132, 199, 0.10), transparent 70%),
     radial-gradient(35% 45% at 22% 90%, rgba(18, 128, 92, 0.07), transparent 70%);
   pointer-events: none; z-index: 0;
 }
@@ -503,6 +523,17 @@ strong, .em { color: var(--text); font-weight: 600; }
   display: block; margin-bottom: 26px;
 }
 .cell h3 { margin-bottom: 8px; }
+.cell .tag { margin-bottom: 16px; }
+.cell__price {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  margin-top: 20px; padding-top: 16px; border-top: var(--border);
+  font-size: 0.875rem; color: var(--faint);
+}
+.cell__price strong {
+  font-family: var(--font-display);
+  font-size: 1.125rem; font-weight: 600; letter-spacing: -0.03em; color: var(--text);
+  white-space: nowrap;
+}
 .cell p { font-size: 0.9375rem; }
 
 .icon-tile {
@@ -575,7 +606,7 @@ strong, .em { color: var(--text); font-weight: 600; }
   flex: 1; height: 52px; border-radius: 6px; border: var(--border);
   background: rgba(16, 16, 20, 0.03);
 }
-.viz__frames i:nth-child(2) { background: var(--accent-wash); border-color: rgba(15, 98, 254, 0.16); }
+.viz__frames i:nth-child(2) { background: var(--accent-wash); border-color: rgba(2, 132, 199, 0.16); }
 .viz__frames i:nth-child(3) { opacity: 0.55; }
 
 /* a pointer that walks over the demo and clicks — the small detail that
@@ -762,6 +793,23 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 .svc__branch p { font-size: 0.9375rem; }
 .svc__branch-why { margin-top: 12px; color: var(--text); }
+
+.svc__second {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 20px clamp(24px, 2.6vw, 40px);
+  border-bottom: var(--border);
+  background: linear-gradient(120deg, rgba(2, 132, 199, 0.05), rgba(56, 189, 248, 0.05));
+}
+.svc__second-label {
+  display: block; font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600; letter-spacing: -0.022em; margin-bottom: 4px;
+}
+.svc__second p { font-size: 0.9375rem; max-width: 44rem; }
+.svc__second strong {
+  font-family: var(--font-display);
+  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text);
+  white-space: nowrap;
+}
 
 .svc__foot {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
@@ -951,10 +999,12 @@ strong, .em { color: var(--text); font-weight: 600; }
 .reel__step.s3 { bottom: 74px; }
 .reel__cta {
   position: absolute; left: 50%; bottom: 26px; translate: -50% 0;
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
   padding: 9px 18px; border-radius: 999px;
   background: var(--accent); color: #fff;
   font-size: 0.8125rem; font-weight: 500;
 }
+.reel__arrow { display: inline-block; }
 
 .motion__notes { display: grid; grid-template-columns: 1fr 1fr; }
 .motion__note { padding: 22px var(--pad); }
@@ -991,8 +1041,8 @@ strong, .em { color: var(--text); font-weight: 600; }
   97%, 100% { opacity: 0; }
 }
 @keyframes mPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(15,98,254,0); }
-  50%      { box-shadow: 0 0 0 7px rgba(15,98,254,0.14); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(2,132,199,0); }
+  50%      { box-shadow: 0 0 0 7px rgba(2,132,199,0.14); }
 }
 
 .motion.is-motion .reel__box  { animation: rBox 6s var(--ease) infinite; }
@@ -1244,6 +1294,9 @@ strong, .em { color: var(--text); font-weight: 600; }
 .work__tag { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
 .work__body h3 { margin: 9px 0 4px; font-size: 1.25rem; letter-spacing: -0.03em; }
 
+.work__shot--video { background: #0E0E12; }
+.work__shot--video video { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
 /* a case we can link to but have no shot for yet */
 .work__shot--link {
   display: grid; place-items: center; gap: 10px;
@@ -1407,6 +1460,14 @@ strong, .em { color: var(--text); font-weight: 600; }
   .vtabs { grid-template-columns: 260px 1fr; }
 }
 
+@media (max-width: 1160px) {
+  /* the full number stops fitting next to the nav links — keep just the icon */
+  .nav__phone { padding: 0; width: 40px; height: 40px; justify-content: center; }
+  .nav__phone span { display: none; }
+  .nav__phone svg { color: var(--text); }
+  .nav.is-dark .nav__phone svg { color: var(--on-ink); }
+}
+
 @media (max-width: 1100px) {
   .vtabs { grid-template-columns: 1fr; }
   .vtabs__rail {
@@ -1496,8 +1557,42 @@ strong, .em { color: var(--text); font-weight: 600; }
   .faq__a p { padding: 0 20px 20px; }
 
   .vtabs__btn { padding: 14px 16px; font-size: 1rem; }
-  .svc__top, .svc__col, .svc__branch, .svc__foot { padding-inline: 20px; }
-  .svc__foot { flex-direction: column; align-items: stretch; }
+  .svc__top, .svc__col, .svc__branch, .svc__second {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 20px clamp(24px, 2.6vw, 40px);
+  border-bottom: var(--border);
+  background: linear-gradient(120deg, rgba(2, 132, 199, 0.05), rgba(56, 189, 248, 0.05));
+}
+.svc__second-label {
+  display: block; font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600; letter-spacing: -0.022em; margin-bottom: 4px;
+}
+.svc__second p { font-size: 0.9375rem; max-width: 44rem; }
+.svc__second strong {
+  font-family: var(--font-display);
+  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text);
+  white-space: nowrap;
+}
+
+.svc__foot { padding-inline: 20px; }
+  .svc__second {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 20px clamp(24px, 2.6vw, 40px);
+  border-bottom: var(--border);
+  background: linear-gradient(120deg, rgba(2, 132, 199, 0.05), rgba(56, 189, 248, 0.05));
+}
+.svc__second-label {
+  display: block; font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600; letter-spacing: -0.022em; margin-bottom: 4px;
+}
+.svc__second p { font-size: 0.9375rem; max-width: 44rem; }
+.svc__second strong {
+  font-family: var(--font-display);
+  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text);
+  white-space: nowrap;
+}
+
+.svc__foot { flex-direction: column; align-items: stretch; }
   .svc__foot .btn { width: 100%; }
   .svc__from { display: flex; align-items: baseline; gap: 10px; }
 

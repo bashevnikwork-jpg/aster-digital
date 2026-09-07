@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Static page builder for Aster Digital.
+"""Static page builder for SkyBreeze.
 
 Topbar, nav, footer and the contact modal live here once and are stamped into
 every page, so a header change no longer means editing three HTML files.
@@ -13,9 +13,7 @@ import pathlib
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
 
-MARK_PATH = ("M 42.36 39.48 C 45.81 30.28 48.29 5.39 50.00 2.00 C 51.71 5.39 54.19 30.28 57.64 39.48 L 57.64 39.48 C 67.46 39.92 91.89 34.59 95.65 35.17 C 92.95 37.85 70.05 47.89 62.36 54.02 L 62.36 54.02 C 64.98 63.49 77.61 85.08 78.21 88.83 C 74.83 87.10 58.20 68.42 50.00 63.00 L 50.00 63.00 C 41.80 68.42 25.17 87.10 21.79 88.83 C 22.39 85.08 35.02 63.49 37.64 54.02 L 37.64 54.02 C 29.95 47.89 7.05 37.85 4.35 35.17 C 8.11 34.59 32.54 39.92 42.36 39.48 Z")
-
-MARK = f'<svg viewBox="0 0 100 100" aria-hidden="true"><path d="{MARK_PATH}" fill="currentColor"/></svg>'
+MARK = ('<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 33h42a10 10 0 1 0-9.4-13.4"/><path d="M14 51h54a11 11 0 1 1-10.4 14.6"/><path d="M16 69h28"/></svg>')
 
 NAV_ITEMS = [
     ("Головна сторінка", "index.html", "index.html"),
@@ -29,8 +27,10 @@ TOPICS = [
     "Складний сайт + Google Ads — 18 999 ₴",
     "Тільки сайт",
     "Тільки Google Ads",
-    "Motion Design",
-    "SEO-оптимізація",
+    "Motion — анімація логотипа",
+    "Motion — система бренду",
+    "SEO — on-page ($400)",
+    "SEO — просування ($200/міс)",
     "Telegram-бот",
     "Telegram Mini App",
     "Безкоштовний аналіз ніші",
@@ -71,14 +71,14 @@ def nav(current):
     promo = ('#services' if current == 'index.html' else 'index.html#services')
     return f'''
   <div class="topbar">
-    <a href="{promo}">Сайт + Google Ads від 9 999 ₴ — запуск реклами безкоштовно <span class="btn__arrow">→</span></a>
+    <a href="{promo}">Сайт + Google Ads — 9 999 ₴, запуск реклами безкоштовно <span class="btn__arrow">→</span></a>
   </div>
 
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="brand" aria-label="Aster Digital — на головну">
+      <a href="index.html" class="brand" aria-label="SkyBreeze — на головну">
         <span class="brand__mark">{MARK}</span>
-        <span class="brand__name">Aster Digital</span>
+        <span class="brand__name">SkyBreeze</span>
       </a>
 
       <nav class="nav__links" aria-label="Основна навігація">
@@ -114,7 +114,7 @@ FOOTER = f'''
         <div class="footer__about">
           <a href="index.html" class="brand">
             <span class="brand__mark">{MARK}</span>
-            <span class="brand__name">Aster Digital</span>
+            <span class="brand__name">SkyBreeze</span>
           </a>
           <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
           <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
@@ -136,14 +136,14 @@ FOOTER = f'''
         </div>
         <div class="footer__col">
           <h4>Контакти</h4>
-          <a href="mailto:hello@asterdigital.agency">hello@asterdigital.agency</a>
-          <a href="https://t.me/asterdigital" target="_blank" rel="noopener">Telegram</a>
+          <a href="mailto:hello@skybreeze.agency">hello@skybreeze.agency</a>
+          <a href="https://t.me/skybreeze" target="_blank" rel="noopener">Telegram</a>
           <a href="tel:+380689239682">+380 68 923 96 82</a>
           <a href="contacts.html">Форма заявки</a>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 Aster Digital</span>
+        <span>© 2026 SkyBreeze</span>
         <span>Київ · Працюємо з бізнесом по всій Україні</span>
       </div>
     </div>
@@ -196,7 +196,7 @@ ACTIONBAR = '''
   
 
   <div class="actionbar" id="actionBar">
-    <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>від 9 999 ₴</strong></span>
+    <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>9 999 ₴</strong></span>
     <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
   </div>
 
@@ -237,11 +237,11 @@ def part(name):
 
 def build_index():
     return (
-        head("Aster Digital — Створення сайтів та Google Ads для бізнесу",
+        head("SkyBreeze — Створення сайтів та Google Ads для бізнесу",
              "Створюємо сучасні сайти для бізнесу, налаштовуємо Google Ads та створюємо "
              "motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴.",
              extra='  <meta property="og:type" content="website" />\n'
-                   '  <meta property="og:title" content="Aster Digital — Створення сайтів та Google Ads для бізнесу" />\n'
+                   '  <meta property="og:title" content="SkyBreeze — Створення сайтів та Google Ads для бізнесу" />\n'
                    '  <meta property="og:description" content="Сайт, реклама та motion під ключ. Від 9 999 ₴, запуск за 3–7 днів." />\n')
         + nav("index.html")
         + '\n  <main id="main">\n'
@@ -255,8 +255,8 @@ def build_index():
 
 def build_portfolio():
     return (
-        head("Портфоліо — Aster Digital",
-             "Роботи Aster Digital: сайти для бізнесу, e-commerce, медіакіти та лендинги "
+        head("Портфоліо — SkyBreeze",
+             "Роботи SkyBreeze: сайти для бізнесу, e-commerce, медіакіти та лендинги "
              "з налаштованою рекламою Google Ads.")
         + nav("portfolio.html")
         + '\n  <main id="main">\n' + part("portfolio.html")
@@ -281,7 +281,7 @@ def build_thanks():
           </p>
           <div class="thanks__actions">
             <a class="btn btn--primary btn--lg" href="tel:+380689239682">Зателефонувати <span class="btn__arrow">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="https://t.me/asterdigital" target="_blank" rel="noopener">Написати в Telegram <span class="btn__arrow">→</span></a>
+            <a class="btn btn--ghost btn--lg" href="https://t.me/skybreeze" target="_blank" rel="noopener">Написати в Telegram <span class="btn__arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -314,12 +314,12 @@ def build_thanks():
 '''
     gate = (
         '  <meta name="robots" content="noindex, nofollow" />\n'
-        "  <script>(function(){try{var raw=sessionStorage.getItem('aster:lead');"
+        "  <script>(function(){try{var raw=sessionStorage.getItem('skybreeze:lead');"
         "var ok=raw&&(Date.now()-parseInt(raw,10))<30*60*1000;"
         "if(!ok){location.replace('index.html');}}catch(e){}})();</script>\n"
     )
     return (
-        head("Дякуємо за заявку — Aster Digital",
+        head("Дякуємо за заявку — SkyBreeze",
              "Заявку прийнято. Зв'яжемося протягом робочого дня.",
              extra=gate)
         + nav("thanks.html")
@@ -349,8 +349,8 @@ def build_contacts():
           <div data-reveal>
             <h2 class="h-sm">Напишіть нам</h2>
             <ul class="contact-list">
-              <li><a href="mailto:hello@asterdigital.agency"><span class="k">Email</span><span class="v">hello@asterdigital.agency</span></a></li>
-              <li><a href="https://t.me/asterdigital" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
+              <li><a href="mailto:hello@skybreeze.agency"><span class="k">Email</span><span class="v">hello@skybreeze.agency</span></a></li>
+              <li><a href="https://t.me/skybreeze" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
               <li><a href="tel:+380689239682"><span class="k">Телефон</span><span class="v">+380 68 923 96 82</span></a></li>
             </ul>
             <p class="small muted-note">
@@ -371,8 +371,8 @@ def build_contacts():
     </section>
 '''
     return (
-        head("Зв'язатися з нами — Aster Digital",
-             "Напишіть Aster Digital: безкоштовна консультація, аналіз ніші та розрахунок "
+        head("Зв'язатися з нами — SkyBreeze",
+             "Напишіть SkyBreeze: безкоштовна консультація, аналіз ніші та розрахунок "
              "вартості сайту й Google Ads.")
         + nav("contacts.html")
         + '\n  <main id="main">\n' + body + '  </main>\n'
