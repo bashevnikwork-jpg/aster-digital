@@ -32,12 +32,13 @@ write("hero.html", '''    <!-- ================= HERO ================= -->
           </p>
           <h1>Сайт + Google Ads для бізнесу</h1>
           <p class="hero__sub lead">
-            Запускаємо бізнес в інтернеті. Створюємо сучасний сайт, аналізуємо вашу нішу
-            та запускаємо Google Ads, щоб ваш бізнес отримав <strong>перших клієнтів з інтернету</strong>.
+            Запускаємо не просто сайт, а бізнес в інтернеті. Аналізуємо вашу нішу,
+            створюємо сайт і налаштовуємо Google Ads — щоб ваш бізнес не просто був онлайн,
+            а <strong>приносив заявки та клієнтів</strong>.
           </p>
           <div class="hero__actions">
             <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
-            <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи</a>
+            <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи <span class="btn__arrow">→</span></a>
           </div>
 
           <div class="showcase">
@@ -251,7 +252,7 @@ write("leadmagnet.html", '''    <!-- ================= ЛІД-МАГНІТ =====
           </p>
           <p style="margin-top:28px">
             <button class="btn btn--accent btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
-              Отримайте безкоштовний аналіз
+              Отримайте безкоштовний аналіз <span class="btn__arrow">→</span>
             </button>
           </p>
         </div>
@@ -287,7 +288,7 @@ write("pricing.html", f'''    <!-- ================= ПАКЕТИ ==============
 {checks(PKG1)}
             </ul>
             <p class="pkg__note">* Рекламний бюджет сплачується окремо.</p>
-            <button class="btn btn--primary btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">Замовити</button>
+            <button class="btn btn--primary btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">Замовити <span class="btn__arrow">→</span></button>
           </article>
 
           <article class="pkg" data-reveal>
@@ -299,7 +300,7 @@ write("pricing.html", f'''    <!-- ================= ПАКЕТИ ==============
             <ul class="checklist">
 {checks(PKG2)}
             </ul>
-            <button class="btn btn--ghost btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">Обговорити проєкт</button>
+            <button class="btn btn--ghost btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">Обговорити проєкт <span class="btn__arrow">→</span></button>
           </article>
         </div>
       </div>
@@ -693,3 +694,44 @@ write("motion.html", '''    <!-- ================= MOTION У ДІЇ ============
       </div>
     </section>
 ''')
+
+# ------------------------------------------------------------------ tech stack
+STACK = [
+    ("HTML", "HTML5"), ("CSS", "CSS3"), ("JS", "JavaScript"), ("TS", "TypeScript"),
+    ("Re", "React"), ("N", "Next.js"), ("Ng", "Angular"), ("V", "Vue"),
+    ("TW", "Tailwind"), ("Sa", "Sass"), ("Nd", "Node.js"), ("Ja", "Java"),
+    ("Sp", "Spring"), ("C#", "C#"), ("NET", ".NET"), ("ASP", "ASP.NET Core"),
+    ("C++", "C++"), ("Py", "Python"), ("Dj", "Django"), ("PHP", "PHP"),
+    ("Lv", "Laravel"), ("WP", "WordPress"), ("Wo", "WooCommerce"), ("Sh", "Shopify"),
+    ("My", "MySQL"), ("PG", "PostgreSQL"), ("Mg", "MongoDB"), ("Dk", "Docker"),
+    ("Git", "Git"), ("Fg", "Figma"), ("Ae", "After Effects"), ("Pr", "Premiere Pro"),
+    ("Ads", "Google Ads"), ("GA4", "Analytics 4"), ("GTM", "Tag Manager"),
+]
+stack_items = "\n".join(
+    f'            <li class="stack__item"><span class="stack__tile">{code}</span>'
+    f'<span class="stack__name">{name}</span></li>' for code, name in STACK)
+
+write("stack.html", f'''    <!-- ================= ТЕХНОЛОГІЇ ================= -->
+    <section class="stack rule" id="stack">
+      <div class="shell">
+        <div class="stack__head" data-reveal>
+          <span class="tag tag--on-ink">Технології</span>
+          <h2>Увесь стек — <span class="tt">під вашу задачу.</span></h2>
+          <p class="lead">
+            Не тягнемо кожен проєкт в один шаблон: обираємо інструменти під задачу — від
+            лендінга на чистому коді до магазину на WooCommerce чи складного застосунку.
+            <strong>Понад 30 технологій</strong> у роботі.
+          </p>
+          <a class="btn btn--on-ink btn--lg" href="#services">
+            Підібрати рішення <span class="btn__arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="shell shell--bleed">
+        <ul class="stack__grid" aria-label="Технології, з якими ми працюємо">
+__STACK_ITEMS__
+        </ul>
+      </div>
+    </section>
+'''.replace("__STACK_ITEMS__", stack_items))

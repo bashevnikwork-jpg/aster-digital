@@ -218,7 +218,7 @@ def cta(heading):
           <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
           <div class="cta__actions">
             <button class="btn btn--on-ink btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
-            <a class="btn btn--on-ink-ghost btn--lg" href="contacts.html">Написати нам</a>
+            <a class="btn btn--on-ink-ghost btn--lg" href="contacts.html">Написати нам <span class="btn__arrow">→</span></a>
           </div>
           <p class="cta__note">Безкоштовна консультація · Без зобов'язань</p>
         </div>
@@ -243,7 +243,7 @@ def build_index():
         + '\n  <main id="main">\n'
         + part("hero.html") + part("strip.html") + part("process.html") + part("bento.html")
         + part("system.html") + part("leadmagnet.html") + part("pricing.html")
-        + part("services.html") + part("motion.html") + part("after.html") + part("faq.html")
+        + part("services.html") + part("motion.html") + part("stack.html") + part("after.html") + part("faq.html")
         + cta("Готові запустити свій бізнес в інтернеті?")
         + '  </main>\n' + FOOTER + MODAL + TAIL
     )
@@ -277,7 +277,7 @@ def build_thanks():
           </p>
           <div class="thanks__actions">
             <a class="btn btn--primary btn--lg" href="tel:+380689239682">Зателефонувати <span class="btn__arrow">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="https://t.me/asterdigital" target="_blank" rel="noopener">Написати в Telegram</a>
+            <a class="btn btn--ghost btn--lg" href="https://t.me/asterdigital" target="_blank" rel="noopener">Написати в Telegram <span class="btn__arrow">→</span></a>
           </div>
         </div>
       </div>
