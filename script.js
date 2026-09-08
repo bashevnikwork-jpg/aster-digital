@@ -203,12 +203,39 @@
       selectTab(tabs[next], true);
     });
 
-    /* #panel-ads in the URL opens that service. */
+    /* #panel-ads in the URL opens that service and scrolls the section into view. */
     var hash = window.location.hash;
     if (hash.indexOf('#panel-') === 0) {
       var wanted = tabs.filter(function (t) { return '#' + t.getAttribute('aria-controls') === hash; })[0];
-      if (wanted) selectTab(wanted, false);
+      if (wanted) {
+        selectTab(wanted, false);
+        var section = document.getElementById('services');
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
+
+    /* Anchor links in the service nav (.svc-anchor) open the matching tab. */
+    document.addEventListener('click', function (e) {
+      var anchor = e.target.closest('.svc-anchor');
+      if (!anchor) return;
+      var href = anchor.getAttribute('href');
+      if (!href || href.indexOf('#panel-') !== 0) return;
+      e.preventDefault();
+      var panelId = href.slice(1);
+      var target = tabs.filter(function (t) { return t.getAttribute('aria-controls') === panelId; })[0];
+      if (target) {
+        selectTab(target, false);
+        var section = document.getElementById('services');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        /* Update anchors active state */
+        document.querySelectorAll('.svc-anchor').forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === href);
+        });
+        history.pushState(null, '', href);
+      }
+    });
   }
 
   /* ---------- 6. Modal ---------- */
