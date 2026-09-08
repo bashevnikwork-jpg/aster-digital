@@ -185,7 +185,16 @@
     };
 
     tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () { selectTab(tab, false); });
+      tab.addEventListener('click', function () {
+        selectTab(tab, false);
+        /* Update URL so the service is bookmarkable / shareable */
+        var panelId = tab.getAttribute('aria-controls');
+        if (panelId) history.pushState(null, '', '#' + panelId);
+        /* Sync pill active state */
+        document.querySelectorAll('.svc-anchor').forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + panelId);
+        });
+      });
     });
 
     railList.addEventListener('keydown', function (e) {
