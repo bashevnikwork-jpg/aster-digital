@@ -1563,9 +1563,12 @@ strong, .em { color: var(--text); font-weight: 600; }
   .hero > .shell { padding-inline: 20px; }
   .hero__actions { flex-direction: column; align-items: stretch; }
   .hero__actions .btn { width: 100%; }
-  .showcase__img { aspect-ratio: 4 / 3.2; }
-  .showcase__note { display: none; }
-  .showcase__frame { padding: 7px 7px 0; border-radius: 16px 16px 0 0; }
+  /* hide the browser-frame screenshot on mobile — saves vertical space */
+  .showcase { display: none; }
+
+  /* svc-anchor pills already handle tab switching on mobile;
+     the horizontal tab rail is redundant and wastes space */
+  .vtabs__rail { display: none; }
 
   .pill { align-items: flex-start; text-align: left; font-size: 0.8125rem; }
   .pill__dot { margin-top: 7px; }
