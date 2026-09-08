@@ -1111,6 +1111,8 @@ strong, .em { color: var(--text); font-weight: 600; }
 /* the frozen side reads as a still: no motion cues, slightly calmer */
 .mv__side:not(.mv__side--live) .mv__frame { filter: saturate(0.9); }
 .mv__side--live .mv__frame { box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent-wash); }
+/* zoom into the video to crop any black bars burned into the screen recording */
+.mv__side--live .mv__frame video { transform: scale(1.18); transform-origin: center center; }
 
 /* ---------- 13e. Tech stack (dark band) ---------- */
 .stack {
@@ -1291,18 +1293,27 @@ strong, .em { color: var(--text); font-weight: 600; }
 .works { display: grid; grid-template-columns: repeat(3, 1fr); border-top: var(--border); }
 .work { border-right: var(--border); border-bottom: var(--border); display: flex; flex-direction: column; }
 .works .work:nth-child(3n) { border-right: 0; }
-.work__shot { aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); border-bottom: var(--border); }
+.work__shot { aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); border-bottom: var(--border); position: relative; }
 .work__shot img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center;
   transition: transform 0.7s var(--ease);
+  /* start slightly zoomed so hover scale stays inside the frame */
+  transform: scale(1.04);
 }
-.work:hover .work__shot img { transform: scale(1.035); }
+.work:hover .work__shot img { transform: scale(1.085); }
+/* subtle bottom fade so screenshot blends into the card body */
+.work__shot::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 55%, color-mix(in srgb, var(--bg-alt) 60%, transparent) 100%);
+}
 .work__body { padding: 24px clamp(20px, 2vw, 28px) 28px; }
 .work__tag { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
 .work__body h3 { margin: 9px 0 4px; font-size: 1.25rem; letter-spacing: -0.03em; }
 
 .work__shot--video { background: #0E0E12; }
 .work__shot--video video { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+/* override the card-bg fade on dark video shots */
+.work__shot--video::after { background: linear-gradient(to bottom, transparent 55%, rgba(14,14,18,0.55) 100%); }
 
 /* a case we can link to but have no shot for yet */
 .work__shot--link {
