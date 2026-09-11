@@ -312,23 +312,19 @@ strong, .em { color: var(--text); font-weight: 600; }
   display: flex; align-items: center; gap: clamp(16px, 2.2vw, 36px);
 }
 
-/* one logo: the breeze strokes run into the wordmark, one colour, one hover */
 .logo {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: var(--text); flex: none;
-}
-.logo__mark {
-  width: 34px; height: 30px; flex: none;
-  transition: transform 0.45s var(--ease), color 0.35s var(--ease);
+  display: inline-flex; align-items: center;
+  color: var(--text); flex: none; text-decoration: none;
 }
 .logo__word {
   font-family: var(--font-display);
-  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.045em; line-height: 1;
-  transition: color 0.35s var(--ease);
+  font-size: 1.375rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1;
+  color: var(--ink);
 }
-.logo:hover .logo__mark { transform: translateX(3px); }
+.logo__sky { color: var(--sky); }
+.nav.is-dark .logo__word { color: var(--on-ink); }
+.nav.is-dark .logo__sky { color: var(--sky); }
 
-.footer .logo__mark { width: 31px; height: 27px; }
 .footer .logo__word { font-size: 1.25rem; }
 
 .nav__links { display: flex; align-items: center; gap: 4px; }
@@ -1648,7 +1644,6 @@ strong, .em { color: var(--text); font-weight: 600; }
 
 @media (max-width: 380px) {
   .logo__word { font-size: 1.125rem; }
-  .logo__mark { width: 29px; height: 26px; }
   .strip { grid-template-columns: 1fr; }
   .actionbar__price { display: none; }
 }
