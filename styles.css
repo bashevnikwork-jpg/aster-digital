@@ -1577,45 +1577,29 @@ strong, .em { color: var(--text); font-weight: 600; }
   .faq__q { padding: 20px; font-size: 1rem; }
   .faq__a p { padding: 0 20px 20px; }
 
-  .vtabs__btn { padding: 14px 16px; font-size: 1rem; }
-  .svc__top, .svc__col, .svc__branch, .svc__second {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: 20px clamp(24px, 2.6vw, 40px);
-  border-bottom: var(--border);
-  background: linear-gradient(120deg, rgba(2, 132, 199, 0.05), rgba(56, 189, 248, 0.05));
-}
-.svc__second-label {
-  display: block; font-family: var(--font-display);
-  font-size: 1rem; font-weight: 600; letter-spacing: -0.022em; margin-bottom: 4px;
-}
-.svc__second p { font-size: 0.9375rem; max-width: 44rem; }
-.svc__second strong {
-  font-family: var(--font-display);
-  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text);
-  white-space: nowrap;
-}
+  /* service anchor pills — single scrollable row on small screens */
+  .svc-anchors {
+    flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 90%, transparent);
+    mask-image: linear-gradient(to right, #000 90%, transparent);
+    padding-bottom: 4px;
+  }
+  .svc-anchors::-webkit-scrollbar { display: none; }
+  .svc-anchor { white-space: nowrap; scroll-snap-align: start; padding: 8px 16px; font-size: 0.875rem; }
 
-.svc__foot { padding-inline: 20px; }
-  .svc__second {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: 20px clamp(24px, 2.6vw, 40px);
-  border-bottom: var(--border);
-  background: linear-gradient(120deg, rgba(2, 132, 199, 0.05), rgba(56, 189, 248, 0.05));
-}
-.svc__second-label {
-  display: block; font-family: var(--font-display);
-  font-size: 1rem; font-weight: 600; letter-spacing: -0.022em; margin-bottom: 4px;
-}
-.svc__second p { font-size: 0.9375rem; max-width: 44rem; }
-.svc__second strong {
-  font-family: var(--font-display);
-  font-size: 1.375rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text);
-  white-space: nowrap;
-}
-
-.svc__foot { flex-direction: column; align-items: stretch; }
-  .svc__foot .btn { width: 100%; }
+  /* service panels — mobile */
+  /* hide the inline price from the header; it repeats in svc__foot */
+  .svc__price { display: none; }
+  .svc__top { display: block; padding: 20px; }
+  .svc__col, .svc__branch { padding: 18px 20px; }
+  .svc__foot {
+    padding: 16px 20px;
+    flex-direction: column; align-items: stretch; gap: 12px;
+  }
+  .svc__foot .btn { width: 100%; text-align: center; }
   .svc__from { display: flex; align-items: baseline; gap: 10px; }
+  .svc__from strong { font-size: 1.375rem; }
 
   .pkg { padding: 28px 20px; }
   .pkg__amount { font-size: 2.125rem; }
