@@ -221,8 +221,8 @@ strong, .em { color: var(--text); font-weight: 600; }
   opacity: 1;
 }
 
-.btn--primary { background: #16161A; color: #fff; }
-.btn--primary:hover { background: #2A2A32; }
+.btn--primary { background: var(--sky); color: var(--ink); }
+.btn--primary:hover { background: #60CBFA; }
 
 .btn--accent { background: var(--accent); color: #fff; }
 .btn--accent:hover { background: var(--accent-ink); }
@@ -293,8 +293,8 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 .nav.is-dark .nav__phone svg { color: rgba(246, 246, 244, 0.6); }
 .nav.is-dark .nav__phone:hover { border-color: rgba(255, 255, 255, 0.4); }
-.nav.is-dark .btn--primary { background: var(--on-ink); color: var(--ink); }
-.nav.is-dark .btn--primary:hover { background: #fff; }
+.nav.is-dark .btn--primary { background: var(--sky); color: var(--ink); }
+.nav.is-dark .btn--primary:hover { background: #60CBFA; }
 .nav.is-dark .nav__burger { background: transparent; border-color: rgba(255, 255, 255, 0.2); }
 .nav.is-dark .nav__burger span { background: var(--on-ink); }
 
@@ -1383,9 +1383,9 @@ strong, .em { color: var(--text); font-weight: 600; }
 /* ---------- 17. Motion ---------- */
 /* Blocks rise into place; grids draw their rules; headlines set line by line. */
 .js [data-reveal] {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-  transition-delay: calc(var(--i, 0) * 90ms);
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--i, 0) * 60ms);
   will-change: opacity, transform;
 }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
@@ -1395,8 +1395,9 @@ strong, .em { color: var(--text); font-weight: 600; }
 .js [data-split] .w > i {
   display: inline-block; font-style: inherit;
   transform: translateY(105%);
-  transition: transform 0.85s var(--ease);
-  transition-delay: calc(var(--i, 0) * 38ms);
+  transition: transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 32ms);
+  will-change: transform;
 }
 .js [data-split].is-in .w > i { transform: none; }
 
@@ -1405,36 +1406,40 @@ strong, .em { color: var(--text); font-weight: 600; }
 .js .cells::before {
   content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px;
   background: var(--line); transform: scaleX(0); transform-origin: left;
-  transition: transform 0.9s var(--ease);
+  transition: transform 0.7s var(--ease);
+  will-change: transform;
 }
 .js .cells.is-in::before { transform: none; }
 
-.js .cell::after  { transform: scaleY(0); transition: transform 0.7s var(--ease) calc(var(--i, 0) * 110ms + 180ms); }
-.js .cell::before { transform: scaleX(0); transition: transform 0.7s var(--ease) calc(var(--i, 0) * 110ms + 300ms); }
+.js .cell::after  { transform: scaleY(0); transition: transform 0.55s var(--ease) calc(var(--i, 0) * 80ms + 120ms); will-change: transform; }
+.js .cell::before { transform: scaleX(0); transition: transform 0.55s var(--ease) calc(var(--i, 0) * 80ms + 200ms); will-change: transform; }
 .js .cells.is-in .cell::after,
 .js .cells.is-in .cell::before { transform: none; }
 
 /* cell contents fade in behind their rules */
 .js .cells .cell > * {
-  opacity: 0; transform: translateY(14px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-  transition-delay: calc(var(--i, 0) * 110ms + 260ms);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  transition-delay: calc(var(--i, 0) * 80ms + 180ms);
+  will-change: opacity, transform;
 }
 .js .cells.is-in .cell > * { opacity: 1; transform: none; }
 
 /* strip cells type in one after another */
 .js .strip__cell {
-  opacity: 0; transform: translateY(10px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  transition-delay: calc(var(--i, 0) * 80ms);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition-delay: calc(var(--i, 0) * 55ms);
+  will-change: opacity, transform;
 }
 .js .strip.is-in .strip__cell { opacity: 1; transform: none; }
 
 /* FAQ rows and flow rows arrive in sequence */
 .js .faq__item, .js .flow__item {
-  opacity: 0; transform: translateY(16px);
-  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-  transition-delay: calc(var(--i, 0) * 70ms);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition-delay: calc(var(--i, 0) * 50ms);
+  will-change: opacity, transform;
 }
 .js .faq.is-in .faq__item, .js .flow.is-in .flow__item { opacity: 1; transform: none; }
 
