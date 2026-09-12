@@ -171,10 +171,6 @@ def form(prefix, note=True):
     tail = ('\n        <p class="form__note">Безкоштовна консультація · Без зобов\'язань</p>'
             if note else '')
     return f'''<div class="field">
-          <label for="{prefix}Name">Ваше ім'я</label>
-          <input id="{prefix}Name" name="name" type="text" autocomplete="name" required />
-        </div>
-        <div class="field">
           <label for="{prefix}Contact">Телефон або Telegram</label>
           <input id="{prefix}Contact" name="contact" type="text" autocomplete="tel" required />
         </div>
@@ -183,10 +179,6 @@ def form(prefix, note=True):
           <select id="{prefix}Topic" name="topic">
 {opts}
           </select>
-        </div>
-        <div class="field">
-          <label for="{prefix}Message">Коротко про бізнес</label>
-          <textarea id="{prefix}Message" name="message" rows="3"></textarea>
         </div>
         <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>{tail}'''
 
