@@ -32,7 +32,7 @@ GTM_NOSCRIPT = (
     '  <!-- End Google Tag Manager (noscript) -->\n'
 )
 
-LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>''')
+LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><img class="logo__img" src="public/assets/logomain.png" alt="SkyBreeze" width="220" height="74" /></a>''')
 
 NAV_ITEMS = [
     ("Головна сторінка", "index.html", "index.html"),
@@ -171,10 +171,6 @@ def form(prefix, note=True):
     tail = ('\n        <p class="form__note">Безкоштовна консультація · Без зобов\'язань</p>'
             if note else '')
     return f'''<div class="field">
-          <label for="{prefix}Name">Ваше ім'я</label>
-          <input id="{prefix}Name" name="name" type="text" autocomplete="name" required />
-        </div>
-        <div class="field">
           <label for="{prefix}Contact">Телефон або Telegram</label>
           <input id="{prefix}Contact" name="contact" type="text" autocomplete="tel" required />
         </div>
@@ -183,10 +179,6 @@ def form(prefix, note=True):
           <select id="{prefix}Topic" name="topic">
 {opts}
           </select>
-        </div>
-        <div class="field">
-          <label for="{prefix}Message">Коротко про бізнес</label>
-          <textarea id="{prefix}Message" name="message" rows="3"></textarea>
         </div>
         <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>{tail}'''
 
