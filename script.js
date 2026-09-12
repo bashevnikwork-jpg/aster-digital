@@ -301,12 +301,11 @@
   }
 
   /* ---------- 7. Forms ---------- */
-  /* ⚙️  Fill in your Telegram bot credentials below before deploying: */
-  var TG_TOKEN   = 'YOUR_BOT_TOKEN';   // e.g. '123456789:ABCdef...'
-  var TG_CHAT_ID = 'YOUR_CHAT_ID';     // e.g. '-1001234567890'
+  var TG_TOKEN   = '8812468698:AAElK5SHXiW4jFPFiy5WBN0IH9K7MjF2f0Y';
+  var TG_CHAT_ID = '7578353801';
 
   function sendToTelegram(contact, topic, page) {
-    if (!TG_TOKEN || TG_TOKEN === 'YOUR_BOT_TOKEN') return Promise.resolve();
+    if (!TG_TOKEN) return Promise.resolve();
     var date = new Date().toLocaleString('uk-UA', {
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv'
