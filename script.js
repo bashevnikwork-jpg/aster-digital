@@ -301,15 +301,41 @@
   }
 
   /* ---------- 7. Forms ---------- */
-  /* No backend yet: the form validates, marks the visit as a lead and hands
-     off to the thank-you page, which only opens with that mark. */
+  /* ⚙️  Fill in your Telegram bot credentials below before deploying: */
+  var TG_TOKEN   = 'YOUR_BOT_TOKEN';   // e.g. '123456789:ABCdef...'
+  var TG_CHAT_ID = 'YOUR_CHAT_ID';     // e.g. '-1001234567890'
+
+  function sendToTelegram(contact, topic, page) {
+    if (!TG_TOKEN || TG_TOKEN === 'YOUR_BOT_TOKEN') return Promise.resolve();
+    var date = new Date().toLocaleString('uk-UA', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv'
+    });
+    var text =
+      '🔔 *Нова заявка — SkyBreeze*\n\n' +
+      '📞 *Контакт:* ' + contact + '\n' +
+      '📋 *Послуга:* ' + topic + '\n' +
+      '📅 *Час:* ' + date + '\n' +
+      '🌐 *Сторінка:* ' + page;
+    return fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' })
+    }).catch(function () { /* silent: redirect still happens */ });
+  }
+
   function bindForm(form, status) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       if (status) status.textContent = 'Дякуємо! Переносимо вас далі…';
+      var contact = (form.querySelector('[name="contact"]') || {}).value || '—';
+      var topic   = (form.querySelector('[name="topic"]')   || {}).value || '—';
+      var page    = window.location.pathname.split('/').pop() || 'index.html';
       try { sessionStorage.setItem('skybreeze:lead', String(Date.now())); } catch (err) { /* private mode */ }
-      window.location.href = 'thanks.html';
+      sendToTelegram(contact, topic, page).then(function () {
+        window.location.href = 'thanks.html';
+      });
     });
   }
 
