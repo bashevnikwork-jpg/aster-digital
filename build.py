@@ -13,7 +13,26 @@ import pathlib
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
 
-LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><img class="logo__img" src="public/assets/logomain.png" alt="SkyBreeze" width="180" height="60" /></a>''')
+GTM_ID = 'GTM-5FRPXNZQ'
+
+GTM_HEAD = (
+    '  <!-- Google Tag Manager -->\n'
+    '  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':\n'
+    'new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],\n'
+    'j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\n'
+    '\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);\n'
+    f'}})(window,document,\'script\',\'dataLayer\',\'{GTM_ID}\');</script>\n'
+    '  <!-- End Google Tag Manager -->\n'
+)
+
+GTM_NOSCRIPT = (
+    '  <!-- Google Tag Manager (noscript) -->\n'
+    f'  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"\n'
+    'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n'
+    '  <!-- End Google Tag Manager (noscript) -->\n'
+)
+
+LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>''')
 
 NAV_ITEMS = [
     ("Головна сторінка", "index.html", "index.html"),
@@ -40,12 +59,12 @@ NL = "\n"
 
 
 def head(title, desc, extra=""):
-    return f'''<!DOCTYPE html>
+    return (f'''<!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
+{GTM_HEAD}  <title>{title}</title>
   <meta name="description" content="{desc}" />
   <meta name="theme-color" content="#FBFBF9" />
   <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
@@ -56,9 +75,9 @@ def head(title, desc, extra=""):
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
+{GTM_NOSCRIPT}  <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Перейти до основного вмісту</a>
-'''
+''')
 
 
 def nav(current):
@@ -152,6 +171,10 @@ def form(prefix, note=True):
     tail = ('\n        <p class="form__note">Безкоштовна консультація · Без зобов\'язань</p>'
             if note else '')
     return f'''<div class="field">
+          <label for="{prefix}Name">Ваше ім'я</label>
+          <input id="{prefix}Name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
           <label for="{prefix}Contact">Телефон або Telegram</label>
           <input id="{prefix}Contact" name="contact" type="text" autocomplete="tel" required />
         </div>
@@ -160,6 +183,10 @@ def form(prefix, note=True):
           <select id="{prefix}Topic" name="topic">
 {opts}
           </select>
+        </div>
+        <div class="field">
+          <label for="{prefix}Message">Коротко про бізнес</label>
+          <textarea id="{prefix}Message" name="message" rows="3"></textarea>
         </div>
         <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>{tail}'''
 
