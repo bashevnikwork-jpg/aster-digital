@@ -32,7 +32,7 @@ GTM_NOSCRIPT = (
     '  <!-- End Google Tag Manager (noscript) -->\n'
 )
 
-LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><svg class="logo__mark" viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg><span class="logo__word">SkyBreeze</span></a>''')
+LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><img class="logo__img" src="public/assets/logomain.png" alt="SkyBreeze" width="220" height="74" /></a>''')
 
 NAV_ITEMS = [
     ("Головна сторінка", "index.html", "index.html"),

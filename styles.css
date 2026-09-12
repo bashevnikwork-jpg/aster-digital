@@ -299,7 +299,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 .nav.is-dark .nav__burger span { background: var(--on-ink); }
 
 /* everything that changes colour does it over the same beat */
-.logo, .logo__word, .nav__links a, .nav__phone, .nav__phone svg,
+.logo, .nav__links a, .nav__phone, .nav__phone svg,
 .nav__burger, .nav__burger span, .nav .btn--primary {
   transition: background-color 0.35s var(--ease), color 0.35s var(--ease),
               border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
@@ -316,19 +316,13 @@ strong, .em { color: var(--text); font-weight: 600; }
   display: inline-flex; align-items: center; gap: 14px;
   color: var(--text); flex: none;
 }
-.logo__mark {
-  width: 54px; height: 47px; flex: none;
-  transition: transform 0.45s var(--ease), color 0.35s var(--ease);
+.logo__img {
+  height: 52px; width: auto; display: block;
+  object-fit: contain;
+  transition: opacity 0.3s var(--ease);
 }
-.logo__word {
-  font-family: var(--font-display);
-  font-size: 1.875rem; font-weight: 700; letter-spacing: -0.055em; line-height: 1;
-  transition: color 0.35s var(--ease);
-}
-.logo:hover .logo__mark { transform: translateX(3px); }
-
-.footer .logo__mark { width: 38px; height: 33px; }
-.footer .logo__word { font-size: 1.375rem; }
+.logo:hover .logo__img { opacity: 0.85; }
+.footer .logo__img { height: 34px; }
 
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a {
@@ -749,6 +743,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 .vtabs__panel[hidden] { display: none; }
 .vtabs__panel { animation: panelIn 0.5s var(--ease) both; }
 @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes videoFadeIn { to { opacity: 1; } }
 
 .svc__top {
   display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;
@@ -1110,6 +1105,14 @@ strong, .em { color: var(--text); font-weight: 600; }
 /* the frozen side reads as a still: no motion cues, slightly calmer */
 .mv__side:not(.mv__side--live) .mv__frame { filter: saturate(0.9); }
 .mv__side--live .mv__frame { box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent-wash); }
+/* crop black bars via overflow; fade in once loaded */
+.mv__side--live .mv__frame video {
+  width: 118%; height: 118%;
+  margin: -9% 0 0 -9%;
+  object-fit: cover;
+  opacity: 0;
+  animation: videoFadeIn 0.8s ease 0.3s forwards;
+}
 
 /* ---------- 13e. Tech stack (dark band) ---------- */
 .stack {
@@ -1323,18 +1326,26 @@ strong, .em { color: var(--text); font-weight: 600; }
 .works { display: grid; grid-template-columns: repeat(3, 1fr); border-top: var(--border); }
 .work { border-right: var(--border); border-bottom: var(--border); display: flex; flex-direction: column; }
 .works .work:nth-child(3n) { border-right: 0; }
-.work__shot { aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); border-bottom: var(--border); }
+.work__shot { aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); border-bottom: var(--border); position: relative; }
 .work__shot img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center;
   transition: transform 0.7s var(--ease);
+  transform: scale(1.04);
 }
-.work:hover .work__shot img { transform: scale(1.035); }
+.work:hover .work__shot img { transform: scale(1.085); }
+/* subtle bottom fade so screenshot blends into the card body */
+.work__shot::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 55%, color-mix(in srgb, var(--bg-alt) 60%, transparent) 100%);
+}
 .work__body { padding: 24px clamp(20px, 2vw, 28px) 28px; }
 .work__tag { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
 .work__body h3 { margin: 9px 0 4px; font-size: 1.25rem; letter-spacing: -0.03em; }
 
 .work__shot--video { background: #0E0E12; }
 .work__shot--video video { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+/* override the card-bg fade on dark video shots */
+.work__shot--video::after { background: linear-gradient(to bottom, transparent 55%, rgba(14,14,18,0.55) 100%); }
 
 /* a case we can link to but have no shot for yet */
 .work__shot--link {
@@ -1539,9 +1550,8 @@ strong, .em { color: var(--text); font-weight: 600; }
   .nav__links { display: none; }
   .nav__right .btn { display: none; }
   .nav__burger { display: flex; }
-  /* shrink logo slightly so mark+word+phone+burger fit at 375-900px */
-  .logo__mark { width: 42px; height: 37px; }
-  .logo__word { font-size: 1.5rem; }
+  /* shrink logo slightly so it fits at 375-900px */
+  .logo__img { height: 40px; }
   .cells--4, .cells--3 { grid-template-columns: repeat(2, 1fr); }
   .cells--4 .cell:nth-child(4n)::after, .cells--3 .cell:nth-child(3n)::after { display: block; }
   .cells--4 .cell:nth-child(2n)::after, .cells--3 .cell:nth-child(2n)::after { display: none; }
@@ -1721,9 +1731,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 
 @media (max-width: 380px) {
-  .logo__word { font-size: 1.25rem; }
-  .logo__mark { width: 34px; height: 30px; }
-  .logo { gap: 10px; }
+  .logo__img { height: 32px; }
   .nav__inner { padding-inline: 14px; gap: 10px; }
   .strip { grid-template-columns: 1fr; }
   .actionbar__price { display: none; }
