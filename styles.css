@@ -317,12 +317,12 @@ strong, .em { color: var(--text); font-weight: 600; }
   color: var(--text); flex: none;
 }
 .logo__img {
-  height: 52px; width: auto; display: block;
+  height: 60px; width: auto; display: block;
   object-fit: contain;
   transition: opacity 0.3s var(--ease);
 }
 .logo:hover .logo__img { opacity: 0.85; }
-.footer .logo__img { height: 34px; }
+.footer .logo__img { height: 44px; }
 
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a {
@@ -846,6 +846,32 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 .pkg__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .pkg__title { font-size: 1.375rem; letter-spacing: -0.032em; margin-bottom: 14px; }
+
+/* tooltip on "Сайт підвищеної складності" */
+.tooltip-wrap { position: relative; display: inline; }
+.tooltip-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: none; padding: 0 2px; cursor: pointer;
+  color: var(--muted); vertical-align: middle; line-height: 1;
+  transition: color 0.2s;
+}
+.tooltip-btn:hover, .tooltip-btn:focus-visible { color: var(--accent); outline: none; }
+.tooltip-bubble {
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  width: 240px; padding: 10px 12px;
+  background: var(--ink); color: var(--on-ink);
+  font-size: 0.8125rem; font-weight: 400; line-height: 1.5; letter-spacing: 0;
+  border-radius: 8px; pointer-events: none;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.18s, visibility 0.18s;
+  z-index: 20;
+}
+.tooltip-bubble::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: var(--ink);
+}
+.tooltip-btn:hover .tooltip-bubble,
+.tooltip-btn:focus-visible .tooltip-bubble { opacity: 1; visibility: visible; }
 .pkg__price {
   display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   padding-bottom: 22px; margin-bottom: 22px; border-bottom: var(--border);
@@ -1731,7 +1757,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 
 @media (max-width: 380px) {
-  .logo__img { height: 32px; }
+  .logo__img { height: 40px; }
   .nav__inner { padding-inline: 14px; gap: 10px; }
   .strip { grid-template-columns: 1fr; }
   .actionbar__price { display: none; }
