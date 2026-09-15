@@ -318,7 +318,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 /* the asset is trimmed to the glyphs, so this height is the wordmark itself */
 .logo__img {
-  height: 30px; width: auto; display: block;
+  height: 26px; width: auto; display: block;
   object-fit: contain;
   transition: opacity 0.3s var(--ease);
 }
@@ -938,7 +938,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 .cta__panel > * { position: relative; }
 /* the wordmark ships dark on transparent — reverse it to solid white for the blue panel */
 .cta__logo {
-  display: block; width: auto; height: clamp(30px, 3.2vw, 44px);
+  display: block; width: auto; height: clamp(26px, 2.8vw, 38px);
   margin: 0 auto 22px; filter: brightness(0) invert(1);
 }
 .cta__panel h2 { color: var(--on-ink); max-width: 18ch; margin: 0 auto; }
@@ -1591,7 +1591,7 @@ strong, .em { color: var(--text); font-weight: 600; }
   .nav__right .btn { display: none; }
   .nav__burger { display: flex; }
   /* shrink logo slightly so it fits at 375-900px */
-  .logo__img { height: 24px; }
+  .logo__img { height: 22px; }
   .cells--4, .cells--3 { grid-template-columns: repeat(2, 1fr); }
   .cells--4 .cell:nth-child(4n)::after, .cells--3 .cell:nth-child(3n)::after { display: block; }
   .cells--4 .cell:nth-child(2n)::after, .cells--3 .cell:nth-child(2n)::after { display: none; }
@@ -1774,7 +1774,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 
 @media (max-width: 380px) {
-  .logo__img { height: 22px; }
+  .logo__img { height: 20px; }
   .nav__inner { padding-inline: 14px; gap: 10px; }
   .strip { grid-template-columns: 1fr; }
   .actionbar__price { display: none; }
