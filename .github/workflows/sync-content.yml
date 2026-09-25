@@ -3,7 +3,10 @@ name: Sync content from Google Drive
 # Pulls the SkyBreeze Google Sheet into content/*.json, rebuilds the static
 # pages, and commits any change back to main — so the live site follows the
 # Sheet without anyone touching code. Runs once a day and on demand.
-# Setup (service account + secrets): see CONTENT-EDITING.md.
+#
+# No secrets, no service account: the Sheet is shared "anyone with the link can
+# view" and read through its public CSV export. The Sheet id lives in
+# content/_sheet_id.txt. Setup: see CONTENT-EDITING.md.
 
 on:
   schedule:
@@ -29,17 +32,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install sync dependencies
-        run: pip install -r requirements-sync.txt
-
-      - name: Pull content from Google Drive
-        env:
-          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          SKYBREEZE_SHEET_ID: ${{ secrets.SKYBREEZE_SHEET_ID }}
-        run: python sync_drive.py
-
-      - name: Rebuild the static pages
+      - name: Pull content from the Sheet, rebuild the pages
         run: |
+          python sync_drive.py
           python parts.py
           python build.py
 

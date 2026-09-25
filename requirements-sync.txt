@@ -1,3 +1,0 @@
-# Dependencies for sync_drive.py (used only by the GitHub Actions sync job).
-google-api-python-client>=2.100
-google-auth>=2.23
