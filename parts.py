@@ -1,14 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generates parts/*.html — the page sections build.py stitches together."""
+"""Generates parts/*.html — the page sections build.py stitches together.
 
+All copy is read from content/*.json, so the site can be driven from Google
+Drive (see sync_drive.py). This file owns structure and markup only.
+"""
+
+import json
 import pathlib
 
-OUT = pathlib.Path(__file__).parent / "parts"
+ROOT = pathlib.Path(__file__).parent
+OUT = ROOT / "parts"
+CONTENT = ROOT / "content"
 OUT.mkdir(exist_ok=True)
+
+
+def load(name):
+    return json.loads((CONTENT / name).read_text(encoding="utf-8"))
+
+
+SECT = load("sections.json")
 
 CHECK = ('<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" '
          'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg>')
+ARROW_UP = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>')
 
 
 def checks(items, indent=18):
@@ -16,465 +32,222 @@ def checks(items, indent=18):
     return "\n".join(f'{pad}<li>{CHECK}<span>{i}</span></li>' for i in items)
 
 
+# The brand mark, for decorative hero/section geometry (currentColor fill).
+MARK = ('<svg class="mark" viewBox="8 48 161 88" fill="currentColor" aria-hidden="true">'
+        '<path d="M101.141 53H136.632C151.023 53 162.689 64.6662 162.689 79.0573V112.904H148.112V79.0573C148.112 78.7105 148.098 78.3662 148.072 78.0251L112.581 112.898C112.701 112.902 112.821 112.904 112.941 112.904H148.112V126.672H112.941C98.5504 126.672 86.5638 114.891 86.5638 100.5V66.7434H101.141V100.5C101.141 101.15 101.191 101.792 101.289 102.422L137.56 66.7816C137.255 66.7563 136.945 66.7434 136.632 66.7434H101.141V53Z"/>'
+        '<path d="M65.2926 124.136L14 66.7372H34.6355L64.7495 100.436V66.7372H80.1365V118.47C80.1365 126.278 70.4953 129.958 65.2926 124.136Z"/>'
+        '</svg>')
+
+
 def write(name, html):
     (OUT / name).write_text(html, encoding="utf-8")
     print("  parts/" + name)
 
 
-# ------------------------------------------------------------------ hero
-write("hero.html", '''    <!-- ================= HERO ================= -->
-    <section class="hero">
+def head_block(d, center=False, ok=False):
+    """Standard section head: kicker tag + two-tone headline + optional lead."""
+    cls = "head head--center" if center else "head"
+    tagcls = "tag tag--ok" if ok else "tag"
+    tt = f' <span class="tt">{d["title_2"]}</span>' if d.get("title_2") else ""
+    lead = f'\n          <p class="lead">{d["lead"]}</p>' if d.get("lead") else ""
+    return f'''        <div class="{cls}" data-reveal>
+          <span class="{tagcls}">{d["tag"]}</span>
+          <h2>{d["title"]}{tt}</h2>{lead}
+        </div>'''
+
+
+def section_link(href, label, tag="a", attrs=""):
+    return f'''        <{tag} class="section-link" href="{href}" data-reveal{attrs}>
+          <span>{label}</span>
+          <span class="arrow-loop">→</span>
+        </{tag}>'''
+
+
+# ================================================================= HERO
+h = SECT["hero"]
+flow = "".join(
+    f'<span class="hero__step">{s}</span>' + ('<span class="hero__link" aria-hidden="true"></span>' if i < len(h["flow"]) - 1 else '')
+    for i, s in enumerate(h["flow"]))
+write("hero.html", f'''    <!-- ================= HERO ================= -->
+    <section class="hero band band--dark" data-nav-dark>
+      <div class="hero__field" aria-hidden="true">
+        <span class="hero__mark hero__mark--a">{MARK}</span>
+        <span class="hero__mark hero__mark--b">{MARK}</span>
+        <span class="hero__grid"></span>
+      </div>
       <div class="shell">
         <div class="hero__inner" data-hero>
           <p class="pill">
             <span class="pill__dot" aria-hidden="true"></span>
-            3–7 днів · 9 999 ₴ · запуск реклами — безкоштовно
+            {h["pill"]}
           </p>
-          <h1>Сайт + Google Ads для бізнесу</h1>
-          <p class="hero__sub lead">
-            Запускаємо не просто сайт, а бізнес в інтернеті. Аналізуємо вашу нішу,
-            створюємо сайт і налаштовуємо Google Ads — щоб ваш бізнес не просто був онлайн,
-            а <strong>приносив заявки та клієнтів</strong>.
-          </p>
+          <h1>{h["title"]} <span class="hero__channel">{h["title_channel"]}</span></h1>
+          <p class="hero__sub lead">{h["sub"]}</p>
           <div class="hero__actions">
-            <button class="btn btn--primary btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
-            <a class="btn btn--ghost btn--lg" href="portfolio.html">Переглянути роботи <span class="btn__arrow">→</span></a>
+            <button class="btn btn--primary btn--lg" data-modal-open>{h["primary_cta"]} <span class="btn__arrow">→</span></button>
+            <a class="btn btn--line-ink btn--lg" href="portfolio.html">{h["secondary_cta"]} <span class="btn__arrow">→</span></a>
           </div>
-
-          <div class="showcase">
-            <div class="showcase__frame">
-              <div class="showcase__bar" aria-hidden="true">
-                <i></i><i></i><i></i>
-                <span>skybreeze.agency</span>
-              </div>
-              <div class="showcase__img">
-                <img src="public/assets/screenshots/ferdinant.webp" alt="Приклад сайту, створеного SkyBreeze" width="1600" height="740" />
-              </div>
-              <div class="showcase__note showcase__note--a" aria-hidden="true">
-                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></i>
-                <div><b>Google Ads</b><span>трафік за запитом клієнта</span></div>
-              </div>
-              <div class="showcase__note showcase__note--b showcase__note--ok" aria-hidden="true">
-                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4 10-11"/></svg></i>
-                <div><b>Запуск за 3–7 днів</b><span>сайт + перша кампанія</span></div>
-              </div>
-            </div>
+          <div class="hero__flow" aria-label="Аналіз, сайт, реклама, зростання">
+            {flow}
           </div>
         </div>
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ strip
-PROJECTS = ["Ashad", "Ferdinant", "Noirveil", "Yes or Not", "SlimLab", "Kyparis"]
-ARROW_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+# ================================================================= PROOF STRIP
+p = SECT["proof"]
 cells = "\n".join(
-    f'          <a class="strip__cell" href="portfolio.html">{p} {ARROW_UP}</a>' for p in PROJECTS)
+    f'          <a class="strip__cell" href="portfolio.html">{name} {ARROW_UP}</a>' for name in p["projects"])
 write("strip.html", f'''    <!-- ================= ПРОЄКТИ ================= -->
-    <section>
+    <section class="strip-section band band--dark" data-nav-dark>
       <div class="shell">
-        <div class="strip" aria-label="Проєкти, які ми зробили">
+        <div class="strip" aria-label="{p["label"]}">
 {cells}
         </div>
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ process
-STEPS = [
-    ("01", "Аналіз", "Ніша · конкуренти · аудиторія"),
-    ("02", "Сайт", "Структура · дизайн · розробка"),
-    ("03", "Реклама", "Google Ads · аналітика · запуск"),
-    ("04", "Оптимізація", "Аналізуємо результати та покращуємо кампанії"),
-]
+# ================================================================= PROCESS
+pr = SECT["process"]
 step_cells = "\n".join(f'''          <article class="cell" data-reveal>
-            <span class="cell__num">{n}</span>
-            <h3>{t}</h3>
-            <p>{d}</p>
-          </article>''' for n, t, d in STEPS)
-
+            <span class="cell__num">{s["n"]}</span>
+            <h3>{s["title"]}</h3>
+            <p>{s["desc"]}</p>
+          </article>''' for s in pr["steps"])
 write("process.html", f'''    <!-- ================= ПРОЦЕС ================= -->
-    <section class="section rule deco" id="process">
+    <section class="section band band--light rule" id="process">
       <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Процес</span>
-          <h2>Запускаємо бізнес в інтернеті під ключ. <span class="tt">Від аналізу ніші до перших звернень.</span></h2>
-          <p class="lead">
-            Аналізуємо вашу нішу та конкурентів, продумуємо структуру, створюємо сайт,
-            налаштовуємо рекламу та допомагаємо запустити <strong>весь процес від ідеї до перших звернень</strong>.
-          </p>
-        </div>
+{head_block(pr)}
       </div>
       <div class="shell shell--bleed">
-        <div class="cells cells--4">
+        <div class="cells cells--4 cells--flow">
 {step_cells}
         </div>
       </div>
       <div class="shell">
-        <a class="section-link" href="#services" data-reveal>
-          <span>Подивитися, що входить у кожну послугу</span>
-          <span class="arrow-loop">→</span>
-        </a>
+{section_link("#services", pr["link"])}
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ advantages
-VIZ_SITE = '''            <div class="viz viz--demo" aria-hidden="true">
-              <div class="viz__bar"><i></i><i></i><i></i></div>
-              <div class="viz__body">
-                <div class="viz__line viz__line--w70"></div>
-                <div class="viz__line viz__line--w45 viz__line--accent"></div>
-                <div class="viz__row"><span class="viz__box"></span><span class="viz__box"></span><span class="viz__box"></span></div>
-                <div><span class="viz__cta">Залишити заявку</span></div>
-              </div>
-              <span class="viz__cursor">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 8-6.2 1.6L10 19 5 3z"/></svg>
-              </span>
-            </div>'''
-
-VIZ_SEARCH = '''            <div class="viz" aria-hidden="true">
-              <div class="viz__search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                барбершоп київ
-              </div>
-              <div class="viz__ad"><b>Реклама</b> ваш сайт · послуги та запис онлайн</div>
-            </div>'''
-
-VIZ_CHART = '''            <div class="viz" aria-hidden="true">
-              <div class="viz__chart"><span></span><span></span><span></span><span></span><span></span></div>
-            </div>'''
-
-VIZ_PRICE = '''            <div class="viz" aria-hidden="true">
-              <div class="viz__price"><span>Сайт + Google Ads</span><strong>9 999 ₴</strong></div>
-            </div>'''
-
-ADV = [
-    ("""<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>""",
-     "Не просто дизайн", "Створюємо сайт під конкретні цілі вашого бізнесу.", VIZ_SITE),
-    ("""<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>""",
-     "Все в одному місці",
-     "Сайт, реклама, аналітика та motion без необхідності шукати кількох підрядників.",
-     '''            <div class="chips">
-              <span class="chip">Сайт</span><span class="chip">Google Ads</span>
-              <span class="chip">Аналітика</span><span class="chip">Motion</span>
-              <span class="chip">SEO-підготовка</span>
-            </div>'''),
-    ("""<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>""",
-     "Швидкий запуск", "Перший запуск сайту — від 3–7 днів для відповідних проєктів.", VIZ_CHART),
-    ("""<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>""",
-     "Прозора ціна", "Ви заздалегідь знаєте, що входить у вартість.", VIZ_PRICE),
-]
+# ================================================================= ADVANTAGES
+ad = SECT["advantages"]
 adv_cells = "\n".join(f'''          <article class="cell" data-reveal>
-            <span class="icon-tile" aria-hidden="true">{icon}</span>
-            <h3>{t}</h3>
-            <p>{d}</p>
-{viz}
-          </article>''' for icon, t, d, viz in ADV)
-
+            <span class="cell__num">0{i+1}</span>
+            <h3>{it["title"]}</h3>
+            <p>{it["desc"]}</p>
+          </article>''' for i, it in enumerate(ad["items"]))
 write("bento.html", f'''    <!-- ================= ПЕРЕВАГИ ================= -->
-    <section class="section section--alt rule" id="why">
+    <section class="section band band--dark rule" id="why" data-nav-dark>
       <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Переваги</span>
-          <h2>Чому саме ми? <span class="tt">Тому що сайт для нас — інструмент продажів, а не картинка.</span></h2>
-          <p class="lead">
-            У SkyBreeze ми не обмежуємося візуальною подачею — продумуємо сайт як
-            <strong>інструмент продажів</strong>: від структури та текстів до реклами й аналітики.
-          </p>
-        </div>
+{head_block(ad)}
       </div>
       <div class="shell shell--bleed">
-        <div class="cells cells--2">
+        <div class="cells cells--4">
 {adv_cells}
         </div>
       </div>
       <div class="shell">
-        <a class="section-link" href="#packages" data-reveal>
-          <span>Переглянути пакети та ціни</span>
-          <span class="arrow-loop">→</span>
-        </a>
+{section_link("#packages", ad["link"])}
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ system
-write("system.html", '''    <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
-    <section class="section rule deco" id="system">
+# ================================================================= SYSTEM (two paths)
+sy = SECT["system"]
+paths = []
+for pth in sy["paths"]:
+    acc = " path--accent" if pth["accent"] else ""
+    steps = "\n".join(f'              <li>{s}</li>' for s in pth["steps"])
+    paths.append(f'''          <article class="cell path{acc}" data-reveal>
+            <span class="path__tag">{pth["tag"]}</span>
+            <ol class="path__steps">
+{steps}
+            </ol>
+            <p class="path__note">{pth["note"]}</p>
+          </article>''')
+write("system.html", f'''    <!-- ================= СИСТЕМА ЗАЛУЧЕННЯ ================= -->
+    <section class="section band band--light rule" id="system">
       <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Навіщо сайт</span>
-          <h2>Сайт без реклами ≠ система залучення клієнтів. <span class="tt">Порівняйте два шляхи клієнта.</span></h2>
-          <p class="lead">
-            Соцмережі можуть бути частиною продажів. Але власний сайт дає вам <strong>окрему точку контакту
-            з клієнтом</strong>, яку можна використовувати в рекламі та пошуку.
-          </p>
-        </div>
+{head_block(sy)}
       </div>
       <div class="shell shell--bleed">
         <div class="cells cells--2">
-          <article class="cell path" data-reveal>
-            <span class="path__tag">Тільки профіль у соцмережах</span>
-            <ol class="path__steps">
-              <li>Людина знаходить профіль</li>
-              <li>Шукає потрібну інформацію серед постів</li>
-              <li>Не бачить чіткої пропозиції та умов</li>
-              <li>Відкладає рішення або йде далі</li>
-            </ol>
-            <p class="path__note">Ви залежите від того, наскільки зручно людині шукати відповіді у стрічці.</p>
-          </article>
-
-          <article class="cell path path--accent" data-reveal>
-            <span class="path__tag">Сайт + Google Ads</span>
-            <ol class="path__steps">
-              <li>Людина шукає послугу в Google</li>
-              <li>Бачить ваше оголошення за своїм запитом</li>
-              <li>Потрапляє на сторінку з відповіддю на цей запит</li>
-              <li>Бачить пропозицію та залишає заявку</li>
-            </ol>
-            <p class="path__note">Ви контролюєте пропозицію, шлях клієнта та бачите, звідки приходять заявки.</p>
-          </article>
+{chr(10).join(paths)}
         </div>
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ lead magnet
-write("leadmagnet.html", '''    <!-- ================= ЛІД-МАГНІТ ================= -->
-    <section class="section rule deco">
+# ================================================================= MISSION (new)
+mi = SECT["mission"]
+pillars = "\n".join(f'''          <article class="mission__pillar" data-reveal>
+            <span class="mission__num">{pl["n"]}</span>
+            <h3>{pl["title"]}</h3>
+            <p>{pl["desc"]}</p>
+          </article>''' for pl in mi["pillars"])
+write("mission.html", f'''    <!-- ================= МІСІЯ ================= -->
+    <section class="section mission band band--dark rule" id="mission" data-nav-dark>
+      <div class="channel channel--top" aria-hidden="true"></div>
       <div class="shell">
-        <div class="head head--center" data-reveal>
-          <span class="tag tag--ok">Безкоштовно</span>
-          <h2>Хочете дізнатися, як ваш бізнес виглядає <span class="tt">на фоні конкурентів?</span></h2>
-          <p class="lead" style="margin-inline:auto">
-            Безкоштовно проаналізуємо вашу нішу, конкурентів та присутність бізнесу в інтернеті.
-            Покажемо, <strong>що можна покращити</strong> та з чого варто почати.
-          </p>
-          <p style="margin-top:28px">
-            <button class="btn btn--accent btn--lg" data-modal-open data-modal-topic="Безкоштовний аналіз ніші">
-              Отримайте безкоштовний аналіз <span class="btn__arrow">→</span>
-            </button>
-          </p>
-        </div>
-      </div>
-    </section>
-''')
-
-# ------------------------------------------------------------------ pricing
-PKG1 = ["Аналіз ніші", "Аналіз конкурентів", "Сучасний адаптивний сайт", "Базова SEO-підготовка",
-        "Налаштування Google Ads", "Запуск першої рекламної кампанії", "7 днів супроводу"]
-PKG2 = ["Поглиблений аналіз ніші", "Складніша структура сайту", "Адаптивний дизайн",
-        "Розширені функціональні можливості", "Поглиблене налаштування Google Ads",
-        "Motion-анімації", "Аналітика"]
-
-write("pricing.html", f'''    <!-- ================= ПАКЕТИ ================= -->
-    <section class="section section--alt rule" id="packages">
-      <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Пакети послуг</span>
-          <h2>Оберіть, що потрібно вашому бізнесу. <span class="tt">Ціна відома заздалегідь.</span></h2>
+        <div class="mission__head" data-reveal>
+          <span class="tag">{mi["tag"]}</span>
+          <h2>{mi["title"]} <span class="tt">{mi["title_2"]}</span></h2>
+          <p class="lead">{mi["lead"]}</p>
         </div>
       </div>
       <div class="shell shell--bleed">
-        <div class="pkgs">
-          <article class="pkg pkg--featured" data-reveal>
-            <span class="pkg__badge">РЕКОМЕНДОВАНО</span>
-            <h3 class="pkg__title">Сайт + Google Ads</h3>
-            <p class="pkg__price">
-              <span class="pkg__amount">9 999 ₴</span>
-              <span class="pkg__term">3–7 днів</span>
-            </p>
-            <ul class="checklist">
-{checks(PKG1)}
-            </ul>
-            <p class="pkg__note">* Рекламний бюджет сплачується окремо.</p>
-            <button class="btn btn--primary btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Сайт + Google Ads — 9 999 ₴">Замовити <span class="btn__arrow">→</span></button>
-          </article>
-
-          <article class="pkg" data-reveal>
-            <h3 class="pkg__title">Складний сайт + Google Ads</h3>
-            <p class="pkg__price">
-              <span class="pkg__amount">18 999 ₴</span>
-              <span class="pkg__term">5–10 днів</span>
-            </p>
-            <ul class="checklist">
-{checks(PKG2)}
-            </ul>
-            <button class="btn btn--ghost btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="Складний сайт + Google Ads — 18 999 ₴">Обговорити проєкт <span class="btn__arrow">→</span></button>
-          </article>
+        <div class="mission__grid">
+{pillars}
         </div>
+      </div>
+      <div class="shell">
+        <p class="mission__statement" data-reveal>{mi["statement"]}</p>
       </div>
     </section>
 ''')
 
-# ------------------------------------------------------------------ services (vertical tabs)
-MOTION_SPLIT = '''            <div class="svc__split">
-              <div class="svc__branch">
-                <span class="svc__branch-tag">Напрям 1</span>
-                <h4>Motion для сайту та бренду</h4>
-                <p>Перетворюємо статичний бренд на єдину візуальну систему в русі. Анімуємо логотип,
-                  елементи айдентики та графіку сайту так, щоб бренд виглядав цілісно — від першого
-                  екрана до мікроанімацій.</p>
-                <p class="svc__branch-why">Motion допомагає зробити взаємодію з брендом впізнаваною
-                  та послідовною, а сайт — більш виразним і живим.</p>
-              </div>
-              <div class="svc__branch">
-                <span class="svc__branch-tag">Напрям 2</span>
-                <h4>Motion для реклами та соцмереж</h4>
-                <p>Показуємо ваш продукт у русі, щоб його було легше помітити та зрозуміти. Створюємо
-                  короткі анімовані рекламні ролики, product-анімації та контент для Reels, Stories
-                  і рекламних кампаній.</p>
-                <p class="svc__branch-why">Замість статичної картинки показуємо продукт, його функції
-                  або переваги через рух і короткий сценарій: товар → відкривається → показуємо
-                  функцію → демонструємо перевагу → CTA.</p>
-              </div>
-            </div>
-'''
-
-SERVICES = [
-    dict(id="web", index="01 — WEB", nav="Створення сайтів", navsub="Landing page та складні проєкти",
-         title="Створення сайтів",
-         tagline="Сайти, які працюють на залучення клієнтів, а не просто красиво виглядають.",
-         price="9 999 ₴", term="3–7 днів",
-         what="У SkyBreeze ми продумуємо сайт як інструмент продажів: формуємо сильну пропозицію, "
-              "вибудовуємо структуру, додаємо необхідні елементи довіри та скорочуємо шлях клієнта від "
-              "першого відвідування до заявки. Після запуску можемо підключити Google Ads і приводити "
-              "потенційних клієнтів прямо на розроблений для вас сайт.",
-         why="Сайт стає вашою власною точкою контакту з клієнтом, де ви контролюєте пропозицію, "
-             "інформацію про бізнес та шлях до заявки.",
-         gets=["Структуру сторінки під вашу пропозицію",
-               "Сучасний адаптивний дизайн під мобільні та десктоп",
-               "Тексти та блоки довіри: послуги, роботи, контакти",
-               "Форми заявки та зручні способи звʼязку",
-               "Базову SEO-підготовку під пошук",
-               "Готовність підключити Google Ads одразу після запуску"],
-         result="Ви отримуєте власний майданчик, на який можна вести рекламний і пошуковий трафік, "
-                "і де клієнту зрозуміло, що ви пропонуєте та як залишити заявку.",
-         note=None, cta="Замовити сайт", topic="Тільки сайт", extra=""),
-
-    dict(id="ads", index="02 — ADS", nav="Google Ads", navsub="Реклама в пошуку під запит клієнта",
-         title="Google Ads",
-         tagline="Допомагаємо потенційним клієнтам знаходити ваш бізнес саме тоді, коли вони шукають послугу.",
-         price="5 999 ₴", term="запуск під ключ",
-         what="Аналізуємо нішу та попит, налаштовуємо рекламні кампанії, підключаємо аналітику та "
-              "направляємо рекламний трафік на сторінку, яка відповідає запиту клієнта.",
-         why="Якщо людина вже шукає вашу послугу, реклама дозволяє показати їй вашу пропозицію "
-             "саме в цей момент, а не чекати, поки вона випадково знайде ваш бізнес.",
-         gets=["Аналіз ніші, попиту та конкурентів",
-               "Пошукові запити й мінус-слова під ваші послуги",
-               "Налаштовані та запущені кампанії в Google Ads",
-               "Підключену аналітику та відстеження заявок",
-               "Звʼязку «запит → оголошення → відповідна сторінка»",
-               "Подальшу оптимізацію за результатами перших тижнів"],
-         result="Працюємо на залучення цільового трафіку та заявок: вашу пропозицію бачать люди "
-                "з активним запитом, а рішення щодо кампаній ухвалюємо на основі аналітики.",
-         note="Рекламний бюджет сплачується окремо напряму в Google. Кількість клієнтів залежить "
-              "від ніші, попиту та бюджету, тому ми не обіцяємо гарантованих цифр.",
-         cta="Замовити рекламу", topic="Тільки Google Ads", extra=""),
-
-    dict(id="motion", index="03 — MOTION", nav="Motion Design", navsub="Анімації для бренду та реклами",
-         title="Motion Design",
-         tagline="Анімуємо логотип і вибудовуємо єдину систему руху для всього бренду.",
-         price="1 000 ₴", term="анімація логотипа",
-         what="Motion — це не «анімації на сайті». Плавні появи блоків і ховери входять у "
-              "розробку сайту за замовчуванням. Motion починається там, де рухається сам бренд: "
-              "анімований логотип, заставка та єдина система руху для всіх матеріалів.",
-         why="Анімований знак упізнається швидше за статичний і працює скрізь: на сайті, у відео, "
-             "у сторіс і в рекламі. Бренд виглядає як одне ціле, а не як набір різних матеріалів.",
-         gets=["Анімований логотип у форматах для сайту, соцмереж і відео",
-               "Вихідники під світлий і темний фон",
-               "Коротку заставку для роликів і Reels",
-               "У пакеті «система бренду» — анімації блоків сайту та переходів",
-               "Єдиний ритм і тайминги для всіх анімацій бренду"],
-         result="Ви отримуєте знак у русі й правила, за якими рухається все інше — тому нові банери, "
-                "ролики та сторінки виглядають в одному стилі.",
-         extra_price=("Анімаційна система бренду", "3 000 ₴",
-                      "Логотип у русі плюс анімації блоків сайту, переходів і заставок — за єдиними таймингами."),
-         note=None, cta="Замовити Motion", topic="Motion Design", extra=MOTION_SPLIT),
-
-    dict(id="seo", index="04 — SEO", nav="SEO-оптимізація", navsub="Повне on-page SEO сайту",
-         title="SEO-оптимізація",
-         tagline="Робимо так, щоб сайт знаходили в пошуку — не тільки через рекламу.",
-         price="$400", term="разово, повне on-page SEO",
-         what="Проводимо повну on-page оптимізацію: технічний аудит, структуру та заголовки, "
-              "метадані, швидкість завантаження, мікророзмітку, внутрішні посилання й тексти "
-              "під реальні пошукові запити вашої ніші.",
-         why="Реклама працює, поки за неї платять. Пошукова видача дає трафік і тоді, коли "
-             "кампанії вимкнені, тому це вкладення на довшу дистанцію.",
-         gets=["Технічний аудит сайту з переліком помилок",
-               "Семантику та розподіл запитів по сторінках",
-               "Оптимізовані title, description і структуру заголовків",
-               "Прискорення завантаження та роботу з Core Web Vitals",
-               "Мікророзмітку й коректну індексацію в Google",
-               "Рекомендації щодо контенту на наступні місяці"],
-         result="Сайт стає зрозумілим для пошукових систем і користувача: сторінки відповідають "
-                "запитам, швидко відкриваються та коректно потрапляють в індекс.",
-         extra_price=("Просування далі", "$200 / місяць",
-                      "Щомісячна робота: нові запити, тексти, посилання та звіт по видачі."),
-         note="SEO має накопичувальний ефект: перші зміни у видачі зазвичай помітні за 1–3 місяці. "
-              "Строки та позиції залежать від ніші й конкуренції, тому конкретних місць ми не обіцяємо.",
-         cta="Замовити SEO", topic="SEO-оптимізація", extra=""),
-
-    dict(id="bots", index="05 — BOTS", nav="Telegram-боти", navsub="Заявки та підтримка в месенджері",
-         title="Telegram-боти",
-         tagline="Автоматизуємо заявки, запис і типові питання прямо в месенджері.",
-         price="5 000 ₴", term="за бота",
-         what="Створюємо бота під ваш сценарій: приймання заявок, онлайн-запис, каталог, "
-              "відповіді на часті питання, сповіщення менеджеру та вивантаження звернень.",
-         why="Клієнт уже сидить у Telegram — бот приймає звернення о будь-якій годині й не змушує "
-             "людину чекати відповіді менеджера.",
-         gets=["Сценарій діалогу під вашу задачу",
-               "Приймання заявок і передачу їх менеджеру",
-               "Меню з послугами, каталогом або записом",
-               "Сповіщення в особистий чат або робочу групу",
-               "Адмін-команди та експорт заявок",
-               "Підключення до вашого каналу чи групи"],
-         result="Типові звернення обробляються без участі людини, а заявки приходять у месенджер "
-                "у зручному форматі — з іменем, контактом і запитом.",
-         note=None, cta="Замовити бота", topic="Telegram-бот", extra=""),
-
-    dict(id="miniapp", index="06 — MINI APP", nav="Telegram Mini App", navsub="Застосунок усередині Telegram",
-         title="Telegram Mini App",
-         tagline="Повноцінний інтерфейс усередині Telegram — без встановлення застосунку.",
-         price="5 000 ₴", term="за застосунок",
-         what="Mini App відкривається прямо в Telegram: каталог із кошиком, форма запису, "
-              "особистий кабінет, калькулятор вартості чи будь-який інший екран під вашу задачу.",
-         why="Людина не виходить із месенджера й не встановлює нічого додатково — шлях від інтересу "
-             "до заявки коротший, ніж через застосунок у сторі.",
-         gets=["Інтерфейс у стилі Telegram, адаптований під мобільний",
-               "Каталог, форму або калькулятор під вашу послугу",
-               "Авторизацію через обліковий запис Telegram",
-               "Передачу замовлення менеджеру або в оплату",
-               "Адмінку для оновлення контенту за потреби"],
-         result="Клієнт оформлює замовлення чи запис за кілька дотиків, не залишаючи Telegram, "
-                "а ви отримуєте структуровану заявку.",
-         note=None, cta="Замовити Mini App", topic="Telegram Mini App", extra=""),
-]
-
+# ================================================================= SERVICES (vtabs)
+sv = load("services.json")
 rail = "\n".join(
     f'''            <button class="vtabs__btn" id="tab-{s["id"]}" role="tab" aria-controls="panel-{s["id"]}"
               aria-selected="{"true" if i == 0 else "false"}" tabindex="{0 if i == 0 else -1}">
-              {s["nav"]}<small>{s["navsub"]}</small>
-            </button>''' for i, s in enumerate(SERVICES))
+              <span class="vtabs__idx">{s["index"]}</span>{s["nav"]}<small>{s["navsub"]}</small>
+            </button>''' for i, s in enumerate(sv["items"]))
 
 panels = []
-for i, s in enumerate(SERVICES):
+for i, s in enumerate(sv["items"]):
     note = f'\n                <p class="svc__note">{s["note"]}</p>' if s.get("note") else ""
+    branches = ""
+    if s.get("branches"):
+        cols = "\n".join(f'''              <div class="svc__branch">
+                <span class="svc__branch-tag">{b["tag"]}</span>
+                <h4>{b["title"]}</h4>
+                <p>{b["desc"]}</p>
+                <p class="svc__branch-why">{b["why"]}</p>
+              </div>''' for b in s["branches"])
+        branches = f'''            <div class="svc__split">
+{cols}
+            </div>
+'''
     extra_price = ""
     if s.get("extra_price"):
-        label, sum_, desc = s["extra_price"]
+        ep = s["extra_price"]
         extra_price = f'''
-                <div class="svc__second">
-                  <div>
-                    <span class="svc__second-label">{label}</span>
-                    <p>{desc}</p>
-                  </div>
-                  <strong>{sum_}</strong>
-                </div>'''
+              <div class="svc__second">
+                <div>
+                  <span class="svc__second-label">{ep["label"]}</span>
+                  <p>{ep["desc"]}</p>
+                </div>
+                <strong>{ep["price"]}</strong>
+              </div>'''
     panels.append(f'''            <div class="vtabs__panel" id="panel-{s["id"]}" role="tabpanel" aria-labelledby="tab-{s["id"]}" tabindex="0"{"" if i == 0 else " hidden"}>
+              <span class="svc__ghost" aria-hidden="true">{s["index"]}</span>
               <div class="svc__top">
                 <div>
-                  <span class="svc__index">{s["index"]}</span>
+                  <span class="svc__index">{s["index"]} — {s["code"]}</span>
                   <h3 class="svc__title">{s["title"]}</h3>
                   <p class="svc__tagline">{s["tagline"]}</p>
                 </div>
@@ -492,7 +265,7 @@ for i, s in enumerate(SERVICES):
                 </div>
               </div>
 
-{s["extra"]}              <div class="svc__grid">
+{branches}              <div class="svc__grid">
                 <div class="svc__col">
                   <h4>Що ви отримаєте</h4>
                   <ul class="checklist">
@@ -504,7 +277,6 @@ for i, s in enumerate(SERVICES):
                   <p>{s["result"]}</p>{note}
                 </div>
               </div>
-
 {extra_price}
               <div class="svc__foot">
                 <p class="svc__from"><span>Вартість</span><strong>{s["price"]}</strong></p>
@@ -513,16 +285,9 @@ for i, s in enumerate(SERVICES):
             </div>''')
 
 write("services.html", f'''    <!-- ================= ПОСЛУГИ ================= -->
-    <section class="section rule" id="services">
+    <section class="section band band--light rule" id="services">
       <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Наші послуги</span>
-          <h2>Що вам потрібно? <span class="tt">Оберіть напрям — і побачите повну картку послуги.</span></h2>
-          <p class="lead">
-            Усередині кожної картки: що це, навіщо це бізнесу, <strong>що саме ви отримаєте</strong>,
-            якого результату очікувати та скільки це коштує.
-          </p>
-        </div>
+{head_block(sv)}
       </div>
       <div class="shell shell--bleed">
         <div class="vtabs">
@@ -537,225 +302,65 @@ write("services.html", f'''    <!-- ================= ПОСЛУГИ ===========
     </section>
 ''')
 
-# ------------------------------------------------------------------ after
-AFTER = [
-    ("01", "Розбираємося у вашому бізнесі", "Що продаєте, кому, як зараз приходять клієнти та що вже пробували."),
-    ("02", "Аналізуємо нішу та задачу", "Дивимося на попит, конкурентів і те, як вас бачить клієнт у пошуку."),
-    ("03", "Пропонуємо оптимальний формат", "Показуємо, що доцільно зробити першим кроком, зі строками та вартістю."),
-    ("04", "Створюємо та запускаємо", "Робимо сайт, налаштовуємо рекламу й аналітику, узгоджуємо на кожному етапі."),
-    ("05", "Аналізуємо перші результати", "Дивимося на дані після запуску та коригуємо сторінку й кампанії."),
-]
-after_rows = "\n".join(f'''          <li class="flow__item" data-reveal>
-            <span class="flow__num">{n}</span>
-            <div>
-              <h3>{t}</h3>
-              <p>{d}</p>
-            </div>
-          </li>''' for n, t, d in AFTER)
-
-write("after.html", f'''    <!-- ================= ПІСЛЯ ЗАЯВКИ ================= -->
-    <section class="section section--alt rule" id="after">
+# ================================================================= PRICING
+pc = load("pricing.json")
+pkgs = []
+for pk in pc["packages"]:
+    feat = " pkg--featured" if pk["featured"] else ""
+    badge = f'\n            <span class="pkg__badge">{pk["badge"]}</span>' if pk.get("badge") else ""
+    note = f'\n            <p class="pkg__note">{pk["note"]}</p>' if pk.get("note") else ""
+    btn = "btn--primary" if pk["featured"] else "btn--line"
+    pkgs.append(f'''          <article class="pkg{feat}" data-reveal>{badge}
+            <h3 class="pkg__title">{pk["title"]}</h3>
+            <p class="pkg__price">
+              <span class="pkg__amount">{pk["amount"]}</span>
+              <span class="pkg__term">{pk["term"]}</span>
+            </p>
+            <ul class="checklist">
+{checks(pk["items"])}
+            </ul>{note}
+            <button class="btn {btn} btn--wide btn--lg pkg__cta" data-modal-open data-modal-topic="{pk["topic"]}">{pk["cta"]} <span class="btn__arrow">→</span></button>
+          </article>''')
+write("pricing.html", f'''    <!-- ================= ПАКЕТИ ================= -->
+    <section class="section band band--dark rule" id="packages" data-nav-dark>
       <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">Далі</span>
-          <h2>Що відбувається після заявки? <span class="tt">Ніяких зобовʼязань на першому кроці.</span></h2>
-          <p class="lead">
-            Спочатку розбираємося в задачі, а вже потім пропонуємо <strong>формат і вартість</strong>.
-          </p>
-        </div>
+{head_block({"tag": pc["tag"], "title": pc["title"], "title_2": pc.get("title_2")})}
       </div>
       <div class="shell shell--bleed">
-        <ol class="flow">
-{after_rows}
-        </ol>
-      </div>
-    </section>
-''')
-
-# ------------------------------------------------------------------ faq
-FAQ = [
-    ("Скільки коштує сайт?",
-     "Сайт + Google Ads — 9 999 ₴, складніший проєкт — 18 999 ₴. Ціна фіксована: ви знаєте суму до старту."),
-    ("Скільки часу займає розробка?",
-     "Типовий сайт запускаємо приблизно за 3–7 днів. Складніші проєкти можуть потребувати більше часу."),
-    ("Чи входить рекламний бюджет?",
-     "Ні. У вартість входить повне налаштування та ведення реклами. Рекламний бюджет сплачується "
-     "окремо напряму в Google, і ви завжди бачите, скільки витрачено."),
-    ("Чи можна замовити тільки сайт?",
-     "Так. Також можна замовити тільки рекламу на вже існуючий сайт або тільки motion-анімації."),
-    ("Чи працюєте ви з існуючими сайтами?",
-     "Так. Можемо доопрацювати структуру та сторінки під рекламу або підключити Google Ads "
-     "до сайту, який у вас уже є."),
-    ("Чи можна замовити тільки рекламу?",
-     "Так — 5 999 ₴. Перед запуском подивимося, чи готова сторінка приймати трафік, "
-     "і скажемо, що варто підправити."),
-    ("Чи можна зробити motion для мого бренду?",
-     "Так. Анімуємо логотип та айдентику, робимо мікроанімації для сайту, а також ролики "
-     "для реклами, Reels і Stories."),
-    ("Скільки коштує SEO?",
-     "Повне on-page SEO сайту — $400 разово. Подальше просування — $200 на місяць: нові запити, "
-     "тексти, посилання та звіт по видачі."),
-    ("Скільки коштує Telegram-бот або Mini App?",
-     "По 5 000 ₴ за кожен. Бот приймає заявки й відповідає на типові питання, Mini App — це "
-     "повноцінний інтерфейс усередині Telegram."),
-    ("Чим motion відрізняється від анімацій на сайті?",
-     "Плавні появи блоків і ховери входять у розробку сайту й окремо не тарифікуються. "
-     "Motion — це рух самого бренду: анімований логотип і заставка — 1 000 ₴, повна система "
-     "руху для бренду — 3 000 ₴."),
-    ("Чи гарантуєте ви кількість клієнтів?",
-     "Ні, і не обіцяємо цифр наперед: результат залежить від ніші, попиту та бюджету. "
-     "Ми працюємо на залучення цільового трафіку та заявок і ухвалюємо рішення на основі аналітики."),
-]
-faq_rows = "\n".join(f'''          <div class="faq__item">
-            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a{i}" id="faq-q{i}">{q}<span class="faq__icon" aria-hidden="true"></span></button></h3>
-            <div class="faq__a" id="faq-a{i}" role="region" aria-labelledby="faq-q{i}"><div><p>{a}</p></div></div>
-          </div>''' for i, (q, a) in enumerate(FAQ, 1))
-
-write("faq.html", f'''    <!-- ================= FAQ ================= -->
-    <section class="section rule" id="faq">
-      <div class="shell">
-        <div class="head" data-reveal>
-          <span class="tag">FAQ</span>
-          <h2>Часті запитання. <span class="tt">Відповідаємо прямо.</span></h2>
-        </div>
-      </div>
-      <div class="shell shell--bleed">
-        <div class="faq">
-{faq_rows}
-        </div>
-      </div>
-      <div class="shell">
-        <button class="section-link" data-modal-open data-reveal>
-          <span>Не знайшли відповідь? Запитайте нас напряму</span>
-          <span class="arrow-loop">→</span>
-        </button>
-      </div>
-    </section>
-''')
-
-# ------------------------------------------------------------------ portfolio
-CASES = [
-    ('ashad', 'Ashad Barbershop', 'Сайт · Онлайн-запис',
-     'Барбершопу потрібен був сайт, який показує майстрів, послуги та ціни й приймає запис онлайн.',
-     'Зібрали односторінковий сайт із чіткою структурою: послуги з цінами, майстри, галерея робіт '
-     'і запис у кілька дотиків. Адаптив під мобільний у пріоритеті.',
-     'Живий сайт, на який можна вести рекламу та посилання із соцмереж.',
-     'eager'),
-    ('ferdinant', 'Ferdinant Barbershop', 'Сайт · Google Ads',
-     'Барбершопу потрібна була власна точка контакту з клієнтом замість профілю в соцмережах.',
-     'Зробили сайт-візитівку з чіткою пропозицією, послугами, роботами майстрів і онлайн-записом, '
-     'та підготували сторінку під пошукову рекламу.',
-     'Клієнт бачить умови й записується прямо на сайті, а сторінка готова приймати рекламний трафік.',
-     'eager'),
-    ('noirveil', 'Noirveil', 'E-commerce · Motion',
-     'Бренду одягу був потрібен магазин, який передає характер бренду й не гальмує на мобільних.',
-     'Побудували каталог із швидкою навігацією, вибудували картку товару та додали motion-переходи в айдентиці бренду.',
-     'Єдина візуальна подача бренду й зрозумілий шлях від каталогу до кошика.', 'eager'),
-    ('yesornot', 'Yes or Not', 'E-commerce',
-     'Streetwear-бренд заходив переважно з мобільного трафіку соцмереж.',
-     'Спроєктували структуру під продажі: акцент на добірках, короткий шлях до товару, адаптив під мобільний екран у пріоритеті.',
-     'Мобільний користувач доходить від першого екрана до товару за кілька кроків.', 'lazy'),
-    ('slimlab', 'SlimLab', 'Сайт · Аналітика',
-     'У медичному напрямі клієнту важливо швидко зрозуміти суть послуги та умови.',
-     'Розклали послуги зрозумілими блоками, додали елементи довіри й форми запису, підключили наскрізну аналітику.',
-     'Заявки приходять із зафіксованим джерелом, тому видно, які сторінки працюють.', 'lazy'),
-    ('kyparis', 'Kyparis', 'Сайт · SEO',
-     'Бренду був потрібен іміджевий сайт, який добре виглядає й індексується пошуком.',
-     'Зробили стриману типографічну подачу та базову SEO-підготовку: структура заголовків, метадані, швидкість завантаження.',
-     'Сайт коректно віддається пошуку й тримає єдиний візуальний стиль бренду.', 'lazy'),
-    ('jaydee', 'Jaydee Mediakit', 'Landing · Motion',
-     'Інфлюенсеру потрібно було показувати статистику й формати співпраці рекламодавцям.',
-     'Зібрали цифровий медіакіт: динамічна подача цифр, кейси та формати розміщення на одній сторінці.',
-     'Замість файлу-презентації — посилання, яке можна відправити рекламодавцю в будь-який момент.', 'lazy'),
-]
-LIVE = {"ashad": "https://bashevnik.github.io/ashad-barbershop"}
-VIDEO = {"ashad": "public/assets/motion/ashad.mp4"}
-EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
-       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-       '<path d="M7 17 17 7M9 7h8v8"/></svg>')
-
-
-def work_card(s, n, t, task, sol, res, l):
-    live = LIVE.get(s)
-    clip = VIDEO.get(s)
-    if clip:
-        # a screen recording of the live site reads better than a flat shot
-        shot = (f'<div class="work__shot work__shot--video">'
-                f'<video src="{clip}" autoplay muted loop playsinline preload="metadata" '
-                f'aria-label="{n} — запис сайту"></video></div>')
-        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
-    elif live:
-        shot = (f'<a class="work__shot work__shot--link" href="{live}" target="_blank" rel="noopener">'
-                f'<b>{n}</b><span>Відкрити сайт у новій вкладці</span></a>')
-        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
-    else:
-        shot = (f'<div class="work__shot"><img src="public/assets/screenshots/{s}.webp" '
-                f'alt="{n} — проєкт SkyBreeze" loading="{l}" /></div>')
-        cta = ''
-    return f'''          <article class="work" data-reveal>
-            {shot}
-            <div class="work__body">
-              <span class="work__tag">{t}</span>
-              <h3>{n}</h3>
-              <dl class="case">
-                <dt>Задача</dt><dd>{task}</dd>
-                <dt>Рішення</dt><dd>{sol}</dd>
-                <dt>Результат</dt><dd>{res}</dd>
-              </dl>{cta}
-            </div>
-          </article>'''
-
-
-work_cells = "\n".join(work_card(*c) for c in CASES)
-
-write("portfolio.html", f'''    <section class="page-head">
-      <div class="shell">
-        <div data-hero>
-          <span class="tag">Портфоліо</span>
-          <h1>Роботи, створені <span class="tt">під конкретні бізнес-задачі</span></h1>
-          <p class="lead">
-            Для кожного проєкту показуємо, з якою задачею прийшов клієнт, що ми зробили
-            та що це дало. <strong>Без вигаданих цифр</strong> — лише те, що можемо підтвердити.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="shell">
-        <div class="works">
-{work_cells}
+        <div class="pkgs">
+{chr(10).join(pkgs)}
         </div>
       </div>
     </section>
 ''')
 
-print("done")
-
-# ------------------------------------------------------------------ motion demo
-# The logo animation is real work. The comparison below it is built in code —
-# to swap in footage see MOTION-ASSETS.md.
-write("motion.html", """    <!-- ================= MOTION У ДІЇ ================= -->
-    <section class="section rule deco" id="motion">
+# ================================================================= MOTION
+mo = load("motion.json")
+notes = "\n".join(f'''            <div class="motion__note">
+              <h3>{n["title"]}</h3>
+              <p>{n["desc"]}</p>
+            </div>''' for n in mo["notes"])
+mcards = []
+for c in mo["cards"]:
+    tagcls = "tag tag--plain" if c.get("tag_plain") else "tag"
+    mcards.append(f'''          <article class="cell" data-reveal>
+            <span class="{tagcls}">{c["tag"]}</span>
+            <h3>{c["title"]}</h3>
+            <p>{c["desc"]}</p>
+            <p class="cell__price"><span>{c["price_label"]}</span><strong>{c["price"]}</strong></p>
+          </article>''')
+write("motion.html", f'''    <!-- ================= MOTION У ДІЇ ================= -->
+    <section class="section band band--light rule" id="motion">
       <div class="shell">
-        <div class="head head--center" data-reveal>
-          <span class="tag">Motion у дії</span>
-          <h2>Логотип у русі — і сайт, який веде за собою.</h2>
-          <p class="lead">
-            Motion — це рух самого бренду: анімований знак, заставка, єдині тайминги.
-            Плавні появи блоків і ховери — це вже <strong>частина розробки сайту</strong>,
-            і вони входять у вартість. Нижче — один і той самий знак статично та в русі,
-            а під ним блок сайту без анімацій і з ними.
-          </p>
-        </div>
+{head_block(mo, center=True)}
       </div>
 
       <div class="shell shell--bleed">
         <div class="mv">
           <figure class="mv__side">
             <figcaption>
-              <span class="tag tag--plain">Без motion</span>
-              <span>Статичний кадр. Знак просто лежить на екрані.</span>
+              <span class="tag tag--plain">{mo["before_tag"]}</span>
+              <span>{mo["before_desc"]}</span>
             </figcaption>
             <div class="mv__frame">
               <video src="public/assets/motion/logo-reveal.mp4" muted playsinline
@@ -766,8 +371,8 @@ write("motion.html", """    <!-- ================= MOTION У ДІЇ ============
 
           <figure class="mv__side mv__side--live">
             <figcaption>
-              <span class="tag">З motion</span>
-              <span>Той самий знак у русі — наша анімація логотипа.</span>
+              <span class="tag">{mo["after_tag"]}</span>
+              <span>{mo["after_desc"]}</span>
             </figcaption>
             <div class="mv__frame">
               <video src="public/assets/motion/logo-reveal.mp4" autoplay muted loop playsinline
@@ -816,94 +421,47 @@ write("motion.html", """    <!-- ================= MOTION У ДІЇ ============
           </div>
 
           <div class="motion__notes">
-            <div class="motion__note">
-              <h3>Без анімацій</h3>
-              <p>Усе з’являється одночасно. Око саме шукає, з чого почати й що тут головне.</p>
-            </div>
-            <div class="motion__note">
-              <h3>З анімаціями</h3>
-              <p>Сцена веде за собою: спершу пропозиція, далі продукт, наприкінці — кнопка.</p>
-            </div>
+{notes}
           </div>
         </div>
       </div>
 
       <div class="shell shell--bleed">
         <div class="cells cells--2">
-          <article class="cell" data-reveal>
-            <span class="tag tag--plain">Входить у розробку сайту</span>
-            <h3>Анімації інтерфейсу</h3>
-            <p>
-              Плавні появи блоків, ховери кнопок, переходи між станами, мікровідгук на дію.
-              Це частина роботи над сайтом — окремо не тарифікується.
-            </p>
-            <p class="cell__price"><span>У вартості сайту</span><strong>9 999 ₴</strong></p>
-          </article>
-
-          <article class="cell" data-reveal>
-            <span class="tag">Окрема послуга</span>
-            <h3>Motion бренду</h3>
-            <p>
-              Анімований логотип і заставка — <strong>1 000 ₴</strong>. Повна система руху для
-              бренду: знак, анімації блоків сайту, переходи та заставки за єдиними таймингами —
-              <strong>3 000 ₴</strong>.
-            </p>
-            <p class="cell__price"><span>Логотип / система</span><strong>1 000 ₴ · 3 000 ₴</strong></p>
-          </article>
+{chr(10).join(mcards)}
         </div>
       </div>
 
       <div class="shell">
-        <a class="section-link" href="#panel-motion" data-reveal>
-          <span>Подивитися, що входить у Motion Design</span>
-          <span class="arrow-loop">→</span>
-        </a>
+{section_link("#panel-motion", mo["link"])}
       </div>
     </section>
-""")
+''')
 
-# ------------------------------------------------------------------ tech stack
-STACK_ROW_1 = [
-    ("HTML", "HTML5"), ("CSS", "CSS3"), ("JS", "JavaScript"), ("TS", "TypeScript"),
-    ("Re", "React"), ("N", "Next.js"), ("Ng", "Angular"), ("V", "Vue"),
-    ("TW", "Tailwind"), ("Sa", "Sass"), ("Nd", "Node.js"), ("Ja", "Java"),
-    ("Sp", "Spring"), ("C#", "C#"), ("NET", ".NET"), ("ASP", "ASP.NET Core"),
-    ("C++", "C++"), ("Py", "Python"),
-]
-STACK_ROW_2 = [
-    ("Dj", "Django"), ("PHP", "PHP"), ("Lv", "Laravel"), ("WP", "WordPress"),
-    ("Wo", "WooCommerce"), ("Sh", "Shopify"), ("My", "MySQL"), ("PG", "PostgreSQL"),
-    ("Mg", "MongoDB"), ("Dk", "Docker"), ("Git", "Git"), ("Fg", "Figma"),
-    ("Ae", "After Effects"), ("Pr", "Premiere Pro"), ("Ads", "Google Ads"),
-    ("GA4", "Analytics 4"), ("GTM", "Tag Manager"),
-]
+# ================================================================= TECH STACK
+st = load("stack.json")
+
 
 def stack_row(items, indent=12):
     pad = " " * indent
-    # the list is written twice so the track can loop seamlessly
     one = "\n".join(
         f'{pad}<li class="tick__item"><span class="tick__tile">{code}</span>'
         f'<span class="tick__name">{name}</span></li>' for code, name in items)
     dup = one.replace('<li class="tick__item">', '<li class="tick__item" aria-hidden="true">')
     return one + "\n" + dup
 
-row1 = stack_row(STACK_ROW_1)
-row2 = stack_row(STACK_ROW_2)
 
-write("stack.html", """    <!-- ================= ТЕХНОЛОГІЇ ================= -->
-    <section class="stack rule" id="stack" data-nav-dark>
+row1 = stack_row(st["row1"])
+row2 = stack_row(st["row2"])
+tt = f' <span class="tt">{st["title_2"]}</span>' if st.get("title_2") else ""
+write("stack.html", f'''    <!-- ================= ТЕХНОЛОГІЇ ================= -->
+    <section class="stack band band--dark rule" id="stack" data-nav-dark>
       <div class="shell">
         <div class="stack__head" data-reveal>
-          <span class="tag tag--on-ink">Технології</span>
-          <h2>Увесь стек — <span class="tt">під вашу задачу.</span></h2>
-          <p class="lead">
-            Не тягнемо кожен проєкт в один шаблон: обираємо інструменти під задачу — від
-            лендінга на чистому коді до магазину на WooCommerce чи складного застосунку.
-            <strong>Понад 30 технологій</strong> у роботі.
-          </p>
-          <a class="btn btn--on-ink btn--lg" href="#services">
-            Підібрати рішення <span class="btn__arrow">→</span>
-          </a>
+          <span class="tag">{st["tag"]}</span>
+          <h2>{st["title"]}{tt}</h2>
+          <p class="lead">{st["lead"]}</p>
+          <a class="btn btn--primary btn--lg" href="#services">{st["cta"]} <span class="btn__arrow">→</span></a>
         </div>
       </div>
 
@@ -911,15 +469,142 @@ write("stack.html", """    <!-- ================= ТЕХНОЛОГІЇ =========
         <div class="tick" aria-label="Технології, з якими ми працюємо">
           <div class="tick__row">
             <ul class="tick__track">
-__ROW1__
+{row1}
             </ul>
           </div>
           <div class="tick__row tick__row--back">
             <ul class="tick__track">
-__ROW2__
+{row2}
             </ul>
           </div>
         </div>
       </div>
     </section>
-""".replace("__ROW1__", row1).replace("__ROW2__", row2))
+''')
+
+# ================================================================= LEAD MAGNET
+lm = SECT["leadmagnet"]
+write("leadmagnet.html", f'''    <!-- ================= ЛІД-МАГНІТ ================= -->
+    <section class="section band band--light rule">
+      <div class="shell">
+        <div class="head head--center" data-reveal>
+          <span class="tag tag--ok">{lm["tag"]}</span>
+          <h2>{lm["title"]} <span class="tt">{lm["title_2"]}</span></h2>
+          <p class="lead" style="margin-inline:auto">{lm["lead"]}</p>
+          <p style="margin-top:28px">
+            <button class="btn btn--primary btn--lg" data-modal-open data-modal-topic="{lm["topic"]}">
+              {lm["cta"]} <span class="btn__arrow">→</span>
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
+''')
+
+# ================================================================= AFTER
+af = SECT["after"]
+after_rows = "\n".join(f'''          <li class="flow__item" data-reveal>
+            <span class="flow__num">{s["n"]}</span>
+            <div>
+              <h3>{s["title"]}</h3>
+              <p>{s["desc"]}</p>
+            </div>
+          </li>''' for s in af["steps"])
+write("after.html", f'''    <!-- ================= ПІСЛЯ ЗАЯВКИ ================= -->
+    <section class="section band band--dark rule" id="after" data-nav-dark>
+      <div class="shell">
+{head_block(af)}
+      </div>
+      <div class="shell shell--bleed">
+        <ol class="flow">
+{after_rows}
+        </ol>
+      </div>
+    </section>
+''')
+
+# ================================================================= FAQ
+fq = load("faq.json")
+faq_rows = "\n".join(f'''          <div class="faq__item">
+            <h3><button class="faq__q" aria-expanded="false" aria-controls="faq-a{i}" id="faq-q{i}">{it["q"]}<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a{i}" role="region" aria-labelledby="faq-q{i}"><div><p>{it["a"]}</p></div></div>
+          </div>''' for i, it in enumerate(fq["items"], 1))
+tt = f' <span class="tt">{fq["title_2"]}</span>' if fq.get("title_2") else ""
+write("faq.html", f'''    <!-- ================= FAQ ================= -->
+    <section class="section band band--light rule" id="faq">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <span class="tag">{fq["tag"]}</span>
+          <h2>{fq["title"]}{tt}</h2>
+        </div>
+      </div>
+      <div class="shell shell--bleed">
+        <div class="faq">
+{faq_rows}
+        </div>
+      </div>
+      <div class="shell">
+{section_link("#", "Не знайшли відповідь? Запитайте нас напряму", tag="button", attrs=" data-modal-open")}
+      </div>
+    </section>
+''')
+
+# ================================================================= PORTFOLIO
+pf = load("portfolio.json")
+EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+       '<path d="M7 17 17 7M9 7h8v8"/></svg>')
+
+
+def work_card(c):
+    n, t = c["name"], c["tag"]
+    live, clip, slug, l = c.get("live"), c.get("video"), c["slug"], c["loading"]
+    if clip:
+        shot = (f'<div class="work__shot work__shot--video">'
+                f'<video src="{clip}" autoplay muted loop playsinline preload="metadata" '
+                f'aria-label="{n} — запис сайту"></video></div>')
+        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
+    elif live:
+        shot = (f'<a class="work__shot work__shot--link" href="{live}" target="_blank" rel="noopener">'
+                f'<b>{n}</b><span>Відкрити сайт у новій вкладці</span></a>')
+        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
+    else:
+        shot = (f'<div class="work__shot"><img src="public/assets/screenshots/{slug}.webp" '
+                f'alt="{n} — проєкт SkyBreeze" loading="{l}" /></div>')
+        cta = ''
+    return f'''          <article class="work" data-reveal>
+            {shot}
+            <div class="work__body">
+              <span class="work__tag">{t}</span>
+              <h3>{n}</h3>
+              <dl class="case">
+                <dt>Задача</dt><dd>{c["task"]}</dd>
+                <dt>Рішення</dt><dd>{c["solution"]}</dd>
+                <dt>Результат</dt><dd>{c["result"]}</dd>
+              </dl>{cta}
+            </div>
+          </article>'''
+
+
+work_cells = "\n".join(work_card(c) for c in pf["cases"])
+tt = f' <span class="tt">{pf["title_2"]}</span>' if pf.get("title_2") else ""
+write("portfolio.html", f'''    <section class="page-head band band--dark" data-nav-dark>
+      <div class="shell">
+        <div data-hero>
+          <span class="tag">{pf["tag"]}</span>
+          <h1>{pf["title"]}{tt}</h1>
+          <p class="lead">{pf["lead"]}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--light">
+      <div class="shell">
+        <div class="works">
+{work_cells}
+        </div>
+      </div>
+    </section>
+''')
+
+print("done")
