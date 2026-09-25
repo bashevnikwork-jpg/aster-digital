@@ -281,7 +281,7 @@ strong, .em { color: var(--text); font-weight: 600; }
 }
 
 .logo { display: inline-flex; align-items: center; gap: 10px; flex: none; }
-.logo__mark { width: 30px; height: 30px; color: var(--brand); flex: none; display: block; }
+.logo__mark { height: 30px; aspect-ratio: 110 / 96; flex: none; display: block; }
 .logo__mark .mark { width: 100%; height: 100%; }
 .logo__word {
   font-family: var(--font-display); font-weight: 600;
@@ -858,7 +858,7 @@ strong, .em { color: var(--text); font-weight: 600; }
   .nav__right .btn { display: none; }
   .nav__burger { display: flex; }
   .logo__word { font-size: 1.2rem; }
-  .logo__mark { width: 26px; height: 26px; }
+  .logo__mark { height: 26px; }
   .cells--3 { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-grid > *:first-child { border-right: 0; }

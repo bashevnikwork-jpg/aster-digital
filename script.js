@@ -23,7 +23,8 @@
       }
 
       // the header takes the dark theme while a dark band passes behind it
-      var edge = nav.getBoundingClientRect().bottom - 2;
+      // (+6 so it also reads the dark hero sitting right below the bar at the top)
+      var edge = nav.getBoundingClientRect().bottom + 6;
       var overDark = false;
       Array.prototype.forEach.call(darkZones, function (zone) {
         var r = zone.getBoundingClientRect();
