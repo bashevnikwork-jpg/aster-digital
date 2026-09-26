@@ -2,18 +2,48 @@
 # -*- coding: utf-8 -*-
 """Static page builder for SkyBreeze.
 
-Topbar, nav, footer and the contact modal live here once and are stamped into
-every page, so a header change no longer means editing three HTML files.
+Shell (topbar, nav, footer, contact modal, closing CTA) lives here once and is
+stamped into every page. All editable business content is read from content/*.json
+so it can be driven from Google Drive — see sync_drive.py and CONTENT-EDITING.md.
 
     python3 parts.py && python3 build.py
 """
 
+import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
+CONTENT = ROOT / "content"
+NL = "\n"
 
-GTM_ID = 'GTM-5FRPXNZQ'
+
+def load(name):
+    return json.loads((CONTENT / name).read_text(encoding="utf-8"))
+
+
+SITE = load("site.json")
+GTM_ID = SITE["gtm_id"]
+
+# The brand mark: two rounded parallelograms split by a diagonal negative-space
+# channel, on the SkyBreeze blue gradient. Fixed colour (the wordmark carries the
+# light/dark theme). The gradient id is shared; duplicate ids across inlined copies
+# resolve to the first, which is intended — every mark takes the same gradient.
+MARK = ('<svg class="mark" viewBox="0 0 110 96" aria-hidden="true">'
+        '<defs><linearGradient id="sbMark" x1="0.05" y1="0" x2="0.5" y2="1">'
+        '<stop offset="0" stop-color="#4C93FF"/><stop offset="0.55" stop-color="#2266EE"/>'
+        '<stop offset="1" stop-color="#123FCC"/></linearGradient></defs>'
+        '<g fill="url(#sbMark)" stroke="url(#sbMark)" stroke-width="6" stroke-linejoin="round">'
+        '<polygon points="30,12 88,12 64,46 6,46"/>'
+        '<polygon points="80,84 22,84 46,50 104,50"/></g>'
+        '</svg>')
+
+
+def logo(context="nav"):
+    return (f'<a href="index.html" class="logo logo--{context}" aria-label="{SITE["brand"]} — на головну">'
+            f'<span class="logo__mark">{MARK}</span>'
+            f'<span class="logo__word">{SITE["brand"]}</span></a>')
+
 
 GTM_HEAD = (
     '  <!-- Google Tag Manager -->\n'
@@ -24,7 +54,6 @@ GTM_HEAD = (
     f'}})(window,document,\'script\',\'dataLayer\',\'{GTM_ID}\');</script>\n'
     '  <!-- End Google Tag Manager -->\n'
 )
-
 GTM_NOSCRIPT = (
     '  <!-- Google Tag Manager (noscript) -->\n'
     f'  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"\n'
@@ -32,42 +61,18 @@ GTM_NOSCRIPT = (
     '  <!-- End Google Tag Manager (noscript) -->\n'
 )
 
-LOGO = ('''<a href="index.html" class="logo" aria-label="SkyBreeze — на головну"><img class="logo__img" src="public/assets/logomain.png" alt="SkyBreeze" width="220" height="74" /></a>''')
-
-NAV_ITEMS = [
-    ("Головна сторінка", "index.html", "index.html"),
-    ("Наші послуги", "#services", "index.html"),
-    ("Портфоліо", "portfolio.html", "portfolio.html"),
-    ("Зв'язатися з нами", "contacts.html", "contacts.html"),
-]
-
-TOPICS = [
-    "Сайт + Google Ads — 9 999 ₴",
-    "Складний сайт + Google Ads — 18 999 ₴",
-    "Тільки сайт",
-    "Тільки Google Ads",
-    "Motion — анімація логотипа",
-    "Motion — система бренду",
-    "SEO — on-page ($400)",
-    "SEO — просування ($200/міс)",
-    "Telegram-бот",
-    "Telegram Mini App",
-    "Безкоштовний аналіз ніші",
-]
-
-NL = "\n"
-
 
 def head(title, desc, extra=""):
     return (f'''<!DOCTYPE html>
-<html lang="uk">
+<html lang="{SITE["lang"]}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {GTM_HEAD}  <title>{title}</title>
   <meta name="description" content="{desc}" />
-  <meta name="theme-color" content="#FBFBF9" />
-  <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0B0F14" />
+  <link rel="icon" href="public/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
 {extra}  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -82,30 +87,32 @@ def head(title, desc, extra=""):
 
 def nav(current):
     links, sheet = [], []
-    for label, href, page in NAV_ITEMS:
+    for item in SITE["nav"]:
+        label, href, page = item["label"], item["href"], item["page"]
         target = href if (page == current or not href.startswith('#')) else 'index.html' + href
         cur = ' aria-current="page"' if (page == current and not href.startswith('#')) else ''
         links.append(f'          <a href="{target}"{cur}>{label}</a>')
         sheet.append(f'      <a href="{target}">{label}</a>')
     promo = ('#services' if current == 'index.html' else 'index.html#services')
+    phone = SITE["phone"]; phone_href = SITE["phone_href"]
     return f'''
   <div class="topbar">
-    <a href="{promo}">Сайт + Google Ads — 9 999 ₴, запуск реклами безкоштовно <span class="btn__arrow">→</span></a>
+    <a href="{promo}">{SITE["topbar"]} <span class="btn__arrow">→</span></a>
   </div>
 
   <header class="nav" id="nav">
     <div class="nav__inner">
-      {LOGO}
+      {logo("nav")}
 
       <nav class="nav__links" aria-label="Основна навігація">
 {NL.join(links)}
       </nav>
 
       <div class="nav__right">
-        <a class="nav__phone" href="tel:+380689239682" aria-label="Зателефонувати +380 68 923 96 82">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg><span>+380 68 923 96 82</span>
+        <a class="nav__phone" href="tel:{phone_href}" aria-label="Зателефонувати {phone}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg><span>{phone}</span>
         </a>
-        <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+        <button class="btn btn--primary" data-modal-open>{SITE["cta_button"]} <span class="btn__arrow">→</span></button>
         <button class="nav__burger" id="navBurger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navSheet">
           <span></span><span></span>
         </button>
@@ -118,24 +125,27 @@ def nav(current):
     <nav aria-label="Мобільна навігація">
 {NL.join(sheet)}
     </nav>
-    <button class="btn btn--primary btn--lg btn--wide" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+    <button class="btn btn--primary btn--lg btn--wide" data-modal-open>{SITE["cta_button"]} <span class="btn__arrow">→</span></button>
   </div>
 '''
 
 
-FOOTER = f'''
-  <footer class="footer">
+def footer():
+    f = SITE["footer"]
+    return f'''
+  <footer class="footer band band--dark" data-nav-dark>
     <div class="shell">
       <div class="footer__grid">
         <div class="footer__about">
-          {LOGO}
-          <p>Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.</p>
-          <button class="btn btn--ghost" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+          {logo("footer")}
+          <p>{f["about"]}</p>
+          <button class="btn btn--primary" data-modal-open>{SITE["cta_button"]} <span class="btn__arrow">→</span></button>
         </div>
         <div class="footer__col">
           <h4>Сайт</h4>
           <a href="index.html">Головна сторінка</a>
           <a href="index.html#services">Наші послуги</a>
+          <a href="index.html#mission">Місія</a>
           <a href="index.html#packages">Пакети</a>
           <a href="portfolio.html">Портфоліо</a>
         </div>
@@ -145,21 +155,20 @@ FOOTER = f'''
           <a href="index.html#panel-ads">Google Ads</a>
           <a href="index.html#panel-motion">Motion Design</a>
           <a href="index.html#panel-seo">SEO-оптимізація</a>
-          <a href="index.html#panel-seo-monthly">SEO-просування</a>
           <a href="index.html#panel-bots">Telegram-боти</a>
           <a href="index.html#panel-miniapp">Telegram Mini App</a>
         </div>
         <div class="footer__col">
           <h4>Контакти</h4>
-          <a href="mailto:hello@skybreeze.agency">hello@skybreeze.agency</a>
-          <a href="https://t.me/skybreeze" target="_blank" rel="noopener">Telegram</a>
-          <a href="tel:+380689239682">+380 68 923 96 82</a>
+          <a href="mailto:{SITE["email"]}">{SITE["email"]}</a>
+          <a href="{SITE["telegram_url"]}" target="_blank" rel="noopener">Telegram</a>
+          <a href="tel:{SITE["phone_href"]}">{SITE["phone"]}</a>
           <a href="contacts.html">Форма заявки</a>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 SkyBreeze</span>
-        <span>Київ · Працюємо з бізнесом по всій Україні</span>
+        <span>{f["copyright"]}</span>
+        <span>{f["location"]}</span>
       </div>
     </div>
   </footer>
@@ -167,7 +176,7 @@ FOOTER = f'''
 
 
 def form(prefix, note=True):
-    opts = NL.join(f'            <option>{t}</option>' for t in TOPICS)
+    opts = NL.join(f'            <option>{t}</option>' for t in SITE["form_topics"])
     tail = ('\n        <p class="form__note">Безкоштовна консультація · Без зобов\'язань</p>'
             if note else '')
     return f'''<div class="field">
@@ -183,14 +192,15 @@ def form(prefix, note=True):
         <button class="btn btn--primary btn--wide btn--lg" type="submit">Надіслати заявку <span class="btn__arrow">→</span></button>{tail}'''
 
 
-MODAL = f'''
+def modal():
+    m = SITE["modal"]
+    return f'''
   <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__dialog">
       <button class="modal__close" type="button" aria-label="Закрити вікно" data-modal-close>✕</button>
-      <h2 id="modalTitle">Обговорити проєкт</h2>
-      <p class="modal__lead">Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант.</p>
-
+      <h2 id="modalTitle">{m["title"]}</h2>
+      <p class="modal__lead">{m["lead"]}</p>
       <form id="contactForm" novalidate>
         {form("f")}
         <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
@@ -199,15 +209,14 @@ MODAL = f'''
   </div>
 '''
 
-ACTIONBAR = '''
-  
 
+ACTIONBAR = f'''
   <div class="actionbar" id="actionBar">
     <span class="actionbar__price"><span>Сайт + Google Ads</span><strong>9 999 ₴</strong></span>
-    <button class="btn btn--primary" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
+    <button class="btn btn--primary" data-modal-open>{SITE["cta_button"]} <span class="btn__arrow">→</span></button>
   </div>
 
-  <a class="fab-call" href="tel:+380689239682" aria-label="Зателефонувати +380 68 923 96 82">
+  <a class="fab-call" href="tel:{SITE["phone_href"]}" aria-label="Зателефонувати {SITE["phone"]}">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
   </a>
 '''
@@ -220,18 +229,20 @@ TAIL = ACTIONBAR + '''
 
 
 def cta(heading):
+    c = SITE["cta"]
     return f'''
-    <section class="cta rule">
+    <section class="cta band band--dark" data-nav-dark>
+      <div class="channel channel--top" aria-hidden="true"></div>
       <div class="shell">
         <div class="cta__panel" data-reveal>
-          <span class="cta__mark"><svg viewBox="-2 -4 40 38" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h20a6.5 6.5 0 1 0-6-9"/><path d="M1 19h27a7 7 0 1 1-6.6 9.4"/><path d="M3 29h13"/></svg></span>
+          <span class="cta__mark" aria-hidden="true">{MARK}</span>
           <h2>{heading}</h2>
-          <p>Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.</p>
+          <p>{c["body"]}</p>
           <div class="cta__actions">
-            <button class="btn btn--on-ink btn--lg" data-modal-open>Обговорити проєкт <span class="btn__arrow">→</span></button>
-            <a class="btn btn--on-ink-ghost btn--lg" href="contacts.html">Написати нам <span class="btn__arrow">→</span></a>
+            <button class="btn btn--primary btn--lg" data-modal-open>{SITE["cta_button"]} <span class="btn__arrow">→</span></button>
+            <a class="btn btn--line-ink btn--lg" href="contacts.html">Написати нам <span class="btn__arrow">→</span></a>
           </div>
-          <p class="cta__note">Безкоштовна консультація · Без зобов'язань</p>
+          <p class="cta__note">{c["note"]}</p>
         </div>
       </div>
     </section>
@@ -252,11 +263,13 @@ def build_index():
                    '  <meta property="og:description" content="Сайт, реклама та motion під ключ. Від 9 999 ₴, запуск за 3–7 днів." />\n')
         + nav("index.html")
         + '\n  <main id="main">\n'
-        + part("hero.html") + part("strip.html") + part("process.html") + part("bento.html")
-        + part("system.html") + part("leadmagnet.html") + part("pricing.html")
-        + part("services.html") + part("motion.html") + part("stack.html") + part("after.html") + part("faq.html")
-        + cta("Готові запустити свій бізнес в інтернеті?")
-        + '  </main>\n' + FOOTER + MODAL + TAIL
+        + part("hero.html") + part("strip.html")
+        + part("process.html") + part("bento.html") + part("system.html")
+        + part("mission.html")
+        + part("services.html") + part("pricing.html") + part("motion.html")
+        + part("stack.html") + part("leadmagnet.html") + part("after.html") + part("faq.html")
+        + cta(SITE["cta"]["index"])
+        + '  </main>\n' + footer() + modal() + TAIL
     )
 
 
@@ -267,14 +280,14 @@ def build_portfolio():
              "з налаштованою рекламою Google Ads.")
         + nav("portfolio.html")
         + '\n  <main id="main">\n' + part("portfolio.html")
-        + cta("Хочете такий самий результат?")
-        + '  </main>\n' + FOOTER + MODAL + TAIL
+        + cta(SITE["cta"]["portfolio"])
+        + '  </main>\n' + footer() + modal() + TAIL
     )
 
 
 def build_thanks():
     body = '''
-    <section class="thanks">
+    <section class="thanks band band--dark" data-nav-dark>
       <div class="shell">
         <div class="thanks__inner" data-hero>
           <span class="thanks__check" aria-hidden="true">
@@ -287,14 +300,14 @@ def build_thanks():
             оптимальний варіант. Якщо питання термінове, телефонуйте просто зараз.
           </p>
           <div class="thanks__actions">
-            <a class="btn btn--primary btn--lg" href="tel:+380689239682">Зателефонувати <span class="btn__arrow">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="https://t.me/skybreeze" target="_blank" rel="noopener">Написати в Telegram <span class="btn__arrow">→</span></a>
+            <a class="btn btn--primary btn--lg" href="tel:''' + SITE["phone_href"] + '''">Зателефонувати <span class="btn__arrow">→</span></a>
+            <a class="btn btn--line-ink btn--lg" href="''' + SITE["telegram_url"] + '''" target="_blank" rel="noopener">Написати в Telegram <span class="btn__arrow">→</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--flush">
+    <section class="section band band--light">
       <div class="shell shell--bleed">
         <ol class="flow">
           <li class="flow__item" data-reveal>
@@ -331,13 +344,13 @@ def build_thanks():
              extra=gate)
         + nav("thanks.html")
         + '\n  <main id="main">\n' + body + '  </main>\n'
-        + FOOTER + MODAL + TAIL
+        + footer() + modal() + TAIL
     )
 
 
 def build_contacts():
     body = f'''
-    <section class="page-head">
+    <section class="page-head band band--dark" data-nav-dark>
       <div class="shell">
         <div data-hero>
           <span class="tag">Контакти</span>
@@ -350,15 +363,15 @@ def build_contacts():
       </div>
     </section>
 
-    <section>
+    <section class="band band--light">
       <div class="shell">
         <div class="contact-grid">
           <div data-reveal>
             <h2 class="h-sm">Напишіть нам</h2>
             <ul class="contact-list">
-              <li><a href="mailto:hello@skybreeze.agency"><span class="k">Email</span><span class="v">hello@skybreeze.agency</span></a></li>
-              <li><a href="https://t.me/skybreeze" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@astradigital</span></a></li>
-              <li><a href="tel:+380689239682"><span class="k">Телефон</span><span class="v">+380 68 923 96 82</span></a></li>
+              <li><a href="mailto:{SITE["email"]}"><span class="k">Email</span><span class="v">{SITE["email"]}</span></a></li>
+              <li><a href="{SITE["telegram_url"]}" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">{SITE["telegram_handle"]}</span></a></li>
+              <li><a href="tel:{SITE["phone_href"]}"><span class="k">Телефон</span><span class="v">{SITE["phone"]}</span></a></li>
             </ul>
             <p class="small muted-note">
               Відповідаємо протягом робочого дня. Консультація безкоштовна та без зобов'язань.
@@ -383,7 +396,7 @@ def build_contacts():
              "вартості сайту й Google Ads.")
         + nav("contacts.html")
         + '\n  <main id="main">\n' + body + '  </main>\n'
-        + FOOTER + MODAL + TAIL
+        + footer() + modal() + TAIL
     )
 
 

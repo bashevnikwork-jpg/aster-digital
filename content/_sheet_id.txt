@@ -1,0 +1,3 @@
+# Google Sheet id for content sync (from the Sheet URL:
+# docs.google.com/spreadsheets/d/THIS_ID/edit). Not secret.
+# Paste the id on the line below.

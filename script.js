@@ -23,7 +23,8 @@
       }
 
       // the header takes the dark theme while a dark band passes behind it
-      var edge = nav.getBoundingClientRect().bottom - 2;
+      // (+6 so it also reads the dark hero sitting right below the bar at the top)
+      var edge = nav.getBoundingClientRect().bottom + 6;
       var overDark = false;
       Array.prototype.forEach.call(darkZones, function (zone) {
         var r = zone.getBoundingClientRect();
@@ -113,6 +114,7 @@
   indexChildren('.strip', '.strip__cell');
   indexChildren('.faq', '.faq__item');
   indexChildren('.flow', '.flow__item');
+  indexChildren('.mission__grid', '.mission__pillar');
   document.querySelectorAll('.cells .cell').forEach(function (cell) {
     var i = cell.style.getPropertyValue('--i');
     Array.prototype.slice.call(cell.children).forEach(function (child) {
@@ -121,7 +123,7 @@
   });
 
   /* One observer drives every entrance. */
-  var watched = document.querySelectorAll('[data-reveal], [data-split], .cells, .strip, .faq, .flow');
+  var watched = document.querySelectorAll('[data-reveal], [data-split], .cells, .strip, .faq, .flow, .mission__grid');
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
     watched.forEach(function (el) { el.classList.add('is-in'); });

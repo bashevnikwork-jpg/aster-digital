@@ -1,0 +1,21 @@
+{
+  "tag": "Технології",
+  "title": "Увесь стек —",
+  "title_2": "під вашу задачу.",
+  "lead": "Не тягнемо кожен проєкт в один шаблон: обираємо інструменти під задачу — від лендінга на чистому коді до магазину на WooCommerce чи складного застосунку. <strong>Понад 30 технологій</strong> у роботі.",
+  "cta": "Підібрати рішення",
+  "row1": [
+    ["HTML", "HTML5"], ["CSS", "CSS3"], ["JS", "JavaScript"], ["TS", "TypeScript"],
+    ["Re", "React"], ["N", "Next.js"], ["Ng", "Angular"], ["V", "Vue"],
+    ["TW", "Tailwind"], ["Sa", "Sass"], ["Nd", "Node.js"], ["Ja", "Java"],
+    ["Sp", "Spring"], ["C#", "C#"], ["NET", ".NET"], ["ASP", "ASP.NET Core"],
+    ["C++", "C++"], ["Py", "Python"]
+  ],
+  "row2": [
+    ["Dj", "Django"], ["PHP", "PHP"], ["Lv", "Laravel"], ["WP", "WordPress"],
+    ["Wo", "WooCommerce"], ["Sh", "Shopify"], ["My", "MySQL"], ["PG", "PostgreSQL"],
+    ["Mg", "MongoDB"], ["Dk", "Docker"], ["Git", "Git"], ["Fg", "Figma"],
+    ["Ae", "After Effects"], ["Pr", "Premiere Pro"], ["Ads", "Google Ads"],
+    ["GA4", "Analytics 4"], ["GTM", "Tag Manager"]
+  ]
+}

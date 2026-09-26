@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 96" role="img" aria-label="SkyBreeze">
+  <!-- Two rounded parallelograms split by a diagonal negative-space channel. -->
+  <defs>
+    <linearGradient id="sbMark" x1="0.05" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#4C93FF"/>
+      <stop offset="0.55" stop-color="#2266EE"/>
+      <stop offset="1" stop-color="#123FCC"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#sbMark)" stroke="url(#sbMark)" stroke-width="6" stroke-linejoin="round">
+    <polygon points="30,12 88,12 64,46 6,46"/>
+    <polygon points="80,84 22,84 46,50 104,50"/>
+  </g>
+</svg>

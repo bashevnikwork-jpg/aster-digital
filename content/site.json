@@ -1,0 +1,48 @@
+{
+  "brand": "SkyBreeze",
+  "lang": "uk",
+  "domain": "skybreeze.agency",
+  "gtm_id": "GTM-5FRPXNZQ",
+  "phone": "+380 68 923 96 82",
+  "phone_href": "+380689239682",
+  "email": "hello@skybreeze.agency",
+  "telegram_url": "https://t.me/skybreeze",
+  "telegram_handle": "@astradigital",
+  "topbar": "Сайт + Google Ads — 9 999 ₴, запуск реклами безкоштовно",
+  "nav": [
+    { "label": "Головна сторінка", "href": "index.html", "page": "index.html" },
+    { "label": "Наші послуги", "href": "#services", "page": "index.html" },
+    { "label": "Місія", "href": "#mission", "page": "index.html" },
+    { "label": "Портфоліо", "href": "portfolio.html", "page": "portfolio.html" },
+    { "label": "Зв'язатися з нами", "href": "contacts.html", "page": "contacts.html" }
+  ],
+  "cta_button": "Обговорити проєкт",
+  "form_topics": [
+    "Сайт + Google Ads — 9 999 ₴",
+    "Складний сайт + Google Ads — 18 999 ₴",
+    "Тільки сайт",
+    "Тільки Google Ads",
+    "Motion — анімація логотипа",
+    "Motion — система бренду",
+    "SEO — on-page ($400)",
+    "SEO — просування ($200/міс)",
+    "Telegram-бот",
+    "Telegram Mini App",
+    "Безкоштовний аналіз ніші"
+  ],
+  "footer": {
+    "about": "Створюємо сайти, налаштовуємо Google Ads і робимо motion — щоб бізнес отримував клієнтів з інтернету.",
+    "location": "Київ · Працюємо з бізнесом по всій Україні",
+    "copyright": "© 2026 SkyBreeze"
+  },
+  "modal": {
+    "title": "Обговорити проєкт",
+    "lead": "Залиште контакти — зв'яжемося протягом робочого дня та запропонуємо оптимальний варіант."
+  },
+  "cta": {
+    "index": "Готові запустити свій бізнес в інтернеті?",
+    "portfolio": "Хочете такий самий результат?",
+    "body": "Розкажіть нам про свій бізнес — ми проаналізуємо задачу та запропонуємо оптимальний варіант.",
+    "note": "Безкоштовна консультація · Без зобов'язань"
+  }
+}
