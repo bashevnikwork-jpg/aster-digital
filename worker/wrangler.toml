@@ -1,0 +1,4 @@
+name = "skybreeze-lead"
+main = "telegram-proxy.js"
+compatibility_date = "2024-09-01"
+workers_dev = true

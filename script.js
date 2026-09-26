@@ -303,25 +303,15 @@
   }
 
   /* ---------- 7. Forms ---------- */
-  var TG_TOKEN   = '8812468698:AAElK5SHXiW4jFPFiy5WBN0IH9K7MjF2f0Y';
-  var TG_CHAT_ID = '7578353801';
+  /* Leads go through the SkyBreeze relay Worker: the Telegram bot token lives in
+     the Worker's secrets, never on the site. Source: worker/telegram-proxy.js. */
+  var LEAD_ENDPOINT = 'https://skybreeze-lead.skybreeze-agency.workers.dev';
 
   function sendToTelegram(contact, topic, page) {
-    if (!TG_TOKEN) return Promise.resolve();
-    var date = new Date().toLocaleString('uk-UA', {
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv'
-    });
-    var text =
-      '🔔 *Нова заявка — SkyBreeze*\n\n' +
-      '📞 *Контакт:* ' + contact + '\n' +
-      '📋 *Послуга:* ' + topic + '\n' +
-      '📅 *Час:* ' + date + '\n' +
-      '🌐 *Сторінка:* ' + page;
-    return fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    return fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' })
+      body: JSON.stringify({ contact: contact, topic: topic, page: page })
     }).catch(function () { /* silent: redirect still happens */ });
   }
 
