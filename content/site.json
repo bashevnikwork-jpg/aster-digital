@@ -7,14 +7,34 @@
   "phone_href": "+380689239682",
   "email": "hello@skybreeze.agency",
   "telegram_url": "https://t.me/skybreeze",
-  "telegram_handle": "@astradigital",
+  "telegram_handle": "@SkyBreezePR",
   "topbar": "Сайт + Google Ads — 9 999 ₴, запуск реклами безкоштовно",
   "nav": [
-    { "label": "Головна сторінка", "href": "index.html", "page": "index.html" },
-    { "label": "Наші послуги", "href": "#services", "page": "index.html" },
-    { "label": "Місія", "href": "#mission", "page": "index.html" },
-    { "label": "Портфоліо", "href": "portfolio.html", "page": "portfolio.html" },
-    { "label": "Зв'язатися з нами", "href": "contacts.html", "page": "contacts.html" }
+    {
+      "label": "Головна сторінка",
+      "href": "index.html",
+      "page": "index.html"
+    },
+    {
+      "label": "Наші послуги",
+      "href": "#services",
+      "page": "index.html"
+    },
+    {
+      "label": "Місія",
+      "href": "#mission",
+      "page": "index.html"
+    },
+    {
+      "label": "Портфоліо",
+      "href": "portfolio.html",
+      "page": "portfolio.html"
+    },
+    {
+      "label": "Зв'язатися з нами",
+      "href": "contacts.html",
+      "page": "contacts.html"
+    }
   ],
   "cta_button": "Обговорити проєкт",
   "form_topics": [
