@@ -142,9 +142,10 @@ def sheet_id():
         return env
     f = CONTENT / "_sheet_id.txt"
     if f.exists():
-        val = f.read_text(encoding="utf-8").strip()
-        if val and not val.startswith("#"):
-            return val
+        for line in f.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                return line
     sys.exit("No Sheet id — set env SKYBREEZE_SHEET_ID or write content/_sheet_id.txt")
 
 
