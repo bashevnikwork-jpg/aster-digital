@@ -73,6 +73,19 @@ def head(title, desc, extra=""):
   <meta name="theme-color" content="#0B0F14" />
   <link rel="icon" href="public/brand/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{SITE["brand"]}" />
+  <meta property="og:title" content="{title}" />
+  <meta property="og:description" content="{desc}" />
+  <meta property="og:url" content="https://{SITE["domain"]}/" />
+  <meta property="og:image" content="https://{SITE["domain"]}/public/brand/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{SITE["brand"]} — сайт + Google Ads для бізнесу" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{title}" />
+  <meta name="twitter:description" content="{desc}" />
+  <meta name="twitter:image" content="https://{SITE["domain"]}/public/brand/og.png" />
 {extra}  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -257,10 +270,7 @@ def build_index():
     return (
         head("SkyBreeze — Створення сайтів та Google Ads для бізнесу",
              "Створюємо сучасні сайти для бізнесу, налаштовуємо Google Ads та створюємо "
-             "motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴.",
-             extra='  <meta property="og:type" content="website" />\n'
-                   '  <meta property="og:title" content="SkyBreeze — Створення сайтів та Google Ads для бізнесу" />\n'
-                   '  <meta property="og:description" content="Сайт, реклама та motion під ключ. Від 9 999 ₴, запуск за 3–7 днів." />\n')
+             "motion-дизайн. Аналіз ніші, розробка, запуск і оптимізація під ключ. Від 9 999 ₴.")
         + nav("index.html")
         + '\n  <main id="main">\n'
         + part("hero.html") + part("strip.html")
