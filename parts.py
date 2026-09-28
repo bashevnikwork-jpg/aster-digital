@@ -564,19 +564,17 @@ EXT = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=
 def work_card(c):
     n, t = c["name"], c["tag"]
     live, clip, slug, l = c.get("live"), c.get("video"), c["slug"], c["loading"]
+    # Always lead with the project's screenshot; a live clip only if one is set.
     if clip:
         shot = (f'<div class="work__shot work__shot--video">'
                 f'<video src="{clip}" autoplay muted loop playsinline preload="metadata" '
                 f'aria-label="{n} — запис сайту"></video></div>')
-        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
-    elif live:
-        shot = (f'<a class="work__shot work__shot--link" href="{live}" target="_blank" rel="noopener">'
-                f'<b>{n}</b><span>Відкрити сайт у новій вкладці</span></a>')
-        cta = f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
     else:
         shot = (f'<div class="work__shot"><img src="public/assets/screenshots/{slug}.webp" '
                 f'alt="{n} — проєкт SkyBreeze" loading="{l}" /></div>')
-        cta = ''
+    # A "view the site" link under the case when the project is live.
+    cta = (f'\n              <a class="work__live" href="{live}" target="_blank" rel="noopener">Дивитися сайт {EXT}</a>'
+           if live else '')
     return f'''          <article class="work" data-reveal>
             {shot}
             <div class="work__body">

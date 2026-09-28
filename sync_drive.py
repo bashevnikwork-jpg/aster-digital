@@ -124,7 +124,8 @@ TABLE_TABS = [
     # (tab, file, dotted_list_path, row_builder, merge_key)
     ("Services", "services.json", "items", _services_row, "id"),
     ("Pricing", "pricing.json", "packages", _pricing_row, None),
-    ("Portfolio", "portfolio.json", "cases", _portfolio_row, None),
+    # Portfolio is code-managed (screenshots live in the repo, links rarely change),
+    # so it is intentionally NOT synced from the Sheet — see content/portfolio.json.
     ("FAQ", "faq.json", "items", _faq_row, None),
     ("Process", "sections.json", "process.steps", _step_row, None),
     ("Advantages", "sections.json", "advantages.items", _adv_row, None),
