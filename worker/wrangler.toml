@@ -2,3 +2,8 @@ name = "skybreeze-lead"
 main = "telegram-proxy.js"
 compatibility_date = "2024-09-01"
 workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "skybreeze-leads"
+database_id = "2e6648ea-3845-414c-a585-ff0da494dc4e"
