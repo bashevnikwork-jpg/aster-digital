@@ -1,0 +1,3 @@
+{
+  "_help": "Code-level overrides that WIN over the Google Sheet (never reverted by sync). Add entries per content file with dotted paths; numbers index lists (zero-based). Example: \"services.json\": { \"items.1.price\": \"4 999 ₴\" }. The _help key is ignored. See siteload.py."
+}

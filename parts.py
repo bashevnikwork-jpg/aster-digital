@@ -8,15 +8,15 @@ Drive (see sync_drive.py). This file owns structure and markup only.
 
 import json
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from siteload import load  # content loader with code-level overrides
 
 ROOT = pathlib.Path(__file__).parent
 OUT = ROOT / "parts"
 CONTENT = ROOT / "content"
 OUT.mkdir(exist_ok=True)
-
-
-def load(name):
-    return json.loads((CONTENT / name).read_text(encoding="utf-8"))
 
 
 SECT = load("sections.json")

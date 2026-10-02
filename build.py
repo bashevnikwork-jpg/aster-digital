@@ -11,15 +11,15 @@ so it can be driven from Google Drive — see sync_drive.py and CONTENT-EDITING.
 
 import json
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from siteload import load  # content loader with code-level overrides
 
 ROOT = pathlib.Path(__file__).parent
 PARTS = ROOT / "parts"
 CONTENT = ROOT / "content"
 NL = "\n"
-
-
-def load(name):
-    return json.loads((CONTENT / name).read_text(encoding="utf-8"))
 
 
 SITE = load("site.json")
