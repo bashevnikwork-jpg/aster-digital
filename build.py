@@ -106,7 +106,7 @@ def nav(current):
         cur = ' aria-current="page"' if (page == current and not href.startswith('#')) else ''
         links.append(f'          <a href="{target}"{cur}>{label}</a>')
         sheet.append(f'      <a href="{target}">{label}</a>')
-    promo = ('#services' if current == 'index.html' else 'index.html#services')
+    promo = ('#packages' if current == 'index.html' else 'index.html#packages')
     phone = SITE["phone"]; phone_href = SITE["phone_href"]
     return f'''
   <div class="topbar">
